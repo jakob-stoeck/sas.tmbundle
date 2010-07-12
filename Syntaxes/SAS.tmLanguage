@@ -7,7 +7,7 @@
 		<string>sas</string>
 	</array>
 	<key>foldingStartMarker</key>
-	<string>(proc|data)</string>
+	<string>(proc|data).*;$</string>
 	<key>foldingStopMarker</key>
 	<string>(run|quit);</string>
 	<key>name</key>
@@ -15,22 +15,133 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>include</key>
+			<string>#comments</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.sas</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(?i:\b(sort|merge|retain)\b)</string>
-			<key>name</key>
-			<string>support.function</string>
+			<string>(?i:(proc) (\w+))</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.table-name.sas</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:(data) ([^\s]+))</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.other.attribute-name.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.library-name.sas</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.table-name.sas</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:\b(data|out)=(\w+\.)?(\w*)\b)</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b\d+\b</string>
+			<string>(?i:\b(sort|run|quit|output)\b)</string>
+			<key>name</key>
+			<string>support.function.sas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b\d+(\.\d+)*\b</string>
 			<key>name</key>
 			<string>constant.numeric.sas</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.sas</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(?i:\b(by)\b)</string>
+			<string>(?i:\b(by) ([^\s]+)\b)</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.sas</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:(keep|drop|retain|format|class|var) ([\w\s]+))</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.table-name.sas</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:\b(set|tables|merge) ([\w\s]+)\b)</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(if|else|then)\b</string>
 			<key>name</key>
-			<string>keyword.other.DML.sas</string>
+			<string>keyword.control.sas</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -40,15 +151,27 @@
 		</dict>
 		<dict>
 			<key>match</key>
+			<string>(?i)\b(title)\b</string>
+			<key>name</key>
+			<string>keyword.other.sas</string>
+		</dict>
+		<dict>
+			<key>match</key>
 			<string>\*</string>
 			<key>name</key>
 			<string>keyword.operator.star.sas</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>[!&lt;&gt;]?=|&lt;&gt;|&lt;|&gt;</string>
+			<string>&lt;|&gt;|eq|ne</string>
 			<key>name</key>
 			<string>keyword.operator.comparison.sas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string> \. </string>
+			<key>name</key>
+			<string>keyword.null.sas</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -99,10 +222,6 @@
 		<dict>
 			<key>include</key>
 			<string>#regexps</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#comments</string>
 		</dict>
 	</array>
 	<key>repository</key>
