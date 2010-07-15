@@ -50,7 +50,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i:(data) ([^\s]+))</string>
+			<string>(?i:^(data) ([^\s]+))</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -76,7 +76,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i:\b(sort|run|quit|output)\b)</string>
+			<string>(?i:\bsort|run|quit|output\b)</string>
 			<key>name</key>
 			<string>support.function.sas</string>
 		</dict>
@@ -85,6 +85,12 @@
 			<string>\b\d+(\.\d+)*\b</string>
 			<key>name</key>
 			<string>constant.numeric.sas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\blow|high\b</string>
+			<key>name</key>
+			<string>constant.sas</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -139,7 +145,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(if|else|then)\b</string>
+			<string>\b(if|else|then|end)\b</string>
 			<key>name</key>
 			<string>keyword.control.sas</string>
 		</dict>
@@ -163,7 +169,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>&lt;|&gt;|eq|ne</string>
+			<string>\b&lt;|&gt;|eq|ne\b</string>
 			<key>name</key>
 			<string>keyword.operator.comparison.sas</string>
 		</dict>
@@ -240,7 +246,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\*).*;$\n?</string>
+					<string>^\s*(\*).*;\s*$\n?</string>
 					<key>name</key>
 					<string>comment.line.asterisk.sas</string>
 				</dict>
