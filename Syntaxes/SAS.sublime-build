@@ -1,0 +1,3 @@
+{
+  "cmd": ["wscript", "C:/Documents and Settings/pardre1/My Documents/WSH/SasWrap.wsf", "/sasprog:$file"]
+}

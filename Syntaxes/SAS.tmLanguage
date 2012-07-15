@@ -246,7 +246,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>^\s*(\*).*;\s*$\n?</string>
+					<string>^\s*(%?\*).*;\s*$\n?</string>
 					<key>name</key>
 					<string>comment.line.asterisk.sas</string>
 				</dict>
