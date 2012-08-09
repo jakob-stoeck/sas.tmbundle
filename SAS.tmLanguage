@@ -6,10 +6,11 @@
 	<array>
 		<string>sas</string>
 	</array>
+	<!-- Why doesn't macro work? -->
 	<key>foldingStartMarker</key>
 	<string>(proc|data|%macro).*;$</string>
 	<key>foldingStopMarker</key>
-	<string>(run|quit|%mend);</string>
+	<string>(run|quit|%mend).*;$</string>
 	<key>name</key>
 	<string>SAS</string>
 	<key>patterns</key>
@@ -72,7 +73,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i:\b(data|out)=(\w+\.)?(\w*)\b)</string>
+			<string>(?i:\b(data|out)\s?=\s?(\w+\.)?(\w*)\b)</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -169,7 +170,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b&lt;|&gt;|eq|ne\b</string>
+			<string>\b(&lt;|&gt;|eq|ne)\b</string>
 			<key>name</key>
 			<string>keyword.operator.comparison.sas</string>
 		</dict>
