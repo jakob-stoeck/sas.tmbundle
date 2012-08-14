@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+options orientation = landscape ;
+
+** ods graphics / height = 6in width = 10in ;
+
+%**let out_folder = \\home\pardre1\ ;
+%let out_folder = $TM_FILEPATH ;
+
+ods html path = "&out_folder" (URL=NONE)
+         body = "$TM_FILENAME.html" 
+         (title = "$TM_FILENME output")
+          
+
+ods rtf file = "&out_folder.$TM_FILENAME.rtf" device = sasemf ;
+
+$0
+
+run ;
+
+ods _all_ close ;
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ods</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>Program header block</description>
+</snippet>
