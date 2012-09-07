@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+libname syb ODBC required = "DRIVER=Sybase System 11;UID=pardre1;DB=data_warehouse;SRVR=DW_SYBASE;PWD=${1:current_password}" ;
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>syb</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>Sybase lib (ODBC)</description>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+** libname mssql ODBC required = "DRIVER=SQL Server;Trusted_Connection=Yes;DATABASE=${2:OptMo};SERVER=${1:CTRHS-SQL2K\\SQL2K}" readbuff = 2000 bulkload = yes ;
+libname mssql OLEDB provider=SQLOLEDB datasource='${1:CTRHS-SQL2K\\SQL2K}' properties=("Integrated Security"=SSPI "Initial Catalog"=${2:OptMo}) readbuff = 2000 ;
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mssql</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>mssql libname</description>
+</snippet>

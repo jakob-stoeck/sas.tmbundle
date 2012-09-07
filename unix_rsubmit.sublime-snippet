@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+** log on to unix and rsubmit ;
+%include '\\\\home\\pardre1\\SAS\\Scripts\\sasunxlogon.sas' ;
+%include '\\\\ctrhs-sas\\warehouse\\Remote\\RemoteStartUnix.sas' ;
+rsubmit ;
+
+${1:code goes here}
+
+** log off unix ;
+endrsubmit ;
+signoff unix ;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>unx</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>unix rsubmit</description>
+</snippet>
