@@ -22,7 +22,7 @@
 			<key>comment</key>
 			<string>Error line</string>
 			<key>match</key>
-			<string>^ERROR.*</string>
+			<string>(^(ERROR|WARNING)|Uninitialized| remerg|invalid).*</string>
 			<key>name</key>
 			<string>invalid.source.SASLog</string>
 		</dict>
