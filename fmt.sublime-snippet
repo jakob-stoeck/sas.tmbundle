@@ -1,13 +1,15 @@
 <snippet>
   <content><![CDATA[
-%macro ${1:mname}(${2:args}) ;
-  ${3:code goes here}
-%mend ${1:mname} ;
+proc format ;
+  value \$${1:txtfmt}
+    "${2:val}" = "${3:formatted val}"
+  ;
+quit ;
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>mac</tabTrigger>
+  <tabTrigger>fmt</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sas</scope>
-  <description>Macro definition</description>
+  <description>proc format</description>
 </snippet>
