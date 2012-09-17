@@ -68,14 +68,8 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\*.*;</string>
-					<key>name</key>
-					<string>comment.line.sas</string>
-				</dict>
-				<dict>
 					<key>begin</key>
-					<string>(?&lt;!select |SELECT )\*</string>
+					<string>(?&lt;!select |SELECT |\(|\.)\*</string>
 					<key>comment</key>
 					<string>This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive.</string>
 					<key>end</key>

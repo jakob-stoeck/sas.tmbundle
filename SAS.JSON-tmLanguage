@@ -24,16 +24,12 @@
       "end": "(?i:\\bquit\\s*;)",
       "name": "sql.block.sas",
       "patterns": [
-        {
-          "name": "comment.line.sas",
-          "match": "\\*.*;"
-        },
         {  "name": "comment.block.sas",
-           "begin": "(?<!select |SELECT )\\*",
+           "begin": "(?<!select |SELECT |\\(|\\.)\\*",
            "end": ";",
            "comment": "This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive."
         },
-          {
+        {
           "include": "source.sql"
         }
       ],
