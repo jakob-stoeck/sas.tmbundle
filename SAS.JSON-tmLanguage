@@ -24,11 +24,6 @@
       "end": "(?i:\\bquit\\s*;)",
       "name": "sql.block.sas",
       "patterns": [
-        {  "name": "comment.block.sas",
-           "begin": "(?<!select |SELECT |\\(|\\.)\\*",
-           "end": ";",
-           "comment": "This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive."
-        },
         {
           "include": "source.sql"
         }
@@ -51,16 +46,13 @@
        "match": "(?i:\\b(_n_|_error_)\\b)"
     },
     {  "name": "comment.block.sas",
-       "begin": "(?<!select |SELECT )\\*",
+       "begin": "^(\\s|[;%])*?\\*",
        "end": ";",
-       "comment": "This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive."
+       "comment": "Trying to match anything where the only things to the left of the star are whitespace or a semicolon.  This seems to take care of line comments as well!"
     },
     {  "name": "comment.block.sas",
        "begin": "/\\*",
        "end": "\\*/"
-    },
-    {  "name": "comment.line.sas",
-       "match": "\\*.*;"
     },
     {  "name": "constant.numeric.sas",
        "match": "\\b\\d+\\b"

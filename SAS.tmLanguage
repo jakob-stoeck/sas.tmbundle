@@ -68,16 +68,6 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?&lt;!select |SELECT |\(|\.)\*</string>
-					<key>comment</key>
-					<string>This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive.</string>
-					<key>end</key>
-					<string>;</string>
-					<key>name</key>
-					<string>comment.block.sas</string>
-				</dict>
-				<dict>
 					<key>include</key>
 					<string>source.sql</string>
 				</dict>
@@ -117,9 +107,9 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;!select |SELECT )\*</string>
+			<string>^(\s|[;%])*?\*</string>
 			<key>comment</key>
-			<string>This is a kludge, to keep the SQL construct 'select *' from processing as a comment.  I could not figure out how to make the negative lookbehind case-insensitive.</string>
+			<string>Trying to match anything where the only things to the left of the star are whitespace or a semicolon.  This seems to take care of line comments as well!</string>
 			<key>end</key>
 			<string>;</string>
 			<key>name</key>
@@ -132,12 +122,6 @@
 			<string>\*/</string>
 			<key>name</key>
 			<string>comment.block.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\*.*;</string>
-			<key>name</key>
-			<string>comment.line.sas</string>
 		</dict>
 		<dict>
 			<key>match</key>
