@@ -3,7 +3,16 @@
   "fileTypes": ["sas"],
   "comment": "A work in progress--improves over the existing in that it populates symbols, and handles comments more gracefully.",
   "repository": {
-      "star-comment": {"match": "r"}
+      "hanging_comment": {  "name": "comment.block.sas",
+                            "begin": "(?<=;)\\s*\\*",
+                            "end": ";",
+                            "comment": "This should handle 'hanging' comments where there is executable code to the left of the comment."
+                          },
+      "star_comment": {  "name": "comment.block.sas",
+                         "begin": "^\\s*\\*",
+                         "end": ";",
+                         "comment": "This should handle simple comments where star is the first non-whitespace char on the line."
+                      }
     },
   "patterns": [
     {  "name": "keyword.control.sas",
@@ -23,18 +32,16 @@
           "3": { "name": "entity.name.function.sas" }
        }
     },
-    { "begin": "(?i:\\bproc\\s*sql\\s*;)",
+    { "begin": "(?i:\\bproc\\s*sql\\b.*)",
       "end": "(?i:\\bquit\\s*;)",
       "name": "sql.block.sas",
       "patterns": [
         {
-          "include": "#star-comment"
+          "include": "#star_comment"
           },
-        {  "name": "comment.block.sas",
-           "begin": "^(\\s|[;%])*?\\*",
-           "end": ";",
-           "comment": "Trying to match anything where the only things to the left of the star are whitespace or a semicolon.  This seems to take care of line comments as well!"
-        },
+        {
+          "include": "#hanging_comment"
+          },
         {
           "include": "source.sql"
         }
@@ -53,16 +60,9 @@
     {  "name": "variable.language.sas",
        "match": "(?i:\\b(_n_|_error_)\\b)"
     },
-    {  "name": "comment.block.sas",
-       "begin": "^\\s*\\*",
-       "end": ";",
-       "comment": "This should handle simple comments where star is the first non-whitespace char on the line."
-    },
-    {  "name": "comment.block.sas",
-       "begin": "(?<=;)\\s*\\*",
-       "end": ";",
-       "comment": "This should handle 'hanging' comments where there is executable code to the left of the comment."
-    },
+    { "include": "#star_comment" },
+    { "include": "#hanging_comment" },
+
     {  "name": "comment.block.sas",
        "begin": "/\\*",
        "end": "\\*/"

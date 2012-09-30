@@ -58,7 +58,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?i:\bproc\s*sql\s*;)</string>
+			<string>(?i:\bproc\s*sql\b.*)</string>
 			<key>comment</key>
 			<string>Looks like for this to work there must be a *name* as well as the patterns/include bit.</string>
 			<key>end</key>
@@ -69,17 +69,11 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#star-comment</string>
+					<string>#star_comment</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>^(\s|[;%])*?\*</string>
-					<key>comment</key>
-					<string>Trying to match anything where the only things to the left of the star are whitespace or a semicolon.  This seems to take care of line comments as well!</string>
-					<key>end</key>
-					<string>;</string>
-					<key>name</key>
-					<string>comment.block.sas</string>
+					<key>include</key>
+					<string>#hanging_comment</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -114,24 +108,12 @@
 			<string>variable.language.sas</string>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>^\s*\*</string>
-			<key>comment</key>
-			<string>This should handle simple comments where star is the first non-whitespace char on the line.</string>
-			<key>end</key>
-			<string>;</string>
-			<key>name</key>
-			<string>comment.block.sas</string>
+			<key>include</key>
+			<string>#star_comment</string>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>(?&lt;=;)\s*\*</string>
-			<key>comment</key>
-			<string>This should handle 'hanging' comments where there is executable code to the left of the comment.</string>
-			<key>end</key>
-			<string>;</string>
-			<key>name</key>
-			<string>comment.block.sas</string>
+			<key>include</key>
+			<string>#hanging_comment</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -180,10 +162,27 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>star-comment</key>
+		<key>hanging_comment</key>
 		<dict>
-			<key>match</key>
-			<string>r</string>
+			<key>begin</key>
+			<string>(?&lt;=;)\s*\*</string>
+			<key>comment</key>
+			<string>This should handle 'hanging' comments where there is executable code to the left of the comment.</string>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>comment.block.sas</string>
+		</dict>
+		<key>star_comment</key>
+		<dict>
+			<key>begin</key>
+			<string>^\s*\*</string>
+			<key>comment</key>
+			<string>This should handle simple comments where star is the first non-whitespace char on the line.</string>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>comment.block.sas</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
