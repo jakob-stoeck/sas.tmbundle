@@ -1,6 +1,8 @@
-{ "name": "Sas Program",
+{ "name": "SAS Program",
   "scopeName": "source.sas",
   "fileTypes": ["sas"],
+  "foldingStartMarker": "(proc|data|%macro).*;$",
+  "foldingStopMarker": "(run|quit|%mend);",
   "comment": "A work in progress--improves over the existing in that it populates symbols, and handles comments more gracefully.",
   "repository": {
       "hanging_comment": {  "name": "comment.block.sas",
@@ -80,7 +82,7 @@
        "match": "(?i:['\"]\\d{1,2}(jan|feb|apr|may|jun|jul|aug|sep|oct|nov|dec)\\d{2,4}['\"]d)"
     },
     {  "name": "string.quoted.single.sas",
-       "match": "'.+'"
+       "match": "'[^']+'"
     },
     {  "name": "string.quoted.double.roy",
        "match": "\".+\""

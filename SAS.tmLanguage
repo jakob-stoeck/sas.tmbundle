@@ -8,8 +8,12 @@
 	<array>
 		<string>sas</string>
 	</array>
+	<key>foldingStartMarker</key>
+	<string>(proc|data|%macro).*;$</string>
+	<key>foldingStopMarker</key>
+	<string>(run|quit|%mend);</string>
 	<key>name</key>
-	<string>Sas Program</string>
+	<string>SAS Program</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -149,7 +153,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>'.+'</string>
+			<string>'[^']+'</string>
 			<key>name</key>
 			<string>string.quoted.single.sas</string>
 		</dict>
