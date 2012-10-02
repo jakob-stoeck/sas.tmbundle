@@ -11,7 +11,7 @@
                             "comment": "This should handle 'hanging' comments where there is executable code to the left of the comment."
                           },
       "star_comment": {  "name": "comment.block.sas",
-                         "begin": "^\\s*\\*",
+                         "begin": "^\\s*%+*\\*",
                          "end": ";",
                          "comment": "This should handle simple comments where star is the first non-whitespace char on the line."
                       }
@@ -82,10 +82,10 @@
        "match": "(?i:['\"]\\d{1,2}(jan|feb|apr|may|jun|jul|aug|sep|oct|nov|dec)\\d{2,4}['\"]d)"
     },
     {  "name": "string.quoted.single.sas",
-       "match": "'[^']+'"
+       "match": "'[^']*'"
     },
-    {  "name": "string.quoted.double.roy",
-       "match": "\".+\""
+    {  "name": "string.quoted.double.sas",
+       "match": "\"[^\"]*\""
     }
   ],
   "uuid": "7e721b1e-6265-4865-bc4b-308d49affba1"

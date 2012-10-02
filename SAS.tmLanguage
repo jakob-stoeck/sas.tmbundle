@@ -153,15 +153,15 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>'[^']+'</string>
+			<string>'[^']*'</string>
 			<key>name</key>
 			<string>string.quoted.single.sas</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>".+"</string>
+			<string>"[^"]*"</string>
 			<key>name</key>
-			<string>string.quoted.double.roy</string>
+			<string>string.quoted.double.sas</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -180,7 +180,7 @@
 		<key>star_comment</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*\*</string>
+			<string>^\s*%+*\*</string>
 			<key>comment</key>
 			<string>This should handle simple comments where star is the first non-whitespace char on the line.</string>
 			<key>end</key>
