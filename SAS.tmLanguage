@@ -56,7 +56,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i:(%(macro|mend|do|if|then|end|while|until|goto|include)))\s*(\w*)</string>
+			<string>(?i:(%(macro|mend|do|if|then|end|while|until|goto|include)\b))\s*(\w*)</string>
 			<key>name</key>
 			<string>keyword.other.sas</string>
 		</dict>

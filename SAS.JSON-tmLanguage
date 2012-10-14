@@ -28,7 +28,7 @@
        }
     },
     {  "name": "keyword.other.sas",
-       "match": "(?i:(%(macro|mend|do|if|then|end|while|until|goto|include)))\\s*(\\w*)",
+       "match": "(?i:(%(macro|mend|do|if|then|end|while|until|goto|include)\\b))\\s*(\\w*)",
        "captures": {
           "1": {"name": "support.class.sas"},
           "3": { "name": "entity.name.function.sas" }
