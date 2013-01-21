@@ -9,7 +9,7 @@ ${1:code goes here}
 
 ** log off unix ;
 endrsubmit ;
-signoff unix ;
+signoff sasunix.spawner ;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>unx</tabTrigger>

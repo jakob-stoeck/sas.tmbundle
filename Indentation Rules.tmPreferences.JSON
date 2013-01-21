@@ -1,0 +1,9 @@
+{
+    "scope": "source",
+    "settings": {
+        "decreaseIndentPattern": "(?i:(end|run|quit)\\s*;)",
+        "disableIndentNextLinePattern": "^\\s*\\{[\\]})]*\\s*$",
+        "increaseIndentPattern": "^.*(\\{[^}\"']*)$",
+        "indentParens": true
+    }
+}

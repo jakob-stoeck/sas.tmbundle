@@ -2,17 +2,17 @@
   <content><![CDATA[
 options orientation = landscape ;
 
-** ods graphics / height = 6in width = 10in ;
+* ods graphics / height = 6in width = 10in ;
 
-%**let out_folder = \\\home\pardre1\ ;
+* %let out_folder = //home/pardre1/ ;
 %let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
 
 ods html path = "&out_folder" (URL=NONE)
-         body   = "${TM_FILENAME/(.*)[.](.*)/$1/g}.html" 
+         body   = "${TM_FILENAME/(.*)[.](.*)/$1/g}.html"
          (title = "${TM_FILENAME/(.*)[.](.*)/$1/g} output")
           ;
 
-ods rtf file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.rtf" device = sasemf ;
+* ods rtf file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.rtf" device = sasemf ;
 
 $0
 

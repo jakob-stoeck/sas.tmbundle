@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 
 class ShowNextErrorCommand(sublime_plugin.TextCommand):
   def run(self, edit):
-    err_regex = "(\n(error:|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))"
+    err_regex = "(\n(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))"
     # Get end of last current selection.
     curr_pos = 0
     for region in self.view.sel():

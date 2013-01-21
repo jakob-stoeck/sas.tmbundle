@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-libname syb ODBC required = "DRIVER=Sybase System 11;UID=pardre1;DB=data_warehouse;SRVR=DW_SYBASE;PWD=${1:current_password}" ;
+libname syb ODBC required = "DRIVER=Sybase System 11;UID=${1:pardre1};DB=data_warehouse;SRVR=DW_SYBASE;PWD=${2:current_password}" ;
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

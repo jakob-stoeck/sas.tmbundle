@@ -1,12 +1,7 @@
 <snippet>
   <content><![CDATA[
 proc sql ;
-  create table ${1:gnu} as
-  select    ${2:*}
-  from    $3 as $4    ${5:INNER} JOIN
-          $6 as $7
-  on      $4.${8:mrn} = $7.${8:mrn}
-  ;
+  $1
 quit ;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

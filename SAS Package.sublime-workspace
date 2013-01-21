@@ -1,0 +1,1310 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"raw_sy",
+				"raw_sybase_results"
+			],
+			[
+				"normal",
+				"normal_low_c"
+			],
+			[
+				"raw_syb",
+				"raw_sybase_comments"
+			],
+			[
+				"make",
+				"make_formats"
+			],
+			[
+				"outcom",
+				"outcomm"
+			],
+			[
+				"raw_sybas",
+				"raw_sybase_comments"
+			],
+			[
+				"nonflu",
+				"nonflu_comments"
+			],
+			[
+				"nonf",
+				"nonflu_comments"
+			],
+			[
+				"home",
+				"home_clinic"
+			],
+			[
+				"respon",
+				"responsible_provider"
+			],
+			[
+				"merge",
+				"merge_window"
+			],
+			[
+				"BIRTH",
+				"birthday_letter_exclusions"
+			],
+			[
+				"birth",
+				"birthday_letter_exclusions"
+			],
+			[
+				"ref",
+				"ref_tbl_itm_des"
+			],
+			[
+				"ref_",
+				"ref_tbl_itm_des"
+			],
+			[
+				"src",
+				"src_cde"
+			],
+			[
+				"date",
+				"date_added"
+			],
+			[
+				"cervi",
+				"cervix_absent"
+			],
+			[
+				"pick",
+				"pick_winners"
+			],
+			[
+				"eligib",
+				"eligible_women"
+			],
+			[
+				"freq",
+				"freqable"
+			],
+			[
+				"choos",
+				"choosing_wisely"
+			],
+			[
+				"perform",
+				"performingpractitioner1code"
+			],
+			[
+				"coal",
+				"coalescec"
+			],
+			[
+				"bup_or",
+				"bup_order_dxs"
+			],
+			[
+				"medic",
+				"medication_name"
+			],
+			[
+				"bup",
+				"bup_fills"
+			],
+			[
+				"bup_order_d",
+				"bup_order_dx_types"
+			],
+			[
+				"medi",
+				"medication_orders"
+			],
+			[
+				"begd",
+				"begdt"
+			],
+			[
+				"just",
+				"just_ours"
+			],
+			[
+				"plot",
+				"plot_counts"
+			],
+			[
+				"charg",
+				"chargeitemhcpcscode"
+			],
+			[
+				"01jan",
+				"01jan2011"
+			],
+			[
+				"look",
+				"lookback_start"
+			],
+			[
+				"months",
+				"months_from_last"
+			],
+			[
+				"rank",
+				"rank_order"
+			],
+			[
+				"service",
+				"service_date"
+			],
+			[
+				"elig",
+				"eligible_women"
+			],
+			[
+				"raw",
+				"raw_cmd"
+			],
+			[
+				"servicd",
+				"servicedateid"
+			],
+			[
+				"servic",
+				"service_date"
+			],
+			[
+				"servi",
+				"service_date"
+			],
+			[
+				"pap_exc",
+				"pap_excl_codes"
+			],
+			[
+				"chargeitemdi",
+				"CHARGEITEMDIAGNOSIS1CODE"
+			],
+			[
+				"org",
+				"orgid"
+			],
+			[
+				"first",
+				"first_month"
+			],
+			[
+				"sty",
+				"study_day"
+			],
+			[
+				"cum",
+				"cum_cmd_cost"
+			],
+			[
+				"medication",
+				"medication_name"
+			],
+			[
+				"med",
+				"medication_orders"
+			],
+			[
+				"order",
+				"ordering_date"
+			],
+			[
+				"pap_",
+				"pap_codes"
+			],
+			[
+				"days",
+				"days_from_last"
+			],
+			[
+				"count",
+				"count_paps"
+			],
+			[
+				"start",
+				"start_date"
+			],
+			[
+				"uni",
+				"uniquify_paps"
+			],
+			[
+				"uniq",
+				"unique_paps"
+			],
+			[
+				"choo",
+				"choosing_wisely"
+			],
+			[
+				"clea",
+				"clean_paps"
+			],
+			[
+				"proc",
+				"proc_and_revenue"
+			],
+			[
+				"Post",
+				"PostIndexEnrolledMonths"
+			],
+			[
+				"Pre",
+				"PreIndexGapTolerance"
+			],
+			[
+				"test",
+				"test_people"
+			],
+			[
+				"exclu",
+				"exclusions"
+			],
+			[
+				"lookb",
+				"lookback_startid"
+			],
+			[
+				"month",
+				"month_criterion"
+			],
+			[
+				"lookba",
+				"lookback_start"
+			],
+			[
+				"wom",
+				"women_of_age"
+			],
+			[
+				"chargeit",
+				"chargeitemrevenuecode"
+			],
+			[
+				"enr",
+				"enrolled_days_after"
+			],
+			[
+				"enro",
+				"enrolled_days_before"
+			],
+			[
+				"canc",
+				"CancerType"
+			],
+			[
+				"study",
+				"study_enroll_date"
+			],
+			[
+				"stud",
+				"study_enroll_date"
+			],
+			[
+				"cancer",
+				"cancer_dx"
+			],
+			[
+				"dx",
+				"dx_code"
+			],
+			[
+				"ct",
+				"ct	create table (NO join)"
+			],
+			[
+				"_not",
+				"_not_in_clarity"
+			],
+			[
+				"c",
+				"ctj	create table (with join)"
+			],
+			[
+				"quit",
+				"quit_for_life"
+			],
+			[
+				"clean",
+				"clean_clarity_labs"
+			],
+			[
+				"kpn",
+				"kpnw_only"
+			],
+			[
+				"HCPC",
+				"HCPC4"
+			],
+			[
+				"CPT",
+				"CPT4"
+			],
+			[
+				"syb",
+				"syb	Connect to sybase"
+			],
+			[
+				"num_",
+				"num_results"
+			],
+			[
+				"numer",
+				"numeric_results"
+			],
+			[
+				"temp",
+				"template"
+			],
+			[
+				"char_re",
+				"char_result"
+			],
+			[
+				"drop",
+				"drop_me"
+			],
+			[
+				"local",
+				"local_cd"
+			],
+			[
+				"has",
+				"hashvars"
+			],
+			[
+				"norm",
+				"normal_high_c"
+			],
+			[
+				"tob",
+				"tobacco_type"
+			],
+			[
+				"coa",
+				"coalescec"
+			],
+			[
+				"numeri",
+				"numeric_result"
+			],
+			[
+				"re",
+				"result_type"
+			],
+			[
+				"depart",
+				"department_name"
+			],
+			[
+				"specia",
+				"specialty"
+			],
+			[
+				"refer",
+				"reference_high"
+			],
+			[
+				"specim",
+				"speciman_collection_datetime"
+			],
+			[
+				"compon",
+				"component_id"
+			],
+			[
+				"too",
+				"too_common_comps"
+			],
+			[
+				"drop_",
+				"drop_me2"
+			],
+			[
+				"res",
+				"result_c"
+			],
+			[
+				"enroll",
+				"enrollment_basis"
+			],
+			[
+				"enrol",
+				"enrollment_basis"
+			],
+			[
+				"subm",
+				"submitting_sites"
+			],
+			[
+				"rep",
+				"report"
+			],
+			[
+				"std",
+				"stdvars	VDW Standard Vars include"
+			],
+			[
+				"mbh",
+				"mbhtrmdt"
+			],
+			[
+				"retr_",
+				"retr_unconstrained_days"
+			],
+			[
+				"cla",
+				"cla	class .. end"
+			],
+			[
+				"star",
+				"star_comment"
+			],
+			[
+				"_vdw",
+				"_vdw_enroll"
+			],
+			[
+				"percent",
+				"percent_bad"
+			],
+			[
+				"duplic",
+				"duplicated_demog_mrns"
+			],
+			[
+				"expe",
+				"expected_vars"
+			],
+			[
+				"overlapp",
+				"overlapping_periods"
+			],
+			[
+				"percen",
+				"percent_found"
+			],
+			[
+				"num_in",
+				"num_in_demog"
+			],
+			[
+				"num_enr",
+				"num_enroll_mrns"
+			],
+			[
+				"outsi",
+				"outside_utilization"
+			],
+			[
+				"unexp",
+				"unexpected_problems"
+			],
+			[
+				"to",
+				"to_stay"
+			],
+			[
+				"bad",
+				"bad_enroll"
+			],
+			[
+				"fail",
+				"fail_lim"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/c/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/lib.sublime-snippet",
+			"settings":
+			{
+				"buffer_size": 363,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "SAS Package.sublime-project",
+			"settings":
+			{
+				"buffer_size": 176,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"SNIPP",
+				"Snippet: mdb libname"
+			],
+			[
+				"of",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"csw",
+				"Convert Case: Swap Case"
+			],
+			[
+				"case",
+				"Convert Case: Swap Case"
+			],
+			[
+				"align",
+				"Preferences: Alignment Key Bindings – User"
+			],
+			[
+				"alignmen",
+				"Preferences: Alignment File Settings – User"
+			],
+			[
+				"alig",
+				"Preferences: Alignment File Settings – User"
+			],
+			[
+				"fo",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"synsas",
+				"Set Syntax: SAS Log"
+			],
+			[
+				"fa",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"sysql",
+				"Set Syntax: SQL"
+			],
+			[
+				"fao",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"setsynlog",
+				"Set Syntax: SAS Log"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"f",
+				"Favorite Files: Remove File(s)"
+			],
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"favo",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"packinst",
+				"Package Control: Install Package"
+			],
+			[
+				"packaginst",
+				"Package Control: Install Package"
+			],
+			[
+				"pakinst",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"packins",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"packinsta",
+				"Package Control: Install Package"
+			],
+			[
+				"fav",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"syn htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"json",
+				"Plist Json Converter: PLIST to JSON"
+			],
+			[
+				"synsql",
+				"Set Syntax: SQL"
+			],
+			[
+				"sethtm",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sublime",
+				"Set Syntax: Sublime Text Syntax Definition"
+			],
+			[
+				"package",
+				"Package Control: Discover Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"syntsubl",
+				"Set Syntax: Sublime Text Syntax Definition"
+			],
+			[
+				"synrub",
+				"Set Syntax: Ruby"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"open f",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"synsasl",
+				"Set Syntax: SAS Log"
+			],
+			[
+				"syn sas",
+				"Set Syntax: SAS Log"
+			],
+			[
+				"convert",
+				"Plist Json Converter: PLIST to JSON"
+			],
+			[
+				"plist",
+				"Plist Json Converter: PLIST to JSON"
+			],
+			[
+				"convpl",
+				"Plist Json Converter: PLIST to JSON"
+			],
+			[
+				"js",
+				"Plist Json Converter: PLIST to JSON"
+			],
+			[
+				"jason",
+				"Plist Json Converter: Save JSON to PLIST"
+			],
+			[
+				"pakup",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"sssas",
+				"Set Syntax: SAS Log"
+			],
+			[
+				"sspla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"sssa",
+				"Set Syntax: SAS"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"favor",
+				"Favorite Files: Add File(s)"
+			],
+			[
+				"",
+				"Set Syntax: Sublime Text Syntax Definition"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"pa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 359.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/SAS.sublime-build",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/Default/exec.py",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/unix_rsubmit.sublime-snippet",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/SAS Log.JSON-tmLanguage",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/SAS Package.sublime-project",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/stdvars.sublime-snippet",
+		"/c/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/lib.sublime-snippet",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/notes/cw_20121218.txt",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/make_provider_graphs.sas",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/SAS.JSON-tmLanguage",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/macro.sublime-snippet",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/overpapulation.lst",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/overpapulation.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/make_provider_graphs.log",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/overpapulation.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/rebuild_sybase.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/rebuild_sybase.log",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/rebuild_sybase.lst",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/vdw3lab_1_sybasepull.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/vdw3lab_3_compile.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/vdw3lab_0_info.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/deleteme.log",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/deleteme.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/vdw3lab_1_sybasepull.log",
+		"/C/Documents and Settings/pardre1/Desktop/deleteme.lst",
+		"/C/Documents and Settings/pardre1/Desktop/deleteme.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/supporting_files/fix_whole_blood_glu.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/supporting_files/fix_whole_blood_glu.log",
+		"/C/Documents and Settings/pardre1/Desktop/deleteme.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/macros/standard_macros.sas",
+		"//ctrhs-sas/Warehouse/remote/RemoteStartUnix.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/macros/StdVars.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.sas",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/User/Base File.sublime-settings",
+		"/C/Documents and Settings/pardre1/My Documents/multisite_programming_notes.txt",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/rebuild_sybase.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/lab/vdw3lab_0_info.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/lab/vdw3lab_3_compile.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/rebuild_mvs.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/rebuild_mvs.log",
+		"//ghrisas/Warehouse/management/Programs/CRN_VDW/Rx/SDRCRx_V5.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/rx/SDRCRx_V5.sas",
+		"//totoro/pardre1/dw_login.sas",
+		"//totoro/pardre1/sasntlogon.sas",
+		"/c/Documents and Settings/pardre1/My Documents/vdw/lab/vdw3lab_2_mvspull.sas",
+		"//home/pardre1/SAS/Scripts/encrypt_pwd.sas",
+		"//home/pardre1/SAS/Scripts/vdw_demog_dw_login.sas",
+		"//home/pardre1/SAS/Scripts/macsasunxlogon.sas",
+		"//home/pardre1/SAS/Scripts/sasntlogon.sas",
+		"//home/pardre1/SAS/Scripts/sasunxlogon.sas",
+		"//home/pardre1/SAS/Scripts/encrypt_pwd.log",
+		"/C/Documents and Settings/pardre1/Desktop/pop_sgdesign.sas",
+		"//groups/data/CTRHS/Crn/voc/enrollment/programs/ghc_qa/vdw_enroll_demog_qa.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/pull_birthday_exclusions.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/process_cervix_absent.log",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/process_cervix_absent.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/pull_birthday_exclusions.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/AmbulatoryVisits/ambvis_driver.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/Demographics/make_demographics.sas",
+		"//ghrisas/Warehouse/management/Programs/CRN_VDW/VitalSigns/VitalSignsCreation_V2.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/AmbulatoryVisits/refresh_clarity_data.sas",
+		"//ghrisas/Warehouse/management/Programs/CRN_VDW/VitalSigns/autovitalsigns.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/Demographics/clarity_race.sas",
+		"//groups/data/CTRHS/choosing_wisely/programming/process_cervix_absent.lst",
+		"//groups/data/CTRHS/choosing_wisely/programming/process_cervix_absent.log",
+		"/c/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.sas",
+		"//groups/data/ctrhs/choosing_wisely/programming/process_cervix_absent.sas",
+		"//groups/data/ctrhs/choosing_wisely/programming/deleteme.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/get_enrollment.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/get_tobacco_rx.log",
+		"//groups/data/ctrhs/OptimizingMotivation/Programming/Programs/get_tobacco_rx.sas",
+		"/C/Documents and Settings/pardre1/My Documents/Downloads/deductible_sketch (1).sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/get_tobacco_rx.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/enrollment/MakeEnroll.sas",
+		"//groups/data/CTRHS/CHS/pardre1/repos/enrollment/main.sas",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/main.log",
+		"//groups/data/CTRHS/CHS/pardre1/repos/enrollment/environment.sas",
+		"//groups/data/ctrhs/OptimizingMotivation/Programming/Programs/pick_lottery_winners.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/person_events.log",
+		"//groups/data/ctrhs/OptimizingMotivation/Programming/Programs/person_events.sas",
+		"//groups/data/ctrhs/OptimizingMotivation/Programming/Programs/ever_enrolled.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/pick_lottery_winners.log",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/pick_lottery_winners.lst",
+		"//groups/data/CTRHS/Crn/CCRC/OncologyNurse/Programming/programs/randomize_stragglers.sas",
+		"//groups/data/CTRHS/Crn/CCRC/OncologyNurse/Programming/programs/randomize_stragglers.lst",
+		"//groups/data/CTRHS/Crn/CCRC/OncologyNurse/Programming/programs/randomize_docs.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/deleteme.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/deleteme.lst",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/deleteme.log",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/randomization_sketch.sas",
+		"//groups/data/CTRHS/choosing_wisely/programming/provider_question.log",
+		"//groups/data/ctrhs/choosing_wisely/programming/provider_question.sas",
+		"//groups/data/CTRHS/choosing_wisely/programming/provider_question.lst",
+		"/c/Documents and Settings/pardre1/My Documents/vdw/lab/supporting_files/clarity_sketch.sas",
+		"/c/Documents and Settings/pardre1/My Documents/vdw/AmbulatoryVisits/refresh_clarity_data.sas",
+		"//groups/data/CTRHS/Choosing_Wisely/programming/notes/scb_conversation.txt",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/bup_orders.log",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/bup_orders.lst",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/bup_orders.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/notes/kp_stuff/Choosing Wisely pap metric 10-16-2012 V6.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/cmd/vdw_cmd.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/deleteme.sas",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/deleteme.log",
+		"//groups/data/CTRHS/OptimizingMotivation/Programming/Programs/deleteme.lst",
+		"//ghrisas/SASWORK/ROC70J/_TD4916/spm_comment.txt",
+		"//home/pardre1/voc/enroll_201211.txt",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/supporting_files/clarity_sketch.sas",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/PAP_CHOOSINGWISELY_V02.sas",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/overpapulation.log",
+		"//groups/data/ctrhs/choosing_wisely/programming/vdw",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/notes/cw_debrief_20121210.txt",
+		"/c/Documents and Settings/pardre1/My Documents/vdw/macros/for_steve.txt",
+		"/C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/lib.sublime-snippet",
+		"//home/pardre1/mini_sentinel/ms_20121210.txt",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/macros/manage_format_data.sas",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/clarity_race_accrual.log",
+		"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK17E4/overpapulation (2).log",
+		"//groups/data/ctrhs/choosing_wisely/programming/overpapulation.log",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/supporting_files/compare_clarity_results.lst",
+		"//groups/data/CTRHS/CHS/pardre1/repos/lab/supporting_files/compare_clarity_results.log",
+		"//groups/data/ctrhs/chs/pardre1/repos/lab/supporting_files/compare_clarity_results.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.lst",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/deleteme.log",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/deleteme.lst",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/deleteme.sas",
+		"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/pap_compare_search_cmd.log"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Documents and Settings\\pardre1\\My Documents\\vdw\\choose_wisely,*.sas",
+			"C:\\Documents and Settings\\pardre1\\My Documents,*.txt",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"subprocess.Popen",
+			"Sybaselabs_toadd",
+			"normal_low_c",
+			"trim",
+			"reference_",
+			"normal_low",
+			"output",
+			"sybaselabs3",
+			"  drop",
+			"sybaselabs2",
+			"localdir",
+			"&new_notes",
+			"&new_labs",
+			";\n",
+			"&new_",
+			"sybasel",
+			"SYBASE_LABS",
+			"syb",
+			"vdw3.sybasenotes_toadd",
+			"nonflu_commen",
+			"vdw3mast.SybaseNotesKeyMaster",
+			"vdw3.raw_sybasenotes_toadd",
+			"vdw3.raw_sybaselabs_toadd",
+			"vdw3mast.SybaseNotesKeyMaster",
+			"upsertnote",
+			"removed",
+			"raw_sybase_comments",
+			"raw_sybase_results",
+			"libref",
+			"vdw3",
+			"toadd",
+			"VIEWS",
+			"LEG",
+			"MANDL",
+			"X-RAY",
+			"171",
+			"format",
+			"to",
+			"selections",
+			"!\n",
+			"of",
+			"smear",
+			"sublime",
+			"normal_low_c",
+			"rxstar",
+			"7",
+			"source",
+			"deleteme",
+			"source",
+			"whole",
+			"unique_paps",
+			"deriot",
+			"admc",
+			"admctr98",
+			"ADMCTR98",
+			"&byvar",
+			"error",
+			"mi",
+			"mi.",
+			"pct_by_location",
+			"admfmt",
+			"ADMCTR98",
+			"moinv.",
+			" *\"$",
+			"lib",
+			"dw.BRT_DAY_LTR_EXC",
+			"pap_lookb",
+			"dmhs",
+			"\\n",
+			" ",
+			"resulted",
+			"result",
+			"provider",
+			"gp_only",
+			"possib",
+			"start_date",
+			"ordering",
+			"possible",
+			"gnu",
+			"raw",
+			"?",
+			"admc",
+			"pap_look",
+			"duplicate",
+			"88150",
+			"order_proc",
+			"date9",
+			"month_cr",
+			"intnx('year', \"&start_date\"d, 0, 'end')",
+			"lookback_start",
+			"start_dateid",
+			"and and",
+			"admctr",
+			"vbar",
+			"623.0",
+			",",
+			"months_between",
+			",",
+			"rank_order = 2",
+			" is ",
+			"days",
+			"months",
+			"our_paps",
+			"lookback_startid is",
+			"uniquify_paps",
+			"get_population",
+			"assert",
+			"paptype",
+			"source",
+			",",
+			"CHARGEITEMHCPCSCODE",
+			"drop",
+			"chargeableactivityname",
+			"deriot",
+			"mmddyy10",
+			"monyy7",
+			"weeku",
+			"dtmonyy7",
+			"servicetimestamp",
+			"if ",
+			"cum_days",
+			"where study_d",
+			"where study",
+			"proc print",
+			"p6m6",
+			"&num_mon",
+			"position",
+			"reg"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+			"kpmo.",
+			"\"",
+			" ",
+			"\\n",
+			" ",
+			"\\n",
+			"dx",
+			",",
+			"\\n",
+			"\\t",
+			",",
+			"cs.lab_results_clarity",
+			"\\1\\.\\t",
+			"\\1\\.",
+			"\\1\\.\\t",
+			"\\1\\t",
+			"\"",
+			" \\2 = \"\\1\"",
+			"\"",
+			" \\2 = \"\\1\"",
+			" ",
+			"",
+			" ",
+			" = ",
+			"specimen",
+			"'",
+			"ods",
+			"/",
+			"=",
+			"/",
+			"specimen",
+			"  ",
+			"enroll_tier_one",
+			" to_stay.bad_demog",
+			"inset",
+			"fail_lim",
+			">",
+			"speciman",
+			"\\t",
+			"sas",
+			"'",
+			"mic_org_rsl_dtm",
+			"\\n",
+			"freakout",
+			"",
+			" $1",
+			" ",
+			"\"",
+			"",
+			"\\t",
+			";\\n",
+			"style=",
+			"",
+			"<td>",
+			"",
+			">",
+			"=",
+			"\\n",
+			"principal_dx",
+			"",
+			"myusername",
+			"mydomain",
+			"mycompany.com",
+			"line",
+			"fin_line",
+			"head",
+			"fin_head",
+			"",
+			"*",
+			"/",
+			"in",
+			"cc.",
+			"",
+			"d.",
+			",",
+			"\\2 \\1",
+			"\\2, \\1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/c/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/lib.sublime-snippet",
+					"settings":
+					{
+						"buffer_size": 363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"is_xml": true,
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "SAS Package.sublime-project",
+					"settings":
+					{
+						"buffer_size": 176,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.aaa_package_dev":
+	{
+		"height": 60.0
+	},
+	"output.exec":
+	{
+		"height": 39.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"dele",
+				"/C/Documents and Settings/pardre1/Desktop/deleteme.sas"
+			],
+			[
+				"ref",
+				"/C/Documents and Settings/pardre1/My Documents/vdw/AmbulatoryVisits/refresh_clarity_data.sas"
+			],
+			[
+				"clean",
+				"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.sas"
+			],
+			[
+				"deleteme",
+				"//groups/data/CTRHS/CHS/pardre1/repos/retro_allmbh/deleteme.sas"
+			],
+			[
+				"intern",
+				"/C/Documents and Settings/pardre1/Local Settings/Temporary Internet Files/OLK5D3/InternalClaims_dateVars.txt"
+			],
+			[
+				"not",
+				"/C/Documents and Settings/pardre1/Desktop/hmorn_2012/change_process/notes.txt"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.sublime-project"
+			],
+			[
+				"ov",
+				"/C/Documents and Settings/pardre1/My Documents/vdw/choose_wisely/overpapulation.sublime-project"
+			],
+			[
+				"d",
+				"/C/Documents and Settings/pardre1/My Documents/demo.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true
+}

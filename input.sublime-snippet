@@ -3,8 +3,8 @@
 data ${1:gnu} ;
   ** infile "\\groups\data\CTRHS\Crn\Obesity Interest Group\programming\data\obesity_ndcs.txt" ;
   input
-    @1    ndc         $char11.
-    @12   drug_name   $char40.
+    @1    ndc         \$char11.
+    @12   drug_name   \$char40.
   ;
 datalines ;
 ${2:blah}

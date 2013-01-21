@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
   %slibcon(server=DW_SYBASE, database = DATA_WAREHOUSE, libnx=DW) ;
-  %**pthrucon(DW_SYBASE, Data_Warehouse) ;
+  * %pthrucon(DW_SYBASE, Data_Warehouse) ;
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
