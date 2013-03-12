@@ -1,2 +1,4 @@
 test.sublime-snippet
 *.cache
+*.pyc
+*.sublime-workspace
