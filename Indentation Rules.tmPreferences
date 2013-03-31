@@ -2,18 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>name</key>
+	<string>Miscellaneous</string>
 	<key>scope</key>
-	<string>source</string>
+	<string>source.sas</string>
 	<key>settings</key>
 	<dict>
 		<key>decreaseIndentPattern</key>
-		<string>(?i:(end|run|quit)\s*;)</string>
+		<string>(?i:\s*(end|run|quit|%mend)\s*?;$)</string>
 		<key>disableIndentNextLinePattern</key>
 		<string>^\s*\{[\]})]*\s*$</string>
 		<key>increaseIndentPattern</key>
-		<string>^.*(\{[^}"']*)$</string>
-		<key>indentParens</key>
-		<true/>
+		<string>(?i:\s*(proc|data|%macro).*;$)</string>
 	</dict>
+	<key>uuid</key>
+	<string>7e721b1e-6265-4865-bc4b-308d49affba1</string>
 </dict>
 </plist>

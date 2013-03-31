@@ -1,9 +1,10 @@
 {
-    "scope": "source",
+    "name": "Miscellaneous",
+    "scope": "source.sas",
     "settings": {
-        "decreaseIndentPattern": "(?i:(end|run|quit)\\s*;)",
-        "disableIndentNextLinePattern": "^\\s*\\{[\\]})]*\\s*$",
-        "increaseIndentPattern": "^.*(\\{[^}\"']*)$",
-        "indentParens": true
-    }
+        "decreaseIndentPattern": "(?i:\\s*(end|run|quit|%mend)\\s*?;$)",
+        "increaseIndentPattern": "(?i:\\s*(proc|data|%macro).*;$)",
+        "disableIndentNextLinePattern": "^\\s*\\{[\\]})]*\\s*$"
+    },
+  "uuid": "7e721b1e-6265-4865-bc4b-308d49affba1"
 }

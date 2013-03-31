@@ -1,8 +1,8 @@
 { "name": "SAS Program",
   "scopeName": "source.sas",
   "fileTypes": ["sas"],
-  "foldingStartMarker": "(proc|data|%macro).*;$",
-  "foldingStopMarker": "(run|quit|%mend);",
+  "foldingStartMarker": "(?i:(proc|data|%macro).*;$)",
+  "foldingStopMarker": "(?i:(run|quit|%mend)\\s?);",
   "comment": "A work in progress--improves over the existing in that it populates symbols, and handles comments more gracefully.",
   "repository": {
       "hanging_comment": {  "name": "comment.block.sas",

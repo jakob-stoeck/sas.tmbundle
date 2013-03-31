@@ -9,9 +9,9 @@
 		<string>sas</string>
 	</array>
 	<key>foldingStartMarker</key>
-	<string>(proc|data|%macro).*;$</string>
+	<string>(?i:(proc|data|%macro).*;$)</string>
 	<key>foldingStopMarker</key>
-	<string>(run|quit|%mend);</string>
+	<string>(?i:(run|quit|%mend)\s?);</string>
 	<key>name</key>
 	<string>SAS Program</string>
 	<key>patterns</key>
