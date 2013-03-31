@@ -21,30 +21,68 @@ options
   nosqlremerge
 ;
 
-proc blah ;
-  sxx ;
+%macro somthing ;
+  data gnu ;
+    set old ;
+  run ;
+
+%mend something ;
+
+data one ;
+  set two ;
+  if x = 3 then do ;
+    slsl ;
+  end ;
 run ;
 
-%macro bob(args) ;
-  hey here! ;
-%mend bob ;
+data bob ;
+  set sashelp.class ;
+  if height = 4 then do ;
+    weight = 40 ;
+  end ;
+  if weight = 400 then do ;
+    category = 'fatty' ;
+  end ;
+  else do;
+    something ;
+  end ;
+run ;
+
+data gnu;
+  set old;
+run;
+
+
+
 data gnu ;
   set old ;
+  if x = 1 then do ;
+    y = 4 ;
+  end ;
+  if z = 4 then do ;
+    z = 4 ;
+  end ;
 run ;
 
-PROC BLAH ;
-  SLSLS ;
-quit ;
+  if y = 2 then do ;
+    bhal ;
+  end ;
 
-proc sql ;
-  create table gnu as
-  select  *
-  from    x as x
-  order by  mrn
-  ;
-quit ;
-
-data something ;
-z = 4 ;
-  output ;
 run ;
+
+data three ;
+  set four ;
+  if x = 12 then do ;
+end ;
+
+proc something ;
+  if x = 2 then do ;
+end ;
+
+%macro x ;
+  data bob ;
+    set mary ;
+    if x = 2 then do ;
+  end ;
+  run ;
+%mend ;

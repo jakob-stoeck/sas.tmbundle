@@ -10,10 +10,8 @@
 	<dict>
 		<key>decreaseIndentPattern</key>
 		<string>(?i:\s*(end|run|quit|%mend)\s*?;$)</string>
-		<key>disableIndentNextLinePattern</key>
-		<string>^\s*\{[\]})]*\s*$</string>
 		<key>increaseIndentPattern</key>
-		<string>(?i:\s*(proc|data|%macro).*;$)</string>
+		<string>(?i:\s*(proc|data|%macro).*;|.* do ?;)$</string>
 	</dict>
 	<key>uuid</key>
 	<string>7e721b1e-6265-4865-bc4b-308d49affba1</string>
