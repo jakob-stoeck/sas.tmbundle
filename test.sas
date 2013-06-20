@@ -4,9 +4,9 @@
 * (206) 287-2078
 * pardee.r@ghc.org
 *
-* /C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/sas/test.sas
+* C:\Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/test.sas
 *
-* Scratchpad for testing out this package.
+* purpose
 *********************************************/
 
 %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
@@ -20,6 +20,9 @@ options
   noovp
   nosqlremerge
 ;
+
+
+
 
 %macro somthing ;
   data gnu ;

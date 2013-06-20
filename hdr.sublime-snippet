@@ -6,7 +6,7 @@
 * (206) 287-2078
 * pardee.r@ghc.org
 *
-* $TM_FILEPATH
+* ${TM_FILEPATH/^\/([A-Z])\//$1\:\\/}
 *
 * ${1:purpose}
 *********************************************/
@@ -17,7 +17,7 @@ options
   linesize  = 150
   msglevel  = i
   formchar  = '|-++++++++++=|-/|<>*'
-  dsoptions = note2err 
+  dsoptions = note2err
   nocenter
   noovp
   nosqlremerge
