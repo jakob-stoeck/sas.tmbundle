@@ -9,7 +9,7 @@
 * purpose
 *********************************************/
 
-%include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
+* %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
 
 options
   linesize  = 150
@@ -19,8 +19,28 @@ options
   nocenter
   noovp
   nosqlremerge
-;
 
+;
+options orientation = landscape ;
+
+* ods graphics / height = 6in width = 10in ;
+
+* %let out_folder = //home/pardre1/ ;
+%let out_folder = /C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/ ;
+%let out_folder = C:\Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/test.sas ;
+
+ods html path = "&out_folder" (URL=NONE)
+         body   = "test.html"
+         (title = "test output")
+          ;
+
+* ods rtf file = "&out_folder.test.rtf" device = sasemf ;
+
+
+
+run ;
+
+ods _all_ close ;
 
 
 

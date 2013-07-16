@@ -3,3 +3,4 @@ test.sublime-snippet
 *.pyc
 *.sublime-workspace
 *.sublime-project
+*.log
