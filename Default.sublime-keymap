@@ -1,4 +1,4 @@
 [
   { "keys": ["ctrl+e"], "command": "show_next_error" },
-  { "keys": ["ctrl+b"], "command": "run_sas_program" }
+  { "keys": ["ctrl+r"], "command": "run_sas_program" }
 ]
