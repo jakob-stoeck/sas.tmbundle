@@ -32,7 +32,7 @@
 			<key>match</key>
 			<string>^INFO.*</string>
 			<key>name</key>
-			<string>string.source.SASLog</string>
+			<string>entity.name.function.source.SASLog</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
