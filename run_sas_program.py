@@ -11,7 +11,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       lst_filename = prg_filename[:-3] + 'lst'
       lrn_filename = lst_filename + '.last.run'
       if os.path.exists(lrn_filename):
-        os.rm(lrn_filename)
+        os.remove(lrn_filename)
       s = sublime.load_settings('sas.sublime-settings')
       sas_path = s.get('sas-path', "C:\\Program Files\\SAS\\SASFoundation\\9.2\\sas.exe")
       sas_args = s.get('sas-args', ['-nologo', '-noovp'])
