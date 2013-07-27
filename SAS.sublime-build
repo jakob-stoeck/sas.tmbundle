@@ -1,4 +1,4 @@
 {
-  "run_sas_program": [],
+  "cmd": ["wscript", "$packages/SAS/SasWrap.wsf", "/sasprog:$file"],
   "selector": "source.sas"
 }

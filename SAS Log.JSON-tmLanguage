@@ -4,7 +4,7 @@
   "patterns": [
     {
       "match": "^NOTE:.*",
-      "name": "comment.source.SASLog",
+      "name": "variable.source.SASLog",
       "comment": "Note line"
     },
     {

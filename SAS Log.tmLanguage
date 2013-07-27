@@ -16,7 +16,7 @@
 			<key>match</key>
 			<string>^NOTE:.*</string>
 			<key>name</key>
-			<string>comment.source.SASLog</string>
+			<string>keyword.source.SASLog</string>
 		</dict>
 		<dict>
 			<key>comment</key>
