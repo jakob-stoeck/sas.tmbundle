@@ -20,7 +20,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       s.set('sas-args', sas_args)
       sublime.save_settings('sas.sublime-settings')
       call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename] + sas_args
-      print subprocess.list2cmdline(call_args)
+      # print subprocess.list2cmdline(call_args)
       subprocess.call(call_args)
       sublime.status_message("Finished running " + prg_filename)
       if os.path.exists(lst_filename):
