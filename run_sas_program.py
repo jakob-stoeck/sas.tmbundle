@@ -20,7 +20,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       s.set('sas-args', sas_args)
       s.set('err-regx', err_regx)
       sublime.save_settings('sas.sublime-settings')
-      err_regx = re.compile(err_regx, re.MULTILINE)
+      err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
       if os.path.exists(sas_path):
         call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename] + sas_args
         # print subprocess.list2cmdline(call_args)
@@ -33,7 +33,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
           log_contents = log.read()
           log.close()
           num_errs = len(re.findall(err_regx, log_contents))
-          sublime.message_dialog("Finished!  There were " + str(num_errs) + " errors.")
+          sublime.message_dialog("Finished!  There were " + str(num_errs) + " errors/warnings.")
           self.window.open_file(log_filename)
           self.window.active_view().run_command('show_next_error')
         else:
