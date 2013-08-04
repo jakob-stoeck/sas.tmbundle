@@ -1,7 +1,13 @@
 # prototyping custom build command.
 import sublime, sublime_plugin, subprocess, os, re
 class RunSasProgramCommand(sublime_plugin.WindowCommand):
-  """Prototype custom SAS build command"""
+  def check_log(log_path, err_regx):
+    log = open(log_filename)
+    log_contents = log.read()
+    log.close()
+    num_errs = len(re.findall(err_regx, log_contents))
+    return "\nLog file: " + log_path + "\n" + "Found " + num_errs + " errors/warnings."
+
   def run(self):
     self.window.active_view().run_command('save')
     prg_filename = self.window.active_view().file_name()
@@ -29,11 +35,8 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         if os.path.exists(lst_filename):
           self.window.open_file(lst_filename)
         if os.path.exists(log_filename):
-          log = open(log_filename)
-          log_contents = log.read()
-          log.close()
-          num_errs = len(re.findall(err_regx, log_contents))
-          sublime.message_dialog("Finished!  There were " + str(num_errs) + " errors/warnings.")
+          res = check_log(log_filename, err_regx)
+          sublime.message_dialog("Finished!" + res)
           self.window.open_file(log_filename)
           self.window.active_view().run_command('show_next_error')
         else:
