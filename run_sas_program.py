@@ -1,12 +1,60 @@
 # prototyping custom build command.
 import sublime, sublime_plugin, subprocess, os, re
 class RunSasProgramCommand(sublime_plugin.WindowCommand):
-  def check_log(log_path, err_regx):
-    log = open(log_filename)
-    log_contents = log.read()
-    log.close()
-    num_errs = len(re.findall(err_regx, log_contents))
-    return "\nLog file: " + log_path + "\n" + "Found " + num_errs + " errors/warnings."
+  def check_log(self, log_path, err_regx):
+    if os.path.exists(log_path):
+      log = open(log_path)
+      log_contents = log.read()
+      log.close()
+      num_errs = len(re.findall(err_regx, log_contents))
+      self.window.open_file(log_path)
+      self.window.active_view().run_command('show_next_error')
+      return "\nLog file: " + log_path + "\n" + "Found " + str(num_errs) + " errors/warnings."
+    else:
+      return "PROBLEM!--could not find log file " + log_path + "!"
+
+  def find_logs(self, main_logfile):
+    # Searches the main log for evidence of other, PROC PRINTTO-spawned logs and returns an array of file paths
+    # representing all the logs for the job.
+    ret = [main_logfile]
+    l = open(main_logfile)
+    log = l.read()
+    l.close()
+    ropts = re.IGNORECASE
+    # If I was a better regex guy I would combine these two & use a proper backreference--some other time.
+    diverted_regex_double = re.compile("proc\s+printto\s+log\s*=\s*\"([^\"]*)\"", ropts)
+    diverted_regex_single = re.compile("proc\s+printto\s+log\s*=\s*'([^']*)'", ropts)
+
+    other_logs = []
+    other_logs += diverted_regex_single.findall(log)
+    other_logs += diverted_regex_double.findall(log)
+
+    # Search for macro vars in these putative log file paths
+    for logpath in other_logs:
+      corrected_path = ""
+      path_components = re.split(r'[/.\\]', logpath)
+      for index, component in enumerate(path_components):
+        # print(index, component)
+        if len(component) > 1:
+          if component[0] == '&':
+            strrgx = "[^*]%let\s+" + str.strip(component[1:]) + "\s*=([^;]*)"
+            print(strrgx)
+            macrolet_regex = re.compile(strrgx, ropts)
+            macro_value = re.findall(macrolet_regex, log)
+            if len(macro_value) == 1:
+              component = str.strip(macro_value[0]) 
+            else:
+              print("Problem--could not find a value for macro var '&" + str.strip(component[1:]) + "'!")
+        if index in range(0, len(path_components) - 2):
+          corrected_path += component + "/"
+        elif index == len(path_components) - 1:
+          corrected_path += '.' + component
+        else:
+          corrected_path += component 
+      print(corrected_path)
+      ret.append(corrected_path)
+    return ret
+
 
   def run(self):
     self.window.active_view().run_command('save')
@@ -35,10 +83,10 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         if os.path.exists(lst_filename):
           self.window.open_file(lst_filename)
         if os.path.exists(log_filename):
-          res = check_log(log_filename, err_regx)
-          sublime.message_dialog("Finished!" + res)
-          self.window.open_file(log_filename)
-          self.window.active_view().run_command('show_next_error')
+          res = "Finished!\n"
+          for l in self.find_logs(log_filename):
+            res += self.check_log(l, err_regx)
+          sublime.message_dialog(res)
         else:
           sublime.message_dialog("Problem!  Did not find the expected log file (" + log_filename + ").")
         # print sas_path + " exists?: " + str(os.path.exists(sas_path))
