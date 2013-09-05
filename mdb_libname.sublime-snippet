@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
-%let mdb_file = ${1:path/to/my.mdb} ;
-libname mdb OLEDB Provider=Jet DataSource="&mdb_file" ;
-* libname mdb ODBC required = "DRIVER=Microsoft Access Driver (*.mdb);DBQ=&mdb_file" ;
+%let mdb_file = ${1:?currentdb.name} ;
+* libname mdb OLEDB Provider=Jet DataSource="&mdb_file" ;
+libname mdb ODBC required="Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=&mdb_file" ;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>mdb</tabTrigger>
