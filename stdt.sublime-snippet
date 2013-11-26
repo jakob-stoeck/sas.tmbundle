@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-%include "//home/pardre1/SAS/Scripts/sasntlogon.sas" ;
+%include "//home/pardre1/SAS/login.sas" ;
 %include "//ghrisas/Warehouse/Sasdata/CRN_VDW/lib/StdVars_Teradata.sas" ;
 * %include vdw_macs ;
 ]]></content>
