@@ -70,13 +70,14 @@
                   & " -sysin " & DQ & SASProg  & DQ _
                   & " -log   " & DQ & LogFile  & DQ _
                   & " -print " & DQ & ListFile & DQ _
-                  & " -nologo "
-
+                  & " -nologo"
                   ' & " -noovp " _
                   ' & " -rsasuser " _
                   ' & " -unbuflog " _
                   ' & " -memsize MAX"
 
+               WinShell.CurrentDirectory = "Q:\SAS64.V93\SASHome\SASFoundation\9.3\"
+               ' MsgBox "Current dir is '" & WinShell.CurrentDirectory & "'"
                ' MsgBox RunLine
                Call RenameListFile(ListFile)
                Call WinShell.Run(RunLine, SHOWMINIMIZED, True)
