@@ -2,10 +2,8 @@
   <content><![CDATA[
 options orientation = landscape ;
 
-* ods graphics / height = 6in width = 10in ;
-
-* %let out_folder = //home/pardre1/ ;
-%let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
+* %let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
+%let out_folder = %sysfunc(pathname(s)) ;
 
 ods html path = "&out_folder" (URL=NONE)
          body   = "${TM_FILENAME/(.*)[.](.*)/$1/g}.html"

@@ -1,10 +1,10 @@
 <snippet>
   <content><![CDATA[
 * proc sql;
-*   connect to odbc as clarity (&clar_req) ;
+*   connect to odbc as clarity (&clarity_odbc) ;
 *   disconnect from clarity ;
 * quit ;
-libname clarity ODBC &clar_req ;
+libname clarity ODBC required = &clarity_odbc ;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>clar</tabTrigger>

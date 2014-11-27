@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+%CollapsePeriods(Lib        = ${1:work}  /* Name of the library containing the dset you want collapsed */
+               , DSet       = ${2:gnu}  /* Name of the dset you want collapsed. */
+               , RecStart   = ${3:enr_start}  /* Name of the var that contains the period start dates. */
+               , RecEnd     = ${4:enr_end}  /* Name of the var that contains the period end dates. */
+               , PersonID   = ${5:MRN} /* Name of the var that contains a unique person identifier. */
+               , OutSet     = ${6:&lib..&dset} /* In case you dont want this to overwrite your input dataset, specify another. */
+               , DaysTol    = ${7:1}   /* The number of days gap to tolerate in evaluating whether one period is contiguous w/another. */
+               ) ;
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>cp</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>%collapseperiods</description>
+</snippet>
