@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+proc freq data = ${1:gnu} ${2:order = freq} ;
+  tables ${3:v1} * ${4:v2} / missing format = comma9.0 ;
+  format ${4:v1} year4. ;
+run ;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>frq</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>proc freq</description>
+</snippet>
