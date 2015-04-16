@@ -292,7 +292,7 @@
   {"trigger":"missing2", "contents":"missing(${1:numeric-expression|character-expression})"},
   {"trigger":"mod", "contents":"mod(${1:argument-1}, ${2:argument-2})"},
   {"trigger":"modexist", "contents":"modexist(${1:'product-name'})"},
-  {"trigger":"module", "contents":"call module(${1:<cntl-string, >}, ${2:module-name, ${3:<, argument-1, ..., argument-n>})"},
+  {"trigger":"module", "contents":"call module(${1:<cntl-string, >}, ${2:module-name}, ${3:<, argument-1, ..., argument-n>})"},
   {"trigger":"modulec", "contents":"modulec(${1:<cntl-string, >}, ${2:module-name}, ${3:<, argument-1, ..., argument-n>})"},
   {"trigger":"modulen", "contents":"modulen(${1:<cntl-string, >}, ${2:module-name}, ${3:<, argument-1, ..., argument-n>})"},
   {"trigger":"modz", "contents":"modz(${1:argument-1}, ${2:argument-2})"},
