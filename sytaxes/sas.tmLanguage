@@ -17,29 +17,93 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>(?i:\b(if|while|until|for|do|end|then|else|run|quit|cancel)\b)</string>
-			<key>name</key>
-			<string>keyword.control.sas</string>
+			<key>include</key>
+			<string>#comment</string>
 		</dict>
 		<dict>
-			<key>captures</key>
+			<key>include</key>
+			<string>#quote</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#operator</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\b(?i:(data))\s+</string>
+			<key>beginCaptures</key>
 			<dict>
-				<key>2</key>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class.sas</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Begins a DATA step and provides names for any output SAS data sets, views, or programs.</string>
+			<key>end</key>
+			<string>(;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#blockComment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#dataSet</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.sas</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.sas</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?i:(?:(stack|pgm|view|source)\s?=\s?)|(debug|nesting|nolist))</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\b(?i:(set|update|modify|merge))\s+</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>support.function.sas</string>
 				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.sas</string>
-				</dict>
 			</dict>
+			<key>comment</key>
+			<string>DATA set File-Handling Statements for DATA step</string>
+			<key>end</key>
+			<string>(;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#blockComment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#dataSet</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>match</key>
-			<string>(?i:\b((data|set|merge)\s+(\w+))\b)</string>
+			<string>(?i:\b(if|while|until|for|do|end|then|else|run|quit|cancel)\b)</string>
 			<key>name</key>
-			<string>keyword.other.sas</string>
+			<string>keyword.control.sas</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -73,11 +137,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#star_comment</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#hanging_comment</string>
+					<string>#comment</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -117,58 +177,6 @@
 			<string>variable.language.sas</string>
 		</dict>
 		<dict>
-			<key>include</key>
-			<string>#star_comment</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#hanging_comment</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>/\*</string>
-			<key>end</key>
-			<string>\*/</string>
-			<key>name</key>
-			<string>comment.block.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>[\+/*^]</string>
-			<key>name</key>
-			<string>keyword.operator.arithmetic.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b\s?(?i:(eq|ne|gt|ge|lt|le|=|!=|^=))\s?\b</string>
-			<key>name</key>
-			<string>keyword.operator.assignment.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b\d+\b</string>
-			<key>name</key>
-			<string>constant.numeric.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?i:['"]\d{1,2}-?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)-?\d{2,4}['"]d)</string>
-			<key>name</key>
-			<string>constant.numeric.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>'[^']*'</string>
-			<key>name</key>
-			<string>string.quoted.single.sas</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>"[^"]*"</string>
-			<key>name</key>
-			<string>string.quoted.double.sas</string>
-		</dict>
-		<dict>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -185,27 +193,161 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>hanging_comment</key>
+		<key>blockComment</key>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=;)\s*\*</string>
-			<key>comment</key>
-			<string>This should handle 'hanging' comments where there is executable code to the left of the comment.</string>
+			<string>\/\*</string>
 			<key>end</key>
-			<string>;</string>
+			<string>\*\/</string>
 			<key>name</key>
-			<string>comment.block.sas</string>
+			<string>comment.block.slashstar.sas</string>
 		</dict>
-		<key>star_comment</key>
+		<key>comment</key>
+		<array>
+			<dict>
+				<key>include</key>
+				<string>#blockComment</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#starComment</string>
+			</dict>
+		</array>
+		<key>constant</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;![&amp;\}])\b[0-9]*\.?[0-9]+([eEdD][-+]?[0-9]+)?\b</string>
+					<key>name</key>
+					<string>constant.numeric.sas</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([\"\']\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}[\"\'][dD])</string>
+					<key>name</key>
+					<string>constant.numeric.date.sas</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([\"\'][^\"\']*[\"\'][nN])</string>
+					<key>name</key>
+					<string>variable.language.sas</string>
+				</dict>
+			</array>
+		</dict>
+		<key>dataSet</key>
 		<dict>
 			<key>begin</key>
-			<string>^\s*%+*\*</string>
+			<string>(\w+\.)?\w+\s?\(</string>
 			<key>comment</key>
-			<string>This should handle simple comments where star is the first non-whitespace char on the line.</string>
+			<string>data set with options</string>
 			<key>end</key>
-			<string>;</string>
-			<key>name</key>
-			<string>comment.block.sas</string>
+			<string>\)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#dataSetOptions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#blockComment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#quote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator</string>
+				</dict>
+			</array>
+		</dict>
+		<key>dataSetOptions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=\s|\(|\))(?i:ALTER|BUFNO|BUFSIZE|CNTLLEV|COMPRESS|DLDMGACTION|ENCRYPT|ENCRYPTKEY|EXTENDOBSCOUNTER|GENMAX|GENNUM|INDEX|LABEL|OBSBUF|OUTREP|PW|PWREQ|READ|REPEMPTY|REPLACE|REUSE|ROLE|SORTEDBY|SPILL|TOBSNO|TYPE|WRITE|FILECLOSE|FIRSTOBS|IN|OBS|POINTOBS|WHERE|WHEREUP|IDXNAME|IDXWHERE|DROP|KEEP|RENAME)\s?=</string>
+					<key>name</key>
+					<string>keyword.other.sas</string>
+				</dict>
+			</array>
+		</dict>
+		<key>operator</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>([\+\-\*\^\/])</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.sas</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?i:(eq|ne|gt|lt|ge|le|in|not|&amp;|and|or|min|max))\b</string>
+					<key>name</key>
+					<string>keyword.operator.comparison.sas</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([¬&lt;&gt;^~]?=(:)?|&gt;|&lt;|\||!|¦|¬|^|~|&lt;&gt;|&gt;&lt;|\|\|)</string>
+					<key>name</key>
+					<string>keyword.operator.sas</string>
+				</dict>
+			</array>
+		</dict>
+		<key>quote</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\'[^\']*\'(?![ndt])</string>
+					<key>name</key>
+					<string>string.quoted.single.sas</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\"[^\"]*\"(?![ndt])</string>
+					<key>name</key>
+					<string>string.quoted.double.sas</string>
+				</dict>
+			</array>
+		</dict>
+		<key>starComment</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#blockcomment</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=;)[\s%]*\*</string>
+					<key>end</key>
+					<string>;</string>
+					<key>name</key>
+					<string>comment.line.inline.star.sas</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>^[\s%]*\*</string>
+					<key>end</key>
+					<string>;</string>
+					<key>name</key>
+					<string>comment.line.start.sas</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
