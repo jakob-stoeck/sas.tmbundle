@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>A work in progress--improves over the existing in that it populates symbols, and handles comments more gracefully.</string>
+	<key>fileTypes</key>
+	<array>
+		<string>log</string>
+	</array>
+	<key>name</key>
+	<string>SAS Log</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Note line</string>
+			<key>match</key>
+			<string>^NOTE:.*</string>
+			<key>name</key>
+			<string>variable.source.saslog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Error line</string>
+			<key>match</key>
+			<string>(^(ERROR|WARNING)|Uninitialized| remerg|invalid).*</string>
+			<key>name</key>
+			<string>invalid.source.saslog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Info line</string>
+			<key>match</key>
+			<string>^INFO.*</string>
+			<key>name</key>
+			<string>string.source.saslog</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.sas_log</string>
+	<key>uuid</key>
+	<string>4f05f7b5-30a7-43d7-9410-1bb65ce2b3b3</string>
+</dict>
+</plist>

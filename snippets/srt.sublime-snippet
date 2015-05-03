@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+proc sort ${1:nodupkey }data = ${2:gnu} out = ${3:gnu} ;
+  by ${4:mrn adate} ;
+run ;
+$0
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>srt</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>proc sort</description>
+</snippet>

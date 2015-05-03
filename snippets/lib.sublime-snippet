@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+libname ${1:s} "${2://ghrisas/SASUser/pardre1}" ;
+$0
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lib</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+  <description>Libname statement</description>
+</snippet>
