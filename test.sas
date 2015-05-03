@@ -45,7 +45,7 @@ ods _all_ close ;
 
 
 %macro somthing ;
-  data gnu ;
+  data gnu (obs=100 alter='alterPass2');
     set old ;
   run ;
 
