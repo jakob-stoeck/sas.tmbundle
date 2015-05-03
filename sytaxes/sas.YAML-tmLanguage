@@ -7,7 +7,8 @@ fileTypes: [sas]
 uuid: 7e721b1e-6265-4865-bc4b-308d49affba1
 
 patterns:
-- include: '#comment'
+- include: '#starComment'
+- include: '#blockComment'
 - include: '#quote'
 - include: '#operator'
 
@@ -48,7 +49,8 @@ patterns:
   begin: (?i:\bproc\s*sql\b.*)
   end: (?i:\bquit\s*;)
   patterns:
-  - include: '#comment'
+  - include: '#starComment'
+  - include: '#blockComment'
   - include: source.sql
 
 - name: keyword.datastep.sas
@@ -104,9 +106,6 @@ repository:
       - begin: ^[\s%]*\*
         end: ;
         name: comment.line.start.sas
-  comment:
-    - include: '#blockComment'
-    - include: '#starComment'
   dataSetOptions:
     patterns:
       - name: keyword.other.sas

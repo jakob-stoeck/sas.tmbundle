@@ -18,7 +18,11 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#comment</string>
+			<string>#starComment</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#blockComment</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -137,7 +141,11 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#comment</string>
+					<string>#starComment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#blockComment</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -202,17 +210,6 @@
 			<key>name</key>
 			<string>comment.block.slashstar.sas</string>
 		</dict>
-		<key>comment</key>
-		<array>
-			<dict>
-				<key>include</key>
-				<string>#blockComment</string>
-			</dict>
-			<dict>
-				<key>include</key>
-				<string>#starComment</string>
-			</dict>
-		</array>
 		<key>constant</key>
 		<dict>
 			<key>patterns</key>
