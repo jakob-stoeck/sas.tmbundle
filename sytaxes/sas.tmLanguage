@@ -307,14 +307,22 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\'[^\']*\'(?![ndt])</string>
+					<key>begin</key>
+					<string>(')</string>
+					<key>comment</key>
+					<string>single quoted string block</string>
+					<key>end</key>
+					<string>(')(?![ndt])</string>
 					<key>name</key>
 					<string>string.quoted.single.sas</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\"[^\"]*\"(?![ndt])</string>
+					<key>begin</key>
+					<string>(")</string>
+					<key>comment</key>
+					<string>double quoted string block</string>
+					<key>end</key>
+					<string>(")(?![ndt])</string>
 					<key>name</key>
 					<string>string.quoted.double.sas</string>
 				</dict>

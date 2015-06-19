@@ -81,9 +81,13 @@ repository:
         name: keyword.operator.sas
   quote:
     patterns:
-      - match: \'[^\']*\'(?![ndt])
+      - comment: single quoted string block
+        begin: (')
+        end: (')(?![ndt])
         name: string.quoted.single.sas
-      - match: \"[^\"]*\"(?![ndt])
+      - comment: double quoted string block
+        begin: (")
+        end: (")(?![ndt])
         name: string.quoted.double.sas
   constant:
     patterns:
