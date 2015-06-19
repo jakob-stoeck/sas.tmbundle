@@ -26,6 +26,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#constant</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#quote</string>
 		</dict>
 		<dict>
@@ -215,22 +219,108 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>comment</key>
+					<string>numeric constant</string>
 					<key>match</key>
 					<string>(?&lt;![&amp;\}])\b[0-9]*\.?[0-9]+([eEdD][-+]?[0-9]+)?\b</string>
 					<key>name</key>
 					<string>constant.numeric.sas</string>
 				</dict>
 				<dict>
+					<key>comment</key>
+					<string>single quote date constant</string>
 					<key>match</key>
-					<string>([\"\']\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}[\"\'][dD])</string>
+					<string>(')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(')([dD])\b</string>
 					<key>name</key>
-					<string>constant.numeric.date.sas</string>
+					<string>constant.numeric.date.single.sas</string>
 				</dict>
 				<dict>
+					<key>comment</key>
+					<string>double quote date constant</string>
 					<key>match</key>
-					<string>([\"\'][^\"\']*[\"\'][nN])</string>
+					<string>(")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(")([dD])\b</string>
 					<key>name</key>
-					<string>variable.language.sas</string>
+					<string>constant.numeric.date.double.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote time constant</string>
+					<key>match</key>
+					<string>(')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])</string>
+					<key>name</key>
+					<string>constant.numeric.time.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote time constant</string>
+					<key>match</key>
+					<string>(')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])</string>
+					<key>name</key>
+					<string>constant.numeric.time.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote name literal</string>
+					<key>match</key>
+					<string>(')([^']+)(')([nN])</string>
+					<key>name</key>
+					<string>constant.language.name-literal.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>double quote name literal</string>
+					<key>match</key>
+					<string>(")([^"]+)(")([nN])</string>
+					<key>name</key>
+					<string>constant.language.name-literal.double.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote bit testing constant</string>
+					<key>match</key>
+					<string>(')([01]+)(')([bB])</string>
+					<key>name</key>
+					<string>constant.character.bit.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>double quote bit testing constant</string>
+					<key>match</key>
+					<string>(")([01]+)(")([bB])</string>
+					<key>name</key>
+					<string>constant.character.bit.double.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote hexidecimal constant</string>
+					<key>match</key>
+					<string>(')(([a-fA-F0-9]{2})+)(')([xX])</string>
+					<key>name</key>
+					<string>constant.character.hex.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>double quote hexidecimal constant</string>
+					<key>match</key>
+					<string>(")(([a-fA-F0-9]{2})+)(")([xX])</string>
+					<key>name</key>
+					<string>constant.character.hex.double.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>single quote datetime constant</string>
+					<key>match</key>
+					<string>(')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([dD][tT])</string>
+					<key>name</key>
+					<string>constant.numeric.datetime.single.sas</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>double quote datetime constant</string>
+					<key>match</key>
+					<string>(")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(")([dD][tT])</string>
+					<key>name</key>
+					<string>constant.numeric.datetime.single.sas</string>
 				</dict>
 			</array>
 		</dict>
