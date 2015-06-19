@@ -9,6 +9,7 @@ uuid: 7e721b1e-6265-4865-bc4b-308d49affba1
 patterns:
 - include: '#starComment'
 - include: '#blockComment'
+- include: '#constant'
 - include: '#quote'
 - include: '#operator'
 
@@ -91,12 +92,45 @@ repository:
         name: string.quoted.double.sas
   constant:
     patterns:
-      - match: (?<![&\}])\b[0-9]*\.?[0-9]+([eEdD][-+]?[0-9]+)?\b
+      - comment: numeric constant
+        match: (?<![&\}])\b[0-9]*\.?[0-9]+([eEdD][-+]?[0-9]+)?\b
         name: constant.numeric.sas
-      - match: ([\"\']\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}[\"\'][dD])
-        name: constant.numeric.date.sas
-      - match: ([\"\'][^\"\']*[\"\'][nN])
-        name: variable.language.sas
+      - comment: single quote date constant
+        match: (')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(')([dD])\b
+        name: constant.numeric.date.single.sas
+      - comment: double quote date constant
+        match: (")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(")([dD])\b
+        name: constant.numeric.date.double.sas
+      - comment: single quote time constant
+        match: (')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])
+        name: constant.numeric.time.single.sas
+      - comment: single quote time constant
+        match: (')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])
+        name: constant.numeric.time.single.sas
+      - comment: single quote name literal
+        match: (')([^']+)(')([nN])
+        name: constant.language.name-literal.single.sas
+      - comment: double quote name literal
+        match: (")([^"]+)(")([nN])
+        name: constant.language.name-literal.double.sas
+      - comment: single quote bit testing constant
+        match: (')([01]+)(')([bB])
+        name: constant.character.bit.single.sas
+      - comment: double quote bit testing constant
+        match: (")([01]+)(")([bB])
+        name: constant.character.bit.double.sas
+      - comment: single quote hexidecimal constant
+        match: (')(([a-fA-F0-9]{2})+)(')([xX])
+        name: constant.character.hex.single.sas
+      - comment: double quote hexidecimal constant
+        match: (")(([a-fA-F0-9]{2})+)(")([xX])
+        name: constant.character.hex.double.sas
+      - comment: single quote datetime constant
+        match: (')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([dD][tT])
+        name: constant.numeric.datetime.single.sas
+      - comment: double quote datetime constant
+        match: (")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(")([dD][tT])
+        name: constant.numeric.datetime.single.sas
   blockComment:
     begin: \/\*
     end: \*\/
