@@ -83,11 +83,11 @@ repository:
     patterns:
       - comment: single quoted string block
         begin: (')
-        end: (')(?![ndt])
+        end: (')(?![bdntx])
         name: string.quoted.single.sas
       - comment: double quoted string block
         begin: (")
-        end: (")(?![ndt])
+        end: (")(?![bdndtx])
         name: string.quoted.double.sas
   constant:
     patterns:

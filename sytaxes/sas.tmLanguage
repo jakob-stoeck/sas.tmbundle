@@ -312,7 +312,7 @@
 					<key>comment</key>
 					<string>single quoted string block</string>
 					<key>end</key>
-					<string>(')(?![ndt])</string>
+					<string>(')(?![bdntx])</string>
 					<key>name</key>
 					<string>string.quoted.single.sas</string>
 				</dict>
@@ -322,7 +322,7 @@
 					<key>comment</key>
 					<string>double quoted string block</string>
 					<key>end</key>
-					<string>(")(?![ndt])</string>
+					<string>(")(?![bdndtx])</string>
 					<key>name</key>
 					<string>string.quoted.double.sas</string>
 				</dict>
