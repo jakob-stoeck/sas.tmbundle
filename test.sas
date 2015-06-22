@@ -23,7 +23,41 @@ options
 ;
 options orientation = landscape ;
 
-* ods graphics / height = 6in width = 10in ;
+* ods graphics / height
+ = 6in width = 10in ;
+
+data b ass dss dss ;
+
+%macro boobies(xarg1, xarg2) ;
+  data something ;
+    set &xarg2 ;
+  run ;
+%mend boobies ;
+
+
+data bobbi.ty (obs = 100) ;
+  set bld.ah bling bloob ;
+run ;
+
+data    bobbity ;
+data    boo ;
+;
+
+
+data s.gnu ;
+  set b.old 
+  ;
+* message ;
+* foobar; * foobar;
+x1 = a * b ;
+x2 = 8*n ;
+x = 1.2**2-1;
+x = 1.2**(2-1);
+/* foobar */
+
+x = a    * 
+    b ;
+run ;
 
 * %let out_folder = //home/pardre1/ ;
 %let out_folder = /C/Documents and Settings/pardre1/Application Data/Sublime Text 2/Packages/SAS/ ;
@@ -42,7 +76,12 @@ run ;
 
 ods _all_ close ;
 
-
+proc sql outobs = 20 nowarn ;
+  create table blah as 
+  select *
+  from some.other_table
+  ;
+quit ;
 
 %macro somthing ;
   data gnu (obs=100 alter='alterPass2');
@@ -109,3 +148,4 @@ end ;
   end ;
   run ;
 %mend ;
+

@@ -38,10 +38,15 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(data))\s+</string>
+			<string>\b(?i:(data))\s+((\w+\.)?\w+)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.sas</string>
+				</dict>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>entity.name.class.sas</string>
@@ -82,13 +87,23 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(set|update|modify|merge))\s+</string>
+			<string>\b(?i:(set|update|modify|merge))\s+((\w+\.)?\w+)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>support.function.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class.sas</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class.sas</string>
 				</dict>
 			</dict>
 			<key>comment</key>
