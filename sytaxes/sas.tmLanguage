@@ -38,18 +38,13 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(data))\s+((\w+\.)?\w+)</string>
+			<string>\b(?i:(data))\s+</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.other.sas</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.class.sas</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -87,7 +82,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(?i:(set|update|modify|merge))\s+((\w+\.)?\w+)</string>
+			<string>\b(?i:(set|update|modify|merge))\s+</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -341,33 +336,70 @@
 		</dict>
 		<key>dataSet</key>
 		<dict>
-			<key>begin</key>
-			<string>(\w+\.)?\w+\s?\(</string>
-			<key>comment</key>
-			<string>data set with options</string>
-			<key>end</key>
-			<string>\)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>#dataSetOptions</string>
+					<key>begin</key>
+					<string>((\w+)\.)?(\w+)\s?\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.class.libref.sas</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.class.dsname.sas</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>data set with options</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#dataSetOptions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#blockComment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#quote</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#operator</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
-					<key>include</key>
-					<string>#blockComment</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#constant</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#quote</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#operator</string>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.class.libref.sas</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.class.dsname.sas</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>data set without options</string>
+					<key>match</key>
+					<string>\b((\w+)\.)?(\w+)\b</string>
 				</dict>
 			</array>
 		</dict>
