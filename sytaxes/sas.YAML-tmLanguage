@@ -14,12 +14,9 @@ patterns:
 - include: '#operator'
 
 - comment: Begins a DATA step and provides names for any output SAS data sets, views, or programs.
-  # I tried making that last bit (\s+(\w+))+ to do multiple dset names, but it would only paint the 
-  # last ocurrence w/the desired scope.  Not sure if this sort of repetition is acheivable.
-  begin: \b(?i:(data))\s+((\w+\.)?\w+)
+  begin: \b(?i:(data))\s+
   beginCaptures:
     '1': {name: keyword.other.sas}
-    '2': {name: entity.name.class.sas}
   end: (;)
   patterns:
      - include: '#blockComment'
@@ -30,7 +27,7 @@ patterns:
          '2': {name: keyword.other.sas}
 
 - comment: DATA set File-Handling Statements for DATA step
-  begin: \b(?i:(set|update|modify|merge))\s+((\w+\.)?\w+)
+  begin: \b(?i:(set|update|modify|merge))\s+
   beginCaptures:
     '1': {name: support.function.sas}
     '2': {name: entity.name.class.sas}
@@ -154,15 +151,24 @@ repository:
       - name: keyword.other.sas
         match: (?<=\s|\(|\))(?i:ALTER|BUFNO|BUFSIZE|CNTLLEV|COMPRESS|DLDMGACTION|ENCRYPT|ENCRYPTKEY|EXTENDOBSCOUNTER|GENMAX|GENNUM|INDEX|LABEL|OBSBUF|OUTREP|PW|PWREQ|READ|REPEMPTY|REPLACE|REUSE|ROLE|SORTEDBY|SPILL|TOBSNO|TYPE|WRITE|FILECLOSE|FIRSTOBS|IN|OBS|POINTOBS|WHERE|WHEREUP|IDXNAME|IDXWHERE|DROP|KEEP|RENAME)\s?=
   dataSet:
-    comment: data set with options
-    begin: (\w+\.)?\w+\s?\(
-    end: \)
     patterns:
-      - include: '#dataSetOptions'
-      - include: '#blockComment'
-      - include: '#constant'
-      - include: '#quote'
-      - include: '#operator'
+      - comment: data set with options
+        begin: ((\w+)\.)?(\w+)\s?\(
+        beginCaptures:
+          '2': {name: entity.name.class.libref.sas}
+          '3': {name: entity.name.class.dsname.sas}
+        end: \)
+        patterns:
+          - include: '#dataSetOptions'
+          - include: '#blockComment'
+          - include: '#constant'
+          - include: '#quote'
+          - include: '#operator'
+      - comment: data set without options
+        match: \b((\w+)\.)?(\w+)\b
+        captures:
+          '2': {name: entity.name.class.libref.sas}
+          '3': {name: entity.name.class.dsname.sas}
 
 foldingStartMarker: (?i:(proc|data|%macro).*;$)
 foldingStopMarker: (?i:(run|quit|%mend)\s?);
