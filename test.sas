@@ -45,7 +45,7 @@ data    boo ;
 
 
 data s.gnu ;
-  set b.old 
+  set b.old
   ;
 * message ;
 * foobar; * foobar;
@@ -53,9 +53,11 @@ x1 = a * b ;
 x2 = 8*n ;
 x = 1.2**2-1;
 x = 1.2**(2-1);
+z = "&date."d;
+
 /* foobar */
 
-x = a    * 
+x = a    *
     b ;
 run ;
 
@@ -68,7 +70,7 @@ ods html path = "&out_folder" (URL=NONE)
          (title = "test output")
           ;
 
-* ods rtf file = "&out_folder.test.rtf" device = sasemf ;
+* ods rtf file = "&out_folder.test.rtf"d device = sasemf ;
 
 
 
@@ -77,7 +79,7 @@ run ;
 ods _all_ close ;
 
 proc sql outobs = 20 nowarn ;
-  create table blah as 
+  create table blah as
   select *
   from some.other_table
   ;
@@ -149,3 +151,7 @@ end ;
   run ;
 %mend ;
 
+%let mon=JAN;
+data foo;
+set x;
+where mydate between "01JAN2014"d and "01&mon.2014"d;
