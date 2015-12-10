@@ -46,7 +46,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
             macrolet_regex = re.compile(strrgx, ropts)
             macro_value = re.findall(macrolet_regex, log)
             if len(macro_value) == 1:
-              component = str.strip(macro_value[0]) 
+              component = str.strip(macro_value[0])
             else:
               print("Problem--could not find a value for macro var '&" + str.strip(component[1:]) + "'!")
         if index in range(0, len(path_components) - 2):
@@ -54,7 +54,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         elif index == len(path_components) - 1:
           corrected_path += '.' + component
         else:
-          corrected_path += component 
+          corrected_path += component
       print(corrected_path)
       ret.append(corrected_path)
     return ret
@@ -74,7 +74,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
     # print sas_path + " exists?: " + str(os.path.exists(sas_path))
     # sublime.message_dialog("Pretend I ran " + sas_path)
     # self.window.open_file(r'C:\Users\Roy\AppData\Roaming\Sublime Text 3\Packages\SAS\notes.txt')
-    
+
 
 
   def run(self):
@@ -85,6 +85,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       log_filename = prg_filename[:-3] + 'log'
       lst_filename = prg_filename[:-3] + 'lst'
       lrn_filename = lst_filename + '.last.run'
+      wrkdir, prog = os.path.split(prg_filename)
       if os.path.exists(lrn_filename):
         os.remove(lrn_filename)
       s = sublime.load_settings('sas.sublime-settings')
@@ -97,7 +98,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       sublime.save_settings('sas.sublime-settings')
       err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
       if os.path.exists(sas_path):
-        call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename] + sas_args
+        call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
         # print subprocess.list2cmdline(call_args)
         # sublime.set_timeout_async(self.run_calc, 0)
         sublime.set_timeout_async(lambda: self.shell_out_to_sas(call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path), 0)
