@@ -2,7 +2,7 @@
 
 A modest package for doing SAS programming. [Read all about it here.](http://implementing-vdw.blogspot.com/2012/10/new-sublime-text-package-available-for.html)
 
-Installation is via git only right now.  In your [packages folder](http://docs.sublimetext.info/en/latest/basic_concepts.html#the-data-directory):
+Installation is via git only right now.  In your [packages folder](http://docs.sublimetext.info/en/latest/basic_concepts.html#the-packages-directory):
 
 ```
 git clone git://github.com/rpardee/sas.tmbundle.git SAS
