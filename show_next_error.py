@@ -2,10 +2,10 @@ import sublime, sublime_plugin, re
 
 class ShowNextErrorCommand(sublime_plugin.TextCommand):
   def run(self, edit):
-    s = sublime.load_settings('sas.sublime-settings')
+    s = sublime.load_settings('SAS_Package.sublime-settings')
     err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))")
     s.set('err-regx', err_regx)
-    sublime.save_settings('sas.sublime-settings')
+    sublime.save_settings('SAS_Package.sublime-settings')
     # err_regx = re.compile(err_regx, re.MULTILINE)
     # Get end of last current selection.
     curr_pos = 0
