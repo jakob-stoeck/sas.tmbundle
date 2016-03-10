@@ -88,14 +88,14 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       wrkdir, prog = os.path.split(prg_filename)
       if os.path.exists(lrn_filename):
         os.remove(lrn_filename)
-      s = sublime.load_settings('sas.sublime-settings')
+      s = sublime.load_settings('SAS_Package.sublime-settings')
       sas_path = s.get('sas-path', "C:\\Program Files\\SAS\\SASFoundation\\9.2\\sas.exe")
       sas_args = s.get('sas-args', ['-nologo', '-noovp'])
       err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))")
       s.set('sas-path', sas_path)
       s.set('sas-args', sas_args)
       s.set('err-regx', err_regx)
-      sublime.save_settings('sas.sublime-settings')
+      sublime.save_settings('SAS_Package.sublime-settings')
       err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
       if os.path.exists(sas_path):
         call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
@@ -103,7 +103,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         # sublime.set_timeout_async(self.run_calc, 0)
         sublime.set_timeout_async(lambda: self.shell_out_to_sas(call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path), 0)
       else:
-        sublime.message_dialog("Problem--could not find sas.exe at " + sas_path + ".  Please update the sas-path setting in sas.sublime-settings in the User package folder.")
+        sublime.message_dialog("Problem--could not find sas.exe at " + sas_path + ".  Please update the sas-path setting in SAS_Package.sublime-settings in the User package folder.")
     else:
       sublime.message_dialog('Sorry--this only works with .sas files.')
 
