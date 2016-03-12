@@ -50,8 +50,13 @@ patterns:
 - comment: Looks like for this to work there must be a *name* as well as the patterns/include
     bit.
   name: meta.sql.sas
-  begin: (?i:\bproc\s*sql\b.*)
-  end: (?i:\bquit\s*;)
+  begin: (?i:\b(proc\s*(sql))\b)
+  beginCaptures:
+    '1': {name: support.function.sas}
+    '2': {name: support.class.sas}
+  end: (?i:\b(quit)\s*;)
+  endCaptures:
+    '1': {name: keyword.control.sas}
   patterns:
   - include: '#starComment'
   - include: '#blockComment'
