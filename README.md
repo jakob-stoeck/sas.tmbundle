@@ -17,6 +17,5 @@ I am now developing in Sublime Text 3 beta, though I believe everything works in
   1. Fix error/warning check.
   2. (Possible?) Bring ST3 to the fore upon completion of a job.
 2. Make installable via [Package Control](http://wbond.net/sublime_packages/package_control).  (Subject to Package Control's compatibility w/ST3.)
-3. Polish syntax definition.  In particular:
-  1. Color PROC SQL & any trailing options as other procs are colored.
+3. Polish syntax definition.
 4. Add a menu item to allow quick access to SAS.sublime-settings
