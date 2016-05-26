@@ -3,6 +3,7 @@ chase_the.log
 test.sublime-snippet
 *.pyc
 *.log
+*.lst
 
 ###SublimeText###
 
