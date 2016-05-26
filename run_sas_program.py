@@ -16,7 +16,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         os.remove(lrn_filename)
       s = sublime.load_settings('SAS_Package.sublime-settings')
       # Direct path to exe. Is there a better way to do this?
-      sas_path = s.get('sas-path', os.environ['LOCALAPPDATA'] + '\\Microsoft\\AppV\\Client\\Integration\\518575B4-F54F-4F1D-87BB-13A27BE68B4C\\Root\\VFS\\ProgramFilesX64\\SASHome\\SASFoundation\\9.4\\sas.exe')
+      sas_path = s.get('sas-path', "c:\\Program Files\\SASHome\\SASFoundation\\9.4\\sas.exe")
       sas_args = s.get('sas-args', ['-nologo', '-noovp'])
       err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))")
       s.set('sas-path', sas_path)
