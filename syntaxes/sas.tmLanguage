@@ -421,7 +421,7 @@
 					<key>comment</key>
 					<string>single quote date constant</string>
 					<key>match</key>
-					<string>(')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(')([dD])\b</string>
+					<string>(')(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(')([dD])\b</string>
 					<key>name</key>
 					<string>constant.numeric.date.single.sas</string>
 				</dict>
@@ -429,7 +429,7 @@
 					<key>comment</key>
 					<string>double quote date constant</string>
 					<key>match</key>
-					<string>(")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(")([dD])\b</string>
+					<string>(")(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(")([dD])\b</string>
 					<key>name</key>
 					<string>constant.numeric.date.double.sas</string>
 				</dict>
