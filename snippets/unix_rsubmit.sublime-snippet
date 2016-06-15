@@ -1,10 +1,10 @@
 <snippet>
-  <content><![CDATA[
-libname s "//ghrisas/SASUser/pardre1" ;
+	<content><![CDATA[
+libname s "\\\\home\\pardre1\\workingdata" ;
 
 ** log on to unix and rsubmit ;
-%include '\\\\home\\pardre1\\SAS\\Scripts\\sasunxlogon.sas' ;
-%include '\\\\ghrisas\\warehouse\\Remote\\RemoteStartUnix.sas' ;
+%include 'h:/SAS/Scripts/sasunxlogon.sas' ;
+%include "&GHRIDW_ROOT/remote/RemoteStartUnix.sas" ;
 rsubmit ;
 
 ${1:code goes here}
@@ -13,9 +13,9 @@ ${1:code goes here}
 endrsubmit ;
 signoff sasunix.spawner ;
 ]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>unx</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.sas</scope>
-  <description>unix rsubmit</description>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>unx</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>unix rsubmit</description>
 </snippet>

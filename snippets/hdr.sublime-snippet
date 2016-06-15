@@ -1,5 +1,5 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 /*********************************************
 * Roy Pardee
 * Group Health Research Institute
@@ -14,20 +14,20 @@
 %include "h:/SAS/Scripts/remoteactivate.sas" ;
 
 options
-  linesize  = 150
-  msglevel  = i
-  formchar  = '|-++++++++++=|-/|<>*'
-  dsoptions = note2err
-  nocenter
-  noovp
-  nosqlremerge
+	linesize  = 150
+	msglevel  = i
+	formchar  = '|-++++++++++=|-/|<>*'
+	dsoptions = note2err
+	nocenter
+	noovp
+	nosqlremerge
 ;
 
 $0
 ]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>hdr</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.sas</scope>
-  <description>Program header block</description>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>hdr</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>Program header block</description>
 </snippet>

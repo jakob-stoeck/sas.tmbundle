@@ -5,6 +5,7 @@ import threading
 class RunSasProgramCommand(sublime_plugin.WindowCommand):
   def run(self):
     self.window.active_view().run_command('save')
+    self.window.active_view().show_popup('Submitting to SAS.')
     prg_filename = self.window.active_view().file_name()
     extension = os.path.splitext(prg_filename)[-1].lower()
     if extension == '.sas':

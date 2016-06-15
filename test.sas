@@ -26,7 +26,7 @@ options orientation = landscape ;
 * ods graphics / height
  = 6in width = 10in ;
 
-data b ass dss dss ;
+data b ass dss dss2 ;
 
 %macro boobies(xarg1, xarg2) ;
   data something ;
@@ -35,7 +35,7 @@ data b ass dss dss ;
 %mend boobies ;
 
 
-data bobbi.ty (obs = 100) ;
+data bobbi (obs = 100) ;
   set bld.ah bling bloob ;
 run ;
 
@@ -50,10 +50,10 @@ data s.gnu ;
 * message ;
 * foobar; * foobar;
 x1 = a * b ;
-x2 = 8*n ;
+x2    =    8*n ;
 x = 1.2**2-1;
 x = 1.2**(2-1);
-z = "&date."d;
+z  = "&date."d;
 
 /* foobar */
 
