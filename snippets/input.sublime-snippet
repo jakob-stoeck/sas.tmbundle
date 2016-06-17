@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 data ${1:gnu} ;
-	** infile "\\server\share\my_data.txt" ;
+	** infile "\\\\server\\share\\my_data.txt" ;
 	input
 		@1    ndc         \$char11.
 		@12   drug_name   \$char40.
