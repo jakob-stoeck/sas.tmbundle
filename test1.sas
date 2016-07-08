@@ -9,3 +9,8 @@ run;
 title "Output of Test1.sas";
 proc print data=fakedata(obs=10);
 run;
+
+data something_else ;
+  set fakedata ;
+  x = rand(uniform, 0, 1) ;
+run ;
