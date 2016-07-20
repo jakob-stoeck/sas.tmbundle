@@ -148,11 +148,32 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?i:\bproc\s*sql\b.*)</string>
+			<string>(?i:\b(proc\s*(sql))\b)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.sas</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.sas</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>Looks like for this to work there must be a *name* as well as the patterns/include bit.</string>
 			<key>end</key>
-			<string>(?i:\bquit\s*;)</string>
+			<string>(?i:\b(quit)\s*;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.sas</string>
+				</dict>
+			</dict>
 			<key>name</key>
 			<string>meta.sql.sas</string>
 			<key>patterns</key>
@@ -400,7 +421,7 @@
 					<key>comment</key>
 					<string>single quote date constant</string>
 					<key>match</key>
-					<string>(')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(')([dD])\b</string>
+					<string>(')(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(')([dD])\b</string>
 					<key>name</key>
 					<string>constant.numeric.date.single.sas</string>
 				</dict>
@@ -408,7 +429,7 @@
 					<key>comment</key>
 					<string>double quote date constant</string>
 					<key>match</key>
-					<string>(")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(")([dD])\b</string>
+					<string>(")(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(")([dD])\b</string>
 					<key>name</key>
 					<string>constant.numeric.date.double.sas</string>
 				</dict>

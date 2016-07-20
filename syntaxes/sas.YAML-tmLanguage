@@ -50,8 +50,13 @@ patterns:
 - comment: Looks like for this to work there must be a *name* as well as the patterns/include
     bit.
   name: meta.sql.sas
-  begin: (?i:\bproc\s*sql\b.*)
-  end: (?i:\bquit\s*;)
+  begin: (?i:\b(proc\s*(sql))\b)
+  beginCaptures:
+    '1': {name: support.function.sas}
+    '2': {name: support.class.sas}
+  end: (?i:\b(quit)\s*;)
+  endCaptures:
+    '1': {name: keyword.control.sas}
   patterns:
   - include: '#starComment'
   - include: '#blockComment'
@@ -127,10 +132,10 @@ repository:
   dateConstant:
     patterns:
       - comment: single quote date constant
-        match: (')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(')([dD])\b
+        match: (')(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(')([dD])\b
         name: constant.numeric.date.single.sas
       - comment: double quote date constant
-        match: (")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4})(")([dD])\b
+        match: (")(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(")([dD])\b
         name: constant.numeric.date.double.sas
       - comment: single quote time constant
         match: (')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])\b

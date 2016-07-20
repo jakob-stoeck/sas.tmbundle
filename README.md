@@ -1,22 +1,16 @@
-#SAS Package for Sublime Text
+#SAS Programming Package for Sublime Text 3
 
 A modest package for doing SAS programming. [Read all about it here.](http://implementing-vdw.blogspot.com/2012/10/new-sublime-text-package-available-for.html)
 
-Installation is via git only right now.  In your [packages folder](http://docs.sublimetext.info/en/latest/basic_concepts.html#the-data-directory):
-
-```
-git clone git://github.com/rpardee/sas.tmbundle.git SAS
-```
-
-Or failing that, [download the package as a zip from github](https://github.com/rpardee/sas.tmbundle/zipball/master) and then unzip it into %PACKAGES%/SAS.
-
-I am now developing in Sublime Text 3 beta, though I believe everything works in ST2.
+Installation is via the wonderful [Package Control](http://wbond.net/sublime_packages/package_control).  Choose 'Package Control: Install Package' off the command palette and then find 'SAS Programming' on the resulting list.
 
 #To-Do
 1. Polish build system.
-  1. Fix error/warning check.
-  2. (Possible?) Bring ST3 to the fore upon completion of a job.
-2. Make installable via [Package Control](http://wbond.net/sublime_packages/package_control).  (Subject to Package Control's compatibility w/ST3.)
-3. Polish syntax definition.  In particular:
-  1. Color PROC SQL & any trailing options as other procs are colored.
-4. Add a menu item to allow quick access to SAS.sublime-settings
+  1. Play a sound at the finish of a job to call attention?
+  3. Distinguish the taskbar icon from ST3's on the dialog that informs users that a build is complete?
+  2. (Possible?) Bring (relevant instance of) ST3 to the fore upon dismissing finish dialog.
+  4. Tap into built-in ['results view'](https://github.com/wbond/package_control_channel/pull/5571) stuff for error/warning navigations.
+3. Add snippets for:
+  1. TRANSPOSE procedure.
+
+

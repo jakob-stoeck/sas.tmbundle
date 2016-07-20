@@ -1,0 +1,11 @@
+{
+  "target": "run_sas_program",
+  "selector": "source.sas",
+  "comment": "I wasn't able to get run_sas_program.py to work as expected. Amazingly long delays that seem to be related to the sublime.set_timeout_async call."
+}
+
+{
+	"path": "%LOCALAPPDATA%\\Microsoft\\AppV\\Client\\Integration\\518575B4-F54F-4F1D-87BB-13A27BE68B4C\\Root\\VFS\\ProgramFilesX64\\SASHome\\SASFoundation\\9.4\\",
+	"cmd": ["sas.exe", "-nosplash", "-sysin", "$file", "-log", "$file_path/$file_base_name.log", "-print", "$file_path/$file_base_name.lst", "-nologo", "-noovp", "-rsasuser", "-unbuflog"],
+	"selector": "source.sas"
+}
