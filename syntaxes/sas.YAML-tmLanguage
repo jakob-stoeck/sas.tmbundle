@@ -96,62 +96,23 @@ repository:
     patterns:
       - comment: single quoted string block
         begin: (')
-        end: (')(?!\w+)
+        end: (')([bx])?
         name: string.quoted.single.sas
       - comment: double quoted string block
         begin: (")
-        end: (")(?!\w+)
+        end: (")([bx])?
         name: string.quoted.double.sas
   constant:
     patterns:
-      - include: '#dateConstant'
       - comment: numeric constant
         match: (?<![&\}])\b[0-9]*\.?[0-9]+([eEdD][-+]?[0-9]+)?\b
         name: constant.numeric.sas
-      - comment: single quote name literal
-        match: (')([^']+)(')([nN])\b
-        name: constant.language.name-literal.single.sas
-      - comment: double quote name literal
-        match: (")([^"]+)(")([nN])\b
-        name: constant.language.name-literal.double.sas
-      - comment: single quote bit testing constant
-        match: (')([01]+)(')([bB])\b
-        name: constant.character.bit.single.sas
-      - comment: double quote bit testing constant
-        match: (")([01]+)(")([bB])\b
-        name: constant.character.bit.double.sas
-      - comment: single quote hexidecimal constant
-        match: (')(([a-fA-F0-9]{2})+)(')([xX])\b
-        name: constant.character.hex.single.sas
-      - comment: double quote hexidecimal constant
-        match: (")(([a-fA-F0-9]{2})+)(")([xX])\b
-        name: constant.character.hex.double.sas
-      - comment: double quoted catchall for fallout
-        match: (?i:(")([a-z0-9_\.&]+)(")([xbn]|d|t|dt))\b
-        name: constant.other.catchothers.macro.sas
-  dateConstant:
-    patterns:
-      - comment: single quote date constant
-        match: (')(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(')([dD])\b
-        name: constant.numeric.date.single.sas
-      - comment: double quote date constant
-        match: (")(\d{1,2}-?(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))-?\d{2,4})(")([dD])\b
-        name: constant.numeric.date.double.sas
-      - comment: single quote time constant
-        match: (')(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([tT])\b
-        name: constant.numeric.time.single.sas
-      - comment: double quote time constant
-        match: (")(\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(")([tT])\b
-        name: constant.numeric.time.single.sas
-      - comment: single quote datetime constant
-        match: (')(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(')([dD][tT])\b
-        name: constant.numeric.datetime.single.sas
-      - comment: double quote datetime constant
-        match: (")(\d{1,2}(?i:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))\d{2,4}:\d{1,2}:\d{1,2}(:\d{1,2}(\.\d+)?)?([aApP][mM])?)(")([dD][tT])\b
-        name: constant.numeric.datetime.single.sas
-      - comment: double quote macro variable date constant
-        match: (")(&+(?i:[a-z_]([a-z0-9_]+)?)(\.+)?)(")(?i:(d|t|dt))\b
-        name: constant.numeric.macrodte.double.sas
+      - comment: single quote numeric-type constant
+        match: (')([^']+)(')(dt|[dt])
+        name: constant.numeric.quote.single.sas
+      - comment: double quote numeric-type constant
+        match: (")([^"]+)(")(dt|[dt])
+        name: constant.numeric.quote.double.sas
   blockComment:
     patterns:
       - begin: \/\*
