@@ -20,14 +20,25 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       sas_path = s.get('sas-path', "c:\\Program Files\\SASHome\\SASFoundation\\9.4\\sas.exe")
       sas_args = s.get('sas-args', ['-nologo', '-noovp'])
       err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))")
+      sas_config_path = s.get('sas-config-path', '')
       s.set('sas-path', sas_path)
       s.set('sas-args', sas_args)
       s.set('err-regx', err_regx)
+      s.set('sas-config-path', sas_config_path)
       sublime.save_settings('SAS_Package.sublime-settings')
       err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
+      if sas_config_path == '':
+        config_spec = []
+      else:
+        if os.path.exists(sas_config_path):
+          # Not really sure why I have to manually quote-delimit this, but it appears I do.
+          config_spec = ["-config '", sas_config_path, "'"]
+        else:
+          sublime.message_dialog('Could not find config file "' + sas_config_path + '"--ignoring.')
+          config_spec = []
       if os.path.exists(sas_path):
-        call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
-        # print subprocess.list2cmdline(call_args)
+        call_args = [sas_path, config_spec, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
+        # sublime.message_dialog(subprocess.list2cmdline(call_args))
         threads = []
         thread = RunSasThreaded(self, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path)
         threads.append(thread)
