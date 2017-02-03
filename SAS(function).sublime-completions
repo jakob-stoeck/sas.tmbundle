@@ -23,6 +23,7 @@
   {"trigger": "_vdw_death", "contents": "_vdw_death"},
   {"trigger": "_vdw_cause_of_death", "contents": "_vdw_cause_of_death"},
   {"trigger": "_vdw_social_hx", "contents": "_vdw_social_hx"},
+  {"trigger": "_vdw_facility", "contents": "_vdw_facility"},
   {"trigger":"abs", "contents":"abs(${1:numeric})"},
   {"trigger":"addr", "contents":"addr(${1:variable})"},
   {"trigger":"addrlong", "contents":"addrlong(${1:variable})"},

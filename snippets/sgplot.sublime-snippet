@@ -1,10 +1,5 @@
 <snippet>
 	<content><![CDATA[
-* Put this line before opening any ODS destinations. ;
-options orientation = landscape ;
-
-	ods graphics / height = 6in width = 10in ;
-
 	proc sgplot data = ${1:gnu} ;
 		* scatter x = ${2:adate} y = ${3:source_count} / group = ${4:source} ;
 		loess x = ${2:adate} y = ${3:source_count} / group = ${4:source} lineattrs = (pattern = solid) ;

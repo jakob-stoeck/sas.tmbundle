@@ -1,6 +1,7 @@
 <snippet>
 	<content><![CDATA[
 options orientation = landscape ;
+ods graphics / height = 8in width = 10in ;
 
 * %let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
 %let out_folder = %sysfunc(pathname(s)) ;
@@ -8,6 +9,8 @@ options orientation = landscape ;
 ods html path = "&out_folder" (URL=NONE)
 				 body   = "${TM_FILENAME/(.*)[.](.*)/$1/g}.html"
 				 (title = "${TM_FILENAME/(.*)[.](.*)/$1/g} output")
+         style = magnify
+         nogfootnote
 					;
 
 * ods rtf file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.rtf" device = sasemf ;

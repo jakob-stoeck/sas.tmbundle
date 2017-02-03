@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+%let td_goo = user              = "&username@LDAP"
+              password          = "&password"
+              server            = "&td_prod"
+              schema            = "${1:%sysget(username)}"
+              connection        = global
+              mode              = teradata
+${2:              fastload          = yes
+};
+
+libname ${3:td} teradata &td_goo multi_datasrc_opt = in_clause ;
+
+${4:proc sql ;
+  connect to teradata as td (&td_goo) ;
+quit ;
+}
+]]>
+  </content>
+  <tabTrigger>td</tabTrigger>
+  <scope>source.sas</scope>
+  <description>Connect to teradata</description>
+</snippet>

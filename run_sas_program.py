@@ -19,7 +19,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       # Direct path to exe. Is there a better way to do this?
       sas_path = s.get('sas-path', "c:\\Program Files\\SASHome\\SASFoundation\\9.4\\sas.exe")
       sas_args = s.get('sas-args', ['-nologo', '-noovp'])
-      err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))")
+      err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration|expiring soon|upcoming expiration|information on your warning period))")
       sas_config_path = s.get('sas-config-path', '')
       s.set('sas-path', sas_path)
       s.set('sas-args', sas_args)

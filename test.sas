@@ -26,7 +26,20 @@ options orientation = landscape ;
 * ods graphics / height
  = 6in width = 10in ;
 
+%let td_goo = user              = "&username@LDAP"
+              password          = "&password"
+              server            = "&td_prod"
+              schema            = "pardre1"
+              connection        = global
+              mode              = teradata
+;
+
+libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
+
+
+
 data b ass dss dss2 ;
+
 
 %macro boobies(xarg1, xarg2) ;
   data something ;
@@ -37,6 +50,10 @@ data b ass dss dss2 ;
 
 data bobbi (obs = 100) ;
   set bld.ah bling bloob ;
+  x = lowcase(y) ;
+  do x = 1 to 20 ;
+
+  end ;
 run ;
 
 data    bobbity ;
