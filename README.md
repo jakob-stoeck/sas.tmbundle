@@ -1,11 +1,11 @@
-#SAS Programming Package for Sublime Text 3
+# SAS Programming Package for Sublime Text 3
 
 A modest package for doing SAS programming.
 
-##Features
+## Features
 Syntax definitions (highlighting) for SAS Programs and .log files.
 A build system that
-  1. Batch-submits the currently-showing program to your local install of SAS.
+  1. [Batch-submits](http://support.sas.com/documentation/cdl/en/hostwin/63285/HTML/default/a000104288.htm#a003202824) the currently-showing program to your local install of SAS.
   2. Waits for said program to finish.
   3. Opens the resulting .log file and checks it for errors or warnings (via a user-configurable regular expression).
 A macro (bound to ctrl-e) for jumping from error/warning to error/warning in your log.
@@ -22,7 +22,7 @@ Snippets!
 Indentation rules.
 Completions.
 
-##Installation
+## Installation
 Installation is via the wonderful [Package Control](http://wbond.net/sublime_packages/package_control).  Choose 'Package Control: Install Package' off the command palette and then find 'SAS Programming' on the resulting list.
 
 Once that's done, create a trivial sas program (e.g., proc print data = sashelp.class ;), save it to a file (e.g., deleteme.sas) and hit ctrl-b to 'build' (aka batch-submit) your program.  One of two things will happen:
@@ -32,7 +32,7 @@ Once that's done, create a trivial sas program (e.g., proc print data = sashelp.
 If you get outcome 2 there, use the menus to navigate to Preferences -> Package Settings -> SAS -> Settings-User.  That will open up the preferences file.  Find and edit the value listed for the "sas-path" at the bottom.  Enter the full path to your local copy of sas.exe.  Windows users, note that backslash characters need to be escaped (doubled up) to be properly read.
 
 
-##To-Do
+## To-Do
 1. Polish build system.
   1. Play a sound at the finish of a job to call attention?
   3. Distinguish the taskbar icon from ST3's on the dialog that informs users that a build is complete?
