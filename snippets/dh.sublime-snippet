@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+declare hash ${1:myhash}(${2:dataset: 'lib.dset'}) ;
+${1:myhash}.definekey('${3:bibbity}') ;
+${1:myhash}.definedata('${3:bibbity}', '${4:bobbity}', '${5:boo}') ;
+${1:myhash}.definedone() ;
+call missing (${3:bibbity}, ${4:bobbity}, ${5:boo}) ;
+]]>
+  </content>
+  <tabTrigger>dh</tabTrigger>
+  <scope>source.sas</scope>
+  <description>Declare Hash</description>
+</snippet>
