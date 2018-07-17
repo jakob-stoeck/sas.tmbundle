@@ -92,7 +92,7 @@ class RunSasThreaded(threading.Thread):
     # Searches the main log for evidence of other, PROC PRINTTO-spawned logs and returns an array of file paths
     # representing all the logs for the job.
     ret = [main_logfile]
-    l = open(main_logfile)
+    l = open(main_logfile, encoding='utf8')
     log = l.read()
     l.close()
     ropts = re.IGNORECASE
@@ -132,7 +132,7 @@ class RunSasThreaded(threading.Thread):
 
   def check_log(self, log_path, err_regx):
     if os.path.exists(log_path):
-      log = open(log_path)
+      log = open(log_path, encoding='utf8')
       log_contents = log.read()
       log.close()
       num_errs = len(re.findall(err_regx, log_contents))
