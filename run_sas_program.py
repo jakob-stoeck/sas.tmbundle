@@ -75,7 +75,6 @@ class RunSasThreaded(threading.Thread):
 
   def run(self):
     subprocess.call(self.call_args)
-    sublime.status_message("Finished running " + self.prg_filename)
     if os.path.exists(self.lst_filename):
       self.window_reference.window.open_file(self.lst_filename)
     if os.path.exists(self.log_filename):
