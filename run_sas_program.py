@@ -18,13 +18,15 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       s = sublime.load_settings('SAS_Package.sublime-settings')
       # Direct path to exe. Is there a better way to do this?
       sas_path = s.get('sas-path', "c:\\Program Files\\SASHome\\SASFoundation\\9.4\\sas.exe")
-      sas_args = s.get('sas-args', ['-nologo', '-noovp'])
+      sas_args = s.get('sas-args', ['-nologo', '-noovp', '-rsasuser'])
       err_regx = s.get('err-regx', "(^(error|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration|expiring soon|upcoming expiration|information on your warning period))")
+      logfile_encoding = s.get('logfile-encoding', 'utf-8')
       sas_config_path = s.get('sas-config-path', '')
       s.set('sas-path', sas_path)
       s.set('sas-args', sas_args)
       s.set('err-regx', err_regx)
       s.set('sas-config-path', sas_config_path)
+      s.set('logfile-encoding', logfile_encoding)
       sublime.save_settings('SAS_Package.sublime-settings')
       err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
       if sas_config_path == '':
@@ -40,7 +42,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
         call_args = [sas_path, config_spec, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
         # sublime.message_dialog(subprocess.list2cmdline(call_args))
         threads = []
-        thread = RunSasThreaded(self, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path)
+        thread = RunSasThreaded(self, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path, logfile_encoding)
         threads.append(thread)
         thread.start()
         self.handle_threads(threads)
@@ -62,15 +64,16 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
     threads = next_threads
 
 class RunSasThreaded(threading.Thread):
-  def __init__(self, window_reference, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path):
-    self.call_args = call_args
+  def __init__(self, window_reference, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path, logfile_encoding):
+    self.call_args        = call_args
     self.window_reference = window_reference
-    self.prg_filename = prg_filename
-    self.lst_filename = lst_filename
-    self.log_filename = log_filename
-    self.err_regx = err_regx
-    self.sas_path = sas_path
-    self.result = None
+    self.prg_filename     = prg_filename
+    self.lst_filename     = lst_filename
+    self.log_filename     = log_filename
+    self.err_regx         = err_regx
+    self.sas_path         = sas_path
+    self.logfile_encoding = logfile_encoding
+    self.result           = None
     threading.Thread.__init__(self)
 
   def run(self):
@@ -79,59 +82,65 @@ class RunSasThreaded(threading.Thread):
       self.window_reference.window.open_file(self.lst_filename)
     if os.path.exists(self.log_filename):
       res = "Finished!\n"
-      for l in self.find_logs(self.log_filename):
-        res += self.check_log(l, self.err_regx)
+      for l in self.find_logs(self.log_filename, self.logfile_encoding):
+        res += self.check_log(l, self.err_regx, self.logfile_encoding)
       sublime.message_dialog(res)
     else:
       sublime.message_dialog("Problem!  Did not find the expected log file (" + self.log_filename + ").")
     # print sas_path + " exists?: " + str(os.path.exists(sas_path))
     # sublime.message_dialog("Pretend I ran " + sas_path)
 
-  def find_logs(self, main_logfile):
+  def find_logs(self, main_logfile, logfile_encoding):
     # Searches the main log for evidence of other, PROC PRINTTO-spawned logs and returns an array of file paths
     # representing all the logs for the job.
     ret = [main_logfile]
-    l = open(main_logfile, encoding='utf8')
-    log = l.read()
-    l.close()
-    ropts = re.IGNORECASE
-    # If I was a better regex guy I would combine these two & use a proper backreference--some other time.
-    diverted_regex_double = re.compile("proc\s+printto\s+log\s*=\s*\"([^\"]*)\"", ropts)
-    diverted_regex_single = re.compile("proc\s+printto\s+log\s*=\s*'([^']*)'", ropts)
+    try:
+      l = open(main_logfile, encoding=logfile_encoding)
+      log = l.read()
+    except UnicodeDecodeError as ude:
+      ret = []
+      sublime.message_dialog("Problem opening log file--encoding of log file {0} is apparently not {1}--please change the encoding type in Preferences -> Package Settings -> SAS".format(main_logfile, logfile_encoding))
+      l.close()
+    else:
+      l.close()
+      ropts = re.IGNORECASE
+      # If I was a better regex guy I would combine these two & use a proper backreference--some other time.
+      diverted_regex_double = re.compile("proc\s+printto\s+log\s*=\s*\"([^\"]*)\"", ropts)
+      diverted_regex_single = re.compile("proc\s+printto\s+log\s*=\s*'([^']*)'", ropts)
 
-    other_logs = []
-    other_logs += diverted_regex_single.findall(log)
-    other_logs += diverted_regex_double.findall(log)
+      other_logs = []
+      other_logs += diverted_regex_single.findall(log)
+      other_logs += diverted_regex_double.findall(log)
 
-    # Search for macro vars in these putative log file paths
-    for logpath in other_logs:
-      corrected_path = ""
-      path_components = re.split(r'[/.\\]', logpath)
-      for index, component in enumerate(path_components):
-        # print(index, component)
-        if len(component) > 1:
-          if component[0] == '&':
-            strrgx = "[^*]%let\s+" + str.strip(component[1:]) + "\s*=([^;]*)"
-            print(strrgx)
-            macrolet_regex = re.compile(strrgx, ropts)
-            macro_value = re.findall(macrolet_regex, log)
-            if len(macro_value) == 1:
-              component = str.strip(macro_value[0])
-            else:
-              print("Problem--could not find a value for macro var '&" + str.strip(component[1:]) + "'!")
-        if index in range(0, len(path_components) - 2):
-          corrected_path += component + "/"
-        elif index == len(path_components) - 1:
-          corrected_path += '.' + component
-        else:
-          corrected_path += component
-      print(corrected_path)
-      ret.append(corrected_path)
+      # Search for macro vars in these putative log file paths
+      for logpath in other_logs:
+        corrected_path = ""
+        path_components = re.split(r'[/.\\]', logpath)
+        for index, component in enumerate(path_components):
+          # print(index, component)
+          if len(component) > 1:
+            if component[0] == '&':
+              strrgx = "[^*]%let\s+" + str.strip(component[1:]) + "\s*=([^;]*)"
+              print(strrgx)
+              macrolet_regex = re.compile(strrgx, ropts)
+              macro_value = re.findall(macrolet_regex, log)
+              if len(macro_value) == 1:
+                component = str.strip(macro_value[0])
+              else:
+                print("Problem--could not find a value for macro var '&" + str.strip(component[1:]) + "'!")
+          if index in range(0, len(path_components) - 2):
+            corrected_path += component + "/"
+          elif index == len(path_components) - 1:
+            corrected_path += '.' + component
+          else:
+            corrected_path += component
+        print(corrected_path)
+        ret.append(corrected_path)
     return ret
 
-  def check_log(self, log_path, err_regx):
+  def check_log(self, log_path, err_regx, logfile_encoding):
     if os.path.exists(log_path):
-      log = open(log_path, encoding='utf8')
+      log = open(log_path, encoding=logfile_encoding)
       log_contents = log.read()
       log.close()
       num_errs = len(re.findall(err_regx, log_contents))
