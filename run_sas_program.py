@@ -99,7 +99,7 @@ class RunSasThreaded(threading.Thread):
       log = l.read()
     except UnicodeDecodeError as ude:
       ret = []
-      sublime.message_dialog("Problem opening log file--encoding of log file {0} is apparently not {1}--please change the encoding type in Preferences -> Package Settings -> SAS".format(main_logfile, logfile_encoding))
+      sublime.message_dialog("Problem opening log file--encoding of log file {0} is apparently not {1}--please specify the proper encoding for logs on your computer in Preferences -> Package Settings -> SAS".format(main_logfile, logfile_encoding))
       l.close()
     else:
       l.close()
@@ -112,30 +112,35 @@ class RunSasThreaded(threading.Thread):
       other_logs += diverted_regex_single.findall(log)
       other_logs += diverted_regex_double.findall(log)
 
+      print(other_logs)
+
       # Search for macro vars in these putative log file paths
       for logpath in other_logs:
-        corrected_path = ""
-        path_components = re.split(r'[/.\\]', logpath)
-        for index, component in enumerate(path_components):
-          # print(index, component)
-          if len(component) > 1:
-            if component[0] == '&':
-              strrgx = "[^*]%let\s+" + str.strip(component[1:]) + "\s*=([^;]*)"
-              print(strrgx)
-              macrolet_regex = re.compile(strrgx, ropts)
-              macro_value = re.findall(macrolet_regex, log)
-              if len(macro_value) == 1:
-                component = str.strip(macro_value[0])
+        if os.path.exists(logpath):
+          ret.append(logpath)
+        else:
+          # Do we have a macro var in there?
+          mvar_rgx = re.compile('(&\w*)', ropts)
+          mm = mvar_rgx.search(logpath)
+          if mm:
+            mvname = mm.group(0)[1:]
+            strrgx = "[^*]%let\s+" + mvname + "\s*=([^;]*)"
+            macrolet_regex = re.compile(strrgx, ropts)
+            mvmatch = macrolet_regex.search(log)
+            if mvmatch:
+              mvvalue = mvmatch.group(1).strip()
+              # double-up any backslashes here so they don't act as escapes.
+              mvvalue = mvvalue.replace('\\', '/')
+              print("logpath is '{}'".format(logpath))
+              print("About to sub {} in for {}".format(mvvalue, '&' + mvname))
+              corrected_path = re.sub('&' + mvname, mvvalue, logpath)
+              print("corrected_path is {}".format(corrected_path))
+              if os.path.exists(corrected_path):
+                ret.append(corrected_path)
               else:
-                print("Problem--could not find a value for macro var '&" + str.strip(component[1:]) + "'!")
-          if index in range(0, len(path_components) - 2):
-            corrected_path += component + "/"
-          elif index == len(path_components) - 1:
-            corrected_path += '.' + component
-          else:
-            corrected_path += component
-        print(corrected_path)
-        ret.append(corrected_path)
+                print('Problem--could not find possible other log file {}'.format(logpath))
+            else:
+              print('No match on {}'.format(macrolet_regex))
     return ret
 
   def check_log(self, log_path, err_regx, logfile_encoding):
