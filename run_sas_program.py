@@ -112,8 +112,6 @@ class RunSasThreaded(threading.Thread):
       other_logs += diverted_regex_single.findall(log)
       other_logs += diverted_regex_double.findall(log)
 
-      print(other_logs)
-
       # Search for macro vars in these putative log file paths
       for logpath in other_logs:
         if os.path.exists(logpath):
@@ -131,10 +129,10 @@ class RunSasThreaded(threading.Thread):
               mvvalue = mvmatch.group(1).strip()
               # double-up any backslashes here so they don't act as escapes.
               mvvalue = mvvalue.replace('\\', '/')
-              print("logpath is '{}'".format(logpath))
-              print("About to sub {} in for {}".format(mvvalue, '&' + mvname))
+              # print("logpath is '{}'".format(logpath))
+              # print("About to sub {} in for {}".format(mvvalue, '&' + mvname))
               corrected_path = re.sub('&' + mvname, mvvalue, logpath)
-              print("corrected_path is {}".format(corrected_path))
+              # print("corrected_path is {}".format(corrected_path))
               if os.path.exists(corrected_path):
                 ret.append(corrected_path)
               else:
