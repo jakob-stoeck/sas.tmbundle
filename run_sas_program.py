@@ -13,6 +13,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       lst_filename = prg_filename[:-3] + 'lst'
       lrn_filename = lst_filename + '.last.run'
       wrkdir, prog = os.path.split(prg_filename)
+      wrkdir += os.sep
       if os.path.exists(lrn_filename):
         os.remove(lrn_filename)
       s = sublime.load_settings('SAS_Package.sublime-settings')
@@ -30,7 +31,7 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
       sublime.save_settings('SAS_Package.sublime-settings')
       err_regx = re.compile(err_regx, re.MULTILINE + re.IGNORECASE)
       if sas_config_path == '':
-        config_spec = []
+        config_spec = ''
       else:
         if os.path.exists(sas_config_path):
           # Not really sure why I have to manually quote-delimit this, but it appears I do.
@@ -39,7 +40,9 @@ class RunSasProgramCommand(sublime_plugin.WindowCommand):
           sublime.message_dialog('Could not find config file "' + sas_config_path + '"--ignoring.')
           config_spec = []
       if os.path.exists(sas_path):
+        # call_args = [sas_path, '-sysin', prg_filename, '-log', log_filename, '-SASINITIALFOLDER', wrkdir]
         call_args = [sas_path, config_spec, '-sysin', prg_filename, '-log', log_filename, '-print', lst_filename, '-SASINITIALFOLDER', wrkdir] + sas_args
+        # sublime.message_dialog(wrkdir)
         # sublime.message_dialog(subprocess.list2cmdline(call_args))
         threads = []
         thread = RunSasThreaded(self, call_args, prg_filename, lst_filename, log_filename, err_regx, sas_path, logfile_encoding)
@@ -77,6 +80,7 @@ class RunSasThreaded(threading.Thread):
     threading.Thread.__init__(self)
 
   def run(self):
+    # sublime.message_dialog("call args are: " + str(self.call_args))
     subprocess.call(self.call_args)
     if os.path.exists(self.lst_filename):
       self.window_reference.window.open_file(self.lst_filename)
