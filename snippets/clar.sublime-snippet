@@ -10,5 +10,5 @@ libname clarity ODBC required = &clarity_odbc ;
 	<tabTrigger>clar</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.sas</scope>
-	<description>create table (NO join)</description>
+	<description>Connect to Clarity @ KPWA</description>
 </snippet>
