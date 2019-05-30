@@ -13,7 +13,7 @@ ods html path = "&out_folder" (URL=NONE)
          nogfootnote
 					;
 
-* ods rtf file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.rtf" device = sasemf ;
+* ods word file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.docx" ;
 
 $0
 
