@@ -6,12 +6,13 @@
               schema            = "${1:&nuid}"
               connection        = global
               mode              = teradata
-${2:              fastload          = yes
-};
+${2:              fastload          = yes}
+${3:              dbmstemp          = yes}
+;
 
-libname ${3:td} teradata &td_goo multi_datasrc_opt = in_clause ;
+libname ${4:td} teradata &td_goo multi_datasrc_opt = in_clause ;
 
-${4:proc sql ;
+${5:proc sql ;
   connect to teradata as td (&td_goo) ;
   create table gnu as
   select *
