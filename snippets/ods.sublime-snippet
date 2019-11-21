@@ -6,11 +6,12 @@ ods graphics / height = 8in width = 10in ;
 * %let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
 %let out_folder = %sysfunc(pathname(s)) ;
 
-ods html path = "&out_folder" (URL=NONE)
+ods html5 path = "&out_folder" (URL=NONE)
 				 body   = "${TM_FILENAME/(.*)[.](.*)/$1/g}.html"
 				 (title = "${TM_FILENAME/(.*)[.](.*)/$1/g} output")
-         style = magnify
-         nogfootnote
+				 style = magnify
+				 nogfootnote
+				 device = svg
 					;
 
 * ods word file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.docx" ;
