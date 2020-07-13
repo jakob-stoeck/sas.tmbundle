@@ -23,6 +23,11 @@ options
 ;
 options orientation = landscape ;
 
+libname s "\\home.ghc.org\home$\%sysget(USERNAME)\workingdata" ;
+
+libname s "\\home.ghc.org\home$\%sysget(USERNAME)\workingdata" ;
+
+
 * ods graphics / height
  = 6in width = 10in ;
 
