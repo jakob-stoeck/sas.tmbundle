@@ -7,7 +7,6 @@
               connection        = global
               mode              = teradata
 ${2:              fastload          = yes}
-${3:              dbmstemp          = yes}
 ;
 
 libname ${4:td} teradata &td_goo multi_datasrc_opt = in_clause ;
