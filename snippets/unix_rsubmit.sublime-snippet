@@ -1,6 +1,7 @@
 <snippet>
 	<content><![CDATA[
-libname s "\\\\home\\pardre1\\workingdata" ;
+
+libname s "//home.ghc.org/home\$/pardre1/workingdata" ;
 
 ** log on to unix and rsubmit ;
 %include 'h:/SAS/Scripts/sasunxlogon.sas' ;

@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+
+%MaintainSample(InSet          = ${1}  /* Name of the input dset of identifiers--either CHSIDs or CONSUMNOs.  Any other vars are ignored. */
+              , Identifier     = ${2}  /* Name of the ID variable--"CHSID" or "CONSUMNO". */
+              , OutSet         = ${3}  /* Name of the output dset--identifier, Status, phone + address. */
+              , NumDeathCrit   = ${4:1}  /* How high does the queryalldeathsourcesbycons variable */
+                                    /* NumSourcesCitingDeath have to be before we call somebody dead? */
+              , SurveyVarNames = ${5:1}  /* 1 means use Surveys preferred var names, anything else means old-style. */
+              , OutOKOnly      = ${6:0}  /* 0 means output everyone, and 1 means only output the status = OK people. */
+              , SuppressBanner = ${7:0}  /* If 1, suppresses the big WARNING banner you get if anybody in InSet has nono = 1. */
+               ) ;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ms</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>%maintainsample</description>
+</snippet>
