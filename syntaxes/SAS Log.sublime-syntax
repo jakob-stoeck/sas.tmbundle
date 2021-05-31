@@ -1,0 +1,31 @@
+%YAML 1.2
+---
+name: SAS Log File (new)
+file_extensions: [log]
+scope: source.saslog
+version: 2
+
+contexts:
+  main:
+    - match: (^(ERROR|WARNING)|Uninitialized| remerg|invalid).*
+      push: problem
+    - match: ^INFO\b.*
+      push: info
+    - match: ^NOTE\b.*
+      push: note
+
+  problem:
+    - meta_scope: invalid.source.saslog
+    - match: (?=^($|\d))
+      pop: true
+
+  note:
+    - meta_scope: keyword.source.saslog
+    - match: (?=^($|\d))
+      pop: true
+
+  info:
+    - meta_scope: string.source.saslog
+    - match: (?=^($|\d))
+      pop: true
+
