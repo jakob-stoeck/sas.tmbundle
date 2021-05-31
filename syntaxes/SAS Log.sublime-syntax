@@ -3,7 +3,7 @@
 name: SAS Log File
 file_extensions: [log]
 scope: source.saslog
-version: 2
+version: 1
 
 variables:
   context_switch: (?=^(ERROR|WARNING|NOTE|INFO|MLOGIC|MPRINT|SYMBOLGEN|\d|\f))
@@ -12,7 +12,7 @@ contexts:
   main:
     - match: (^(ERROR|WARNING)|Uninitialized| remerg|invalid).*
       push: problem
-    - match: ^INFO\b.*
+    - match: ^(INFO|FYI|DIGIT)\b.*
       push: info
     - match: ^NOTE\b.*
       push: note
