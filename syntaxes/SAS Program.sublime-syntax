@@ -1,0 +1,220 @@
+%YAML 1.2
+---
+name: SAS Program (new)
+file_extensions: [sas]
+scope: source.sas
+version: 1
+
+contexts:
+  prototype:
+    - include: comments
+    - include: constants
+    - include: strings
+    - include: numbers
+    - include: operators
+
+  main:
+    - match: '(?i)\b(if|while|until|for|do|end|then|else|run|quit|cancel)\b'
+      scope: keyword.control.sas
+    - match: '(?i)\boptions\b'
+      scope: keyword.control.sas
+      push: sas_opts
+    - match: '(?i)\b(libname|filename|ods)\b'
+      scope: keyword.import.sas
+    - include: dstep
+    - include: macro
+    - include: procstep
+
+  auto_vars:
+    - match: '\b_\w+?_\b'
+      scope: variable.language.sas
+
+  dstep:
+    - match: '(?i)\bdata\b(?!\s*=)'
+      scope: keyword.dstep.source.sas
+      push: dset_spec
+    - include: funcs
+    - include: dset_incoming
+    - include: auto_vars
+    - match: '(?i)\b(put|drop)\b'
+      scope: support.function.sas
+    - match: '(?i)\b(by|label|format|length)\b'
+      scope: keyword.datastep.sas
+      push: varlist
+    - match: '(?i)\b(run|quit|proc)\b'
+      scope: keyword.other.sas
+      pop: true
+
+  varlist:
+    - match: (\w+)+
+      captures:
+        1: variable.sas
+    - match: ';'
+      pop: true
+
+  dset_spec:
+    - match: '(((\w+)\.)?(\w+))'
+      captures:
+        3: entity.name.libname.sas
+        4: entity.name.dataset.sas
+    - match: '\('
+      scope: punctuation.sas
+      push: dset_options
+    - match: ';'
+      pop: true
+
+  dset_options:
+    - match: '(?i)(\b(alter|bufno|bufsize|cntllev|compress|dldmgaction|encrypt|encryptkey|extendobscounter|genmax|gennum|index|label|obsbuf|outrep|pw|pwreq|read|repempty|replace|reuse|role|sortedby|spill|tobsno|type|write|fileclose|firstobs|in|obs|pointobs|where|whereup|idxname|idxwhere)\b(?=\s*=))+'
+      scope: keyword.declaration.trait.sas
+    - match: '(?i)\b(drop|keep)\b\s*(=)\s*(\w+)+'
+      captures:
+        1: keyword.declaration.trait.sas
+        2: keyword.operator.assignment.sas
+        3: variable.sas
+    - match: '(?i)\b(rename)\b\s*(=)\s*\('
+      captures:
+        1: keyword.declaration.trait.sas
+        2: keyword.operator.assignment.sas
+      push:
+        - match: '((\w+)\s*(=)\s(\w+))'
+          captures:
+            2: variable.sas
+            3: keyword.operator.assignment.sas
+            4: variable.sas
+        - match: '\)'
+          pop: true
+    - match: '\)'
+      pop: true
+
+  dset_incoming:
+    - match: '(?i)\b(set|update|merge|modify)\b'
+      scope: support.function.sas
+      push: dset_spec
+    - match: ';'
+      pop: true
+
+  procstep:
+    - match: '(?i)\b(proc)\s+(sql)\b'
+      captures:
+        1: support.function.sas
+        2: support.module.sas
+      push: Packages/SQL/SQL.sublime-syntax
+      with_prototype:
+        - include: comments
+        - match: '--.+'
+          scope: invalid.illegal.sas
+        - match: '(?i)\b(run|quit)\b\s*;'
+          pop: true
+
+
+    - match: '(?i)(proc) (\w+)'
+      captures:
+        1: support.function.sas
+        2: support.module.sas
+    - match: '(?i)\b(data|base|out)\b\s*=\s*(((\w+)\.)?(\w+))'
+      scope: keyword.other.sas
+      captures:
+        4: entity.name.libname.sas
+        5: entity.name.dataset.sas
+
+    - match: '(?i)\b(nodupkey|noduprec|(no)?print|noautolegend|outobs|nowarn|force|library|cntlin|cntlout|maxdec|order|classdata|nway|label|print|log|inobs|outobs|(no)?warn|out|dupout)\b'
+      scope: support.constant.sas
+    - match: '(?i)\b(run|quit)\b\s*;'
+      scope: keyword.control.sas
+      pop: true
+
+  funcs:
+    - match: '(?i)\b(abs|addr|addrlong|airy|anyalnum|anyalpha|anycntrl|anydigit|anyfirst|anygraph|anylower|anyname|anyprint|anypunct|anyspace|anyupper|anyxdigit|arcos|arcosh|arsin|arsinh|artanh|atan|atan2|attrc|attrn|band|beta|betainv|blackclprc|blackptprc|blkshclprc|blkshptprc|blshift|bnot|bor|brshift|bxor|byte|(call\s+)?allcomb|(call\s+)?allcombi|(call\s+)?allperm|(call\s+)?cats|(call\s+)?catt|(call\s+)?catx|(call\s+)?compcost|(call\s+)?execute|(call\s+)?graycode|(call\s+)?is8601_convert|(call\s+)?label|(call\s+)?lexcomb|(call\s+)?lexcombi|(call\s+)?lexperk|(call\s+)?lexperm|(call\s+)?logistic|(call\s+)?missing|(call\s+)?module|(call\s+)?poke|(call\s+)?pokelong|(call\s+)?prxchange|(call\s+)?prxdebug|(call\s+)?prxfree|prxmatch|(call\s+)?prxnext|(call\s+)?prxposn|(call\s+)?prxsubstr|(call\s+)?ranbin|(call\s+)?rancau|(call\s+)?rancomb|(call\s+)?ranexp|(call\s+)?rangam|(call\s+)?rannor|(call\s+)?ranperk|(call\s+)?ranperm|(call\s+)?ranpoi|(call\s+)?rantbl|(call\s+)?rantri|(call\s+)?ranuni|(call\s+)?scan|(call\s+)?set|(call\s+)?sleep|(call\s+)?softmax|(call\s+)?sort|(call\s+)?sortc|(call\s+)?sortn|(call\s+)?stdize|(call\s+)?stream|(call\s+)?streaminit|(call\s+)?streamrewind|(call\s+)?symput|(call\s+)?symputx|(call\s+)?system|(call\s+)?tanh|(call\s+)?tso|(call\s+)?vname|(call\s+)?vnext|(call\s+)?wto|cat|catq|cdf|cdf|ceil|ceilz|cexist|char|choosec|choosen|cinv|close|cmiss|cnonct|coalesce|coalescec|collate|comb|compare|compbl|compfuzz|compged|complev|compound|compress|compsrv_oval|compsrv_unquote2|constant|convx|convxp|cos|cosh|cot|count|countc|countw|csc|css|cumipmt|cumprinc|curobs|cv|daccdb|daccdbsl|daccsl|daccsyd|dacctab|dairy|datdif|date|datejul|datepart|datetime|day|dclose|dcreate|depdb|depdbsl|depsl|depsyd|deptab|dequote|deviance|dhms|dif|digamma|dim|dinfo|divide|dlgcdir|dnum|dopen|doptname|doptnum|dosubl|dread|dropnote|dsname|dsncatlgd|dur|durp|effrate|envlen|erf|erfc|euclid|exist|exp|fact|fappend|fclose|fcol|fcopy|fdelete|fetch|fetchobs|fexist|fget|fileexist|filename|fileref|finance|find|findc|findw|finfo|finv|fipname|fipnamel|fipstate|first|floor|floorz|fmtinfo|fnonct|fnote|fopen|foptname|foptnum|fpoint|fpos|fput|fread|frewind|frlen|fsep|fuzz|fwrite|gaminv|gamma|garkhclprc|garkhptprc|gcd|geodist|geomean|geomeanz|getvarc|getvarn|git_branch_chkout|git_branch_delete|git_branch_merge|git_branch_new|git_clone|git_commit_free|git_commit|git_commit_get|git_commit_log|git_delete_repo|git_diff_file_idx|git_diff_free|git_diff|git_diff_get|git_diff_to_file|git_fetch|git_index_add|git_index_remove|git_init_repo|git_pull|git_push|git_rebase|git_rebase_op|git_reset_file|git_reset|git_set_url|git_stash_apply|git_stash_drop|git_stash|git_stash_pop|git_status_free|git_status|git_status_get|git_version|gitfn_clone|gitfn_co_branch|gitfn_commit_get|gitfn_commitfree|gitfn_commit_log|gitfn_commit|gitfn_del_branch|gitfn_del_repo|gitfn_diff_free|gitfn_diff_get|gitfn_diff_idx_f|gitfn_diff|gitfn_idx_add|gitfn_idx_remove|gitfn_mrg_branch|gitfn_new_branch|gitfn_pull|gitfn_push|gitfn_reset_file|gitfn_reset|gitfn_status|gitfn_status_get|gitfn_statusfree|gitfn_version|harmean|harmeanz|hashing|hashing_file|hashing_hmac|hashing_hmac_file|hashing_hmac_init|hashing_init|hashing_part|hashing_term|hbound|hms|holiday|holidayck|holidaycount|holidayname|holidaynx|holidayny|holidaytest|hour|htmldecode|htmlencode|ibessel|ifc|ifn|index|indexc|indexw|input|inputc|inputn|int|intcindex|intck|intcycle|intfit|intfmt|intget|intindex|intnx|intrr|intseas|intshift|inttest|intz|iorcmsg|ipmt|iqr|irr|jbessel|jsonpp|juldate|juldate7|kurtosis|lag|largest|lbound|lcm|lcomb|left|length|lengthc|lengthm|lengthn|lfact|lgamma|libname|libref|log|log10|log1px|log2|logbeta|logcdf|logpdf|logsdf|lowcase|lperm|lpnorm|mad|margrclprc|margrptprc|max|md5|mdy|mean|median|min|minute|mod|modexist|modulec|modulen|modz|month|mopen|mort|msplint|mvalid|n|netpv|nliteral|nmiss|nomrate|normal|notalnum|notalpha|notcntrl|notdigit|note|notfirst|notgraph|notlower|notname|notprint|notpunct|notspace|notupper|notxdigit|npv|nvalid|nwkdom|open|ordinal|pathname|pctl|pdf|peek|peekc|peekclong|peeklong|perm|pmt|point|poisson|ppmt|probbeta|probbnml|probbnrm|probchi|probf|probgam|probhypr|probit|probmc|probmed|probnegb|probnorm|probt|propcase|ptrlongadd|put|putc|putn|pvp|qtr|quantile|quote|rand|range|rank|rename|repeat|resolve|reverse|rewind|right|rms|round|rounde|roundz|saving|savings|sdf|sec|second|sha256|sha256hex|sha256hmachex|sign|sin|sinh|skewness|smallest|soapweb|soapwebmeta|soapwipservice|soapwipsrs|soapws|soapwsmeta|soundex|spedis|sqrt|squantile|std|stderr|stfips|stname|stnamel|strip|subpad|substr|substrn|sum|sumabs|symexist|symget|symglobl|symlocal|sysexist|sysget|sysmsg|sysparm|sysprocessid|sysprocessname|sysprod|sysrc|tan|time|timepart|timevalue|tinv|tnonct|today|translate|transtrn|tranwrd|trigamma|trim|trimn|trunc|typeof|tzoneid|tzonename|tzoneoff|tzones2u|tzoneu2s|uniform|upcase|urldecode|urlencode|uss|uuidgen|var|varfmt|varinfmt|varlabel|varlen|varname|varnum|varray|varrayx|vartype|verify|vformat|vformatd|vformatdx|vformatn|vformatnx|vformatw|vformatwx|vformatx|vinarray|vinarrayx|vinformat|vinformatd|vinformatdx|vinformatn|vinformatnx|vinformatw|vinformatwx|vinformatx|vlabel|vlabelx|vlength|vlengthx|vnamex|vtype|vtypex|vvalue|vvaluex|week|weekday|whichc|whichn|year|yieldp|yrdif|yyq|zipcity|zipcitydistance|zipfips|zipname|zipnamel|zipstate)(\()'
+      captures:
+        1: support.function.sas
+        2: meta.braces.sas
+
+  macro:
+    - include: macro_funcs
+    - include: macro_commands
+    - match: '&\w+'
+      scope: constant.character.escape.sas
+    - match: '%\w+'
+      scope: entity.name.function.sas
+
+
+  macro_funcs:
+    - match: '(?i)(%(trim|bquote|eval|index|length|nrbquote|nrquote|nrstr|qscan|qsubstr|qsysfunc|quote|nrquotes|qupcase|scan|qscans|str|nrstrs|substr|qsubstrs|superq|symexist|symglobl|symlocal|sysevalf|sysfunc|qsysfuncs|sysget|sysmacexec|sysmacexist|sysmexecdepth|sysmexecname|sysprod|unquote|upcase|qupcase))'
+      captures:
+        1: support.class.sas
+
+  macro_commands:
+    - match: (?i)(%(macro|mend|do|if|then|end|while|until|goto|include|local|put|global|let)\b)\s*(\w*)
+      captures:
+        1: support.class.sas
+        3: entity.name.function.sas
+
+  strings:
+    - match: '"'
+      scope: punctuation.definition.string.begin.sas
+      push:
+        - meta_scope: string.quoted.double.sas
+        - match: '&\w{1,}'
+          scope: constant.character.escape
+        - match: '"'
+          scope: punctuation.definition.string.end.sas
+          pop: true
+    - match: "'"
+      scope: punctuation.definition.string.begin.sas
+      push:
+        - meta_scope: string.quoted.single.sas
+        - match: '&\w{1,}'
+          scope: invalid.deprecated.sas # not actually invalid, but will not be resolved by the macro processor
+        - match: "'"
+          scope: punctuation.definition.string.end.sas
+          pop: true
+
+  constants:
+    - match: '(?i)([''"])\d{1,2}(-?)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\2\d{4}\1d'
+      # scope: constant.numeric.integer.other.sas
+      scope: constant.other.date.sas
+    - match: '(?i)([''"])\d{2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4}[. :]\d{2}:\d{2}(:\d{2})?\1dt'
+      scope: constant.other.datetime.sas
+      # '02apr1996 08:30'dt ;
+    - match: '(?i)([''"])[a-f0-9]+\1x'
+      scope: constant.numeric.integer.hexadecimal.sas
+    - match: '(?i)([''"])[a-z0-9 ]+\1n'
+      scope: constant.other.name.sas
+
+  numbers:
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.sas
+
+  operators:
+    - match: ([\+\-\^\/])
+      scope: keyword.operator.arithmetic.sas
+    - match: '\w+\s*(\*)' # this scopes the expression preceding the * as an operator--how do I use quantifiers in negative lookbehind?
+      captures:
+        1: keyword.operator.arithmetic.sas
+    - match: '(?i)\b(eq|ne|gt|lt|ge|le|in|min|max)\b'
+      scope: keyword.operator.comparison.sas
+    - match: '(?i)\b(?i:(not|and|or))\b'
+      scope: keyword.operator.logical.sas
+    - match: '([¬<>^~]?=(:)?|>|<|\||!|¦|¬|^|~|<>|><|\|\|)'
+      scope: keyword.operator.sas
+
+
+  comments:
+    - match: '(^|;)\s*\*'
+      scope: punctuation.definition.comment.sas
+      push:
+        - meta_scope: comment.block.sas
+        - match: ';'
+          pop: true
+    - match: '/\*'
+      scope: punctuation.definition.comment.begin.sas
+      push:
+        - meta_scope: comment.block.sas
+        - match: '\*/'
+          pop: true
+
+  sas_opts:
+    - match: '(?i)(alignsasiofiles|altlog|append\s*=|autocorrect|autoexec|bufno\s*=|bufsize\s*=|byerr|byline|bysorted|caps|cardimage|catcache\s*=|cbufno\s*=|center|cgoptimize\s*=|charcode|chkptclean|compress\s*=|config|cpucount\s*=|cpuid|datapagesize\s*=|datastmtchk\s*=|date|datestyle\s*=|decimalconv\s*=|details|dkricond\s*=|dkrocond\s*=|dlcreatedir|dldmgaction\s*=|dsaccel\s*=|dsnferr|dtreset|echo|echoauto|errorabend|errorbyabend|errorcheck\s*=|errors\s*=|filelocks|filelockwait\s*=|filelockwaitmax\s*=|filesync\s*=|firstobs\s*=|fmterr|fmtsearch\s*=|formchar\s*=|fullstimer|hostinfolong|ibufno\s*=|ibufsize\s*=|initstmt\s*=|insert\s*=|intervalds\s*=|invaliddata\s*=|jreoptions|label|labelchkpt|labelchkptlib\s*=|labelrestart|_last_\s*=|linesize\s*=|lockdown|log|logparm\s*=|lrecl\s*=|lptype|maxmemquery|memsize|mergenoby|metaconnect\s*=|metaencryptalg|metaencryptlevel|metapass\s*=|metaport\s*=|metaprofile|metaprotocol\s*=|metarepository\s*=|metaserver\s*=|metaspn\s*=|metauser\s*=|missing\s*=|msgcase|msglevel\s*=|msg|msymtabmax|mvarsize|news\s*=|notes|number|objectserver|obs\s*=|oplist|ovp|pageno\s*=|pagesize\s*=|parm\s*=|parmcards\s*=|print|printcmd|printmsglist|quotelenmax|realmemsize|replace|reuse\s*=|rsasuser|rtrace|rtraceloc|s\s*=|s2\s*=|s2v\s*=|sashelp\s*=|sasautos|sasuser\s*=|seq\s*=|set|setinit|sortanom|sortcut|sortcutp|sortdev|sortdup\s*=|sortequals|sortname|sortparm|sortpgm|sortsize\s*=|sortvalidate|source|source2|spool|startlib|stdio|stepchkpt|stepchkptlib\s*=|steprestart|stimefmt|stimer|stripesize\s*=|syntaxcheck|sysin|terminal|termstmt\s*=|threads|timezone\s*=|ubufno\s*=|ubufsize\s*=|user\s*=|userconfig|utilloc\s*=|validfmtname\s*=|validmemname\s*=|validvarname\s*=|varinitchk\s*=|varlenchk\s*=|vbufsize\s*=|verbose|vnferr|work|workinit|workperms|workterm|xcmd|yearcutoff\s*=)'
+      scope: support.function.sas
+    - match: ';'
+      pop: true
