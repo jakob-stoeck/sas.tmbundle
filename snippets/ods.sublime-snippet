@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 options orientation = landscape ;
-ods graphics / height = 8in width = 10in ;
+ods graphics / height = 8in width = 10in imagemap = on ;
 
 * %let out_folder = ${TM_FILEPATH/(.*\/)(.*)/$1/g} ;
 %let out_folder = %sysfunc(pathname(s)) ;

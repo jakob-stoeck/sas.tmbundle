@@ -2,7 +2,7 @@
 ---
 name: SAS Log File
 file_extensions: [log]
-first_line_match: 'NOTE: Log file opened'
+first_line_match: '(NOTE: Log file opened|The SAS System)'
 scope: source.saslog
 version: 1
 

@@ -1,28 +1,28 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 %let td_goo = user              = "&nuid@LDAP"
-              password          = "&cspassword"
-              server            = "&td_prod"
-              schema            = "${1:&nuid}"
-              connection        = global
-              mode              = teradata
+							password          = "&cspassword"
+							server            = "&td_prod"
+							schema            = "${1:&nuid}"
+							connection        = global
+							mode              = teradata
 ${2:              fastload          = yes}
 ;
 
-libname ${4:td} teradata &td_goo multi_datasrc_opt = in_clause ;
+libname ${3:td} teradata &td_goo ${4:access = readonly};
 
 ${5:proc sql ;
-  connect to teradata as td (&td_goo) ;
-  create table gnu as
-  select *
-  from connection to td
-  (
-  ) ;
+	connect to teradata as td (&td_goo) ;
+	create table gnu as
+	select *
+	from connection to td
+	(
+	) ;
 quit ;
 }
 ]]>
-  </content>
-  <tabTrigger>td</tabTrigger>
-  <scope>source.sas</scope>
-  <description>Connect to teradata</description>
+	</content>
+	<tabTrigger>td</tabTrigger>
+	<scope>source.sas</scope>
+	<description>Connect to teradata</description>
 </snippet>
