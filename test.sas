@@ -9,7 +9,7 @@
 * purpose
 *********************************************/
 
-* %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
+ %* %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
 
 options
   linesize  = 150
@@ -41,9 +41,14 @@ libname s "\\home.ghc.org\home$\%sysget(USERNAME)\workingdata" ;
 
 libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
 
+%macro something(arg12, arge9) ;
+  * yo mama ;
+%mend something ;
 
 
-data b ass dss dss2 ;
+data b perm.ass dss dss2 ;
+  x = 4 * y ;
+
 
 
 %macro boobies(xarg1, xarg2) ;
@@ -73,8 +78,10 @@ data s.gnu ;
 * foobar; * foobar;
 x1 = a * b ;
 x2    =    8*n ;
-x = 1.2**2-1;
-x = 1.2**(2-1);
+x = 1.2 ** 2-1;
+x = 1.2 *** 2-1;
+x = 1.2 * 2-1;
+x = 1.2^(2-1);
 z  = "&date."d;
 
 /* foobar */

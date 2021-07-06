@@ -8,10 +8,10 @@ version: 1
 contexts:
   prototype:
     - include: comments
+    - include: operators
     - include: constants
     - include: strings
     - include: numbers
-    - include: operators
 
   main:
     - match: '(?i)\b(if|while|until|for|do|end|then|else|run|quit|cancel)\b'
@@ -188,7 +188,7 @@ contexts:
   operators:
     - match: ([\+\-\^\/])
       scope: keyword.operator.arithmetic.sas
-    - match: '\w+\s*(\*)' # this scopes the expression preceding the * as an operator--how do I use quantifiers in negative lookbehind?
+    - match: '[a-zA-Z0-9.]+\s*(\*{1,2})[^\*]'
       captures:
         1: keyword.operator.arithmetic.sas
     - match: '(?i)\b(eq|ne|gt|lt|ge|le|in|min|max)\b'
@@ -200,7 +200,8 @@ contexts:
 
 
   comments:
-    - match: '(^|;)\s*\*'
+    # - match: '(^|;)\s*\*'
+    - match: '(^\s*\*|;\s*\*;|^\s*%\*|;\s*%\*)'
       scope: punctuation.definition.comment.sas
       push:
         - meta_scope: comment.block.sas
@@ -214,7 +215,7 @@ contexts:
           pop: true
 
   sas_opts:
-    - match: '(?i)(alignsasiofiles|altlog|append\s*=|autocorrect|autoexec|bufno\s*=|bufsize\s*=|byerr|byline|bysorted|caps|cardimage|catcache\s*=|cbufno\s*=|center|cgoptimize\s*=|charcode|chkptclean|compress\s*=|config|cpucount\s*=|cpuid|datapagesize\s*=|datastmtchk\s*=|date|datestyle\s*=|decimalconv\s*=|details|dkricond\s*=|dkrocond\s*=|dlcreatedir|dldmgaction\s*=|dsaccel\s*=|dsnferr|dtreset|echo|echoauto|errorabend|errorbyabend|errorcheck\s*=|errors\s*=|filelocks|filelockwait\s*=|filelockwaitmax\s*=|filesync\s*=|firstobs\s*=|fmterr|fmtsearch\s*=|formchar\s*=|fullstimer|hostinfolong|ibufno\s*=|ibufsize\s*=|initstmt\s*=|insert\s*=|intervalds\s*=|invaliddata\s*=|jreoptions|label|labelchkpt|labelchkptlib\s*=|labelrestart|_last_\s*=|linesize\s*=|lockdown|log|logparm\s*=|lrecl\s*=|lptype|maxmemquery|memsize|mergenoby|metaconnect\s*=|metaencryptalg|metaencryptlevel|metapass\s*=|metaport\s*=|metaprofile|metaprotocol\s*=|metarepository\s*=|metaserver\s*=|metaspn\s*=|metauser\s*=|missing\s*=|msgcase|msglevel\s*=|msg|msymtabmax|mvarsize|news\s*=|notes|number|objectserver|obs\s*=|oplist|ovp|pageno\s*=|pagesize\s*=|parm\s*=|parmcards\s*=|print|printcmd|printmsglist|quotelenmax|realmemsize|replace|reuse\s*=|rsasuser|rtrace|rtraceloc|s\s*=|s2\s*=|s2v\s*=|sashelp\s*=|sasautos|sasuser\s*=|seq\s*=|set|setinit|sortanom|sortcut|sortcutp|sortdev|sortdup\s*=|sortequals|sortname|sortparm|sortpgm|sortsize\s*=|sortvalidate|source|source2|spool|startlib|stdio|stepchkpt|stepchkptlib\s*=|steprestart|stimefmt|stimer|stripesize\s*=|syntaxcheck|sysin|terminal|termstmt\s*=|threads|timezone\s*=|ubufno\s*=|ubufsize\s*=|user\s*=|userconfig|utilloc\s*=|validfmtname\s*=|validmemname\s*=|validvarname\s*=|varinitchk\s*=|varlenchk\s*=|vbufsize\s*=|verbose|vnferr|work|workinit|workperms|workterm|xcmd|yearcutoff\s*=)'
+    - match: '(?i)\b(alignsasiofiles|altlog|append\s*=|autocorrect|autoexec|bufno\s*=|bufsize\s*=|byerr|byline|bysorted|caps|cardimage|catcache\s*=|cbufno\s*=|center|cgoptimize\s*=|charcode|chkptclean|compress\s*=|config|cpucount\s*=|cpuid|datapagesize\s*=|datastmtchk\s*=|date|datestyle\s*=|decimalconv\s*=|details|dkricond\s*=|dkrocond\s*=|dlcreatedir|dldmgaction\s*=|dsaccel\s*=|dsnferr|dtreset|echo|echoauto|errorabend|errorbyabend|errorcheck\s*=|errors\s*=|filelocks|filelockwait\s*=|filelockwaitmax\s*=|filesync\s*=|firstobs\s*=|fmterr|fmtsearch\s*=|formchar\s*=|fullstimer|hostinfolong|ibufno\s*=|ibufsize\s*=|initstmt\s*=|insert\s*=|intervalds\s*=|invaliddata\s*=|jreoptions|label|labelchkpt|labelchkptlib\s*=|labelrestart|_last_\s*=|linesize\s*=|lockdown|log|logparm\s*=|lrecl\s*=|lptype|maxmemquery|memsize|mergenoby|metaconnect\s*=|metaencryptalg|metaencryptlevel|metapass\s*=|metaport\s*=|metaprofile|metaprotocol\s*=|metarepository\s*=|metaserver\s*=|metaspn\s*=|metauser\s*=|missing\s*=|msgcase|msglevel\s*=|msg|msymtabmax|mvarsize|news\s*=|notes|number|objectserver|obs\s*=|oplist|ovp|pageno\s*=|pagesize\s*=|parm\s*=|parmcards\s*=|print|printcmd|printmsglist|quotelenmax|realmemsize|replace|reuse\s*=|rsasuser|rtrace|rtraceloc|s\s*=|s2\s*=|s2v\s*=|sashelp\s*=|sasautos|sasuser\s*=|seq\s*=|set|setinit|sortanom|sortcut|sortcutp|sortdev|sortdup\s*=|sortequals|sortname|sortparm|sortpgm|sortsize\s*=|sortvalidate|source|source2|spool|startlib|stdio|stepchkpt|stepchkptlib\s*=|steprestart|stimefmt|stimer|stripesize\s*=|syntaxcheck|sysin|terminal|termstmt\s*=|threads|timezone\s*=|ubufno\s*=|ubufsize\s*=|user\s*=|userconfig|utilloc\s*=|validfmtname\s*=|validmemname\s*=|validvarname\s*=|varinitchk\s*=|varlenchk\s*=|vbufsize\s*=|verbose|vnferr|work|workinit|workperms|workterm|xcmd|yearcutoff\s*=|dsoptions\s*=|nocenter|noovp|nosqlremerge)'
       scope: support.function.sas
     - match: ';'
       pop: true
