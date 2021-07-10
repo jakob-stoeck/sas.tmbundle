@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+%let csv_file = ${1://server/share/file.csv} ;
+proc import datafile = "&csv_file" out = ${2:gnu} dbms = csv ;
+	getnames = yes ;
+	guessingrows = max ;
+run ;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>csv</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>excel odbc libname</description>
+</snippet>

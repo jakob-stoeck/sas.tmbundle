@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+	proc sgplot data = ${1:gnu} ;
+		* scatter x = ${2:adate} y = ${3:source_count} / group = ${4:source} ;
+		loess x = ${2:adate} y = ${3:source_count} / group = ${4:source} lineattrs = (pattern = solid) ;
+		* series x = ${2:adate} y = ${3:source_count} / group = ${4:source} lineattrs = (thickness = .1 CM) ;
+		xaxis grid ; * values = (&earliest to "31dec2010"d by month ) ;
+		yaxis grid ;
+	run ;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sgplot</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>SGPLOT Call</description>
+</snippet>

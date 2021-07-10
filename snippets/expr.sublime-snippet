@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+proc export
+  data = ${1:gnu}
+  outfile = "%sysfunc(pathname(${2:mylib}))/${1:gnu}.tab"
+  dbms = tab replace ;
+  putnames = yes ;
+run ;
+
+** In R, use: ;
+** df <- read.table("//bibbity/bobbity/boo/${1:gnu}.tab", sep="\t", header=TRUE) ;
+${3}
+]]>
+  </content>
+  <tabTrigger>expr</tabTrigger>
+  <scope>source.sas</scope>
+  <description>export to tab delim for import into R</description>
+</snippet>

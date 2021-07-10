@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+%macro ${1:mname}(${2:args}) ;
+	${3:code goes here}
+%mend ${1:mname} ;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mac</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>Macro definition</description>
+</snippet>

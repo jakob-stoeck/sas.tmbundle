@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+%macro ${1:loopy}(var = , dset = ) ;
+	proc sql noprint ;
+		** Select out the var names of interest. ;
+		select distinct &var
+		into :n1-:n9999
+		from &dset
+		;
+
+		** How many rows were there? ;
+		%let num_rows = &SQLOBS ;
+
+		%do i = 1 %to &num_rows ;
+			%let this_one = &&n&i ;
+			%put Working on name &this_one ;
+			${2:code goes here} ;
+		%end ;
+	quit ;
+%mend ${1:loopy} ;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mloop</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>Macro with loop</description>
+</snippet>

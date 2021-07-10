@@ -1,0 +1,147 @@
+<package>
+   <job id="SAS Call Wrapper">
+   <?job error="true" debug="true" ?>
+   <runtime>
+      <description>
+         Submits the SAS program specified in the argument as a batch SAS job, and opens
+         the .log and .lst Files when finished.
+      </description>
+      <named
+         name="sasprog"
+         helpstring="Path/filename of the SAS Program you want to run."
+         type="string"
+         required="true"
+      />
+      <example>
+         Example: WScript SasWrap.wsf /sasprog:"c:\myprog.sas"
+      </example>
+   </runtime>
+   <object ID="WinShell" progid="WScript.Shell"/>
+   <object ID="Network" progid="WScript.Network"/>
+   <object ID="FSO" progid="Scripting.FileSystemObject"/>
+      <script language="VBScript">
+         Option Explicit
+         Const DQ = """"
+         ' Const vbOkOnly = 0
+         ' Const vbInformation = 64
+         ' Const vbCritical = 16
+         Call main
+         ' ================================================
+         Sub main
+            Dim SASProg
+            Dim SASVer
+            Dim SASexe
+            Dim WorkingDir
+            Dim BaseFileName
+            Dim LogFile
+            Dim ListFile
+            Dim RunLine
+            Const SHOWNORMAL = 1
+            Const SHOWMINIMIZED = 7
+            If WScript.Arguments.Count <> 1 Then
+               With WScript
+                  .Arguments.ShowUsage
+                  .Quit
+                End With
+            End If
+            SASProg = WScript.Arguments.Named("sasprog")
+            If Not FSO.FileExists(SASProg) Then
+               With WScript
+                  .Echo "Problem--I don't find any such file as " & SASProg & "!"
+                  .Quit
+               End With
+            End If
+            If LCase(FSO.GetExtensionName(SASProg)) <> "sas" Then
+               With WScript
+                  .Echo "Problem--" & SASProg & " isn't a SAS Program!"
+                  .Quit
+               End With
+            End If
+            BaseFileName = FSO.GetParentFolderName(SASProg) & "\" & FSO.GetBaseName(SASProg)
+            LogFile = BaseFileName & ".log"
+            ListFile = BaseFileName & ".lst"
+            SASVer = WinShell.RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\SAS Institute Inc.\The SAS System\CurrentVersion\CurrentVersion")
+            ' msgbox("Current sas version is " & SASVer)
+            SASExe = WinShell.RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\SAS Institute Inc.\The SAS System\" & SASVer & "\DefaultRoot") & "\sas.exe"
+            If Not FSO.FileExists(SASExe) Then
+               WScript.Echo "Problem--sas.exe is not found where the registry says it should be!"
+            Else
+               RunLine =         DQ & SASExe   & DQ _
+                  & " -sysin " & DQ & SASProg  & DQ _
+                  & " -log   " & DQ & LogFile  & DQ _
+                  & " -print " & DQ & ListFile & DQ _
+                  & " -nologo"
+                  ' & " -noovp " _
+                  ' & " -rsasuser " _
+                  ' & " -unbuflog " _
+                  ' & " -memsize MAX"
+
+               WinShell.CurrentDirectory = "Q:\SAS64.V93\SASHome\SASFoundation\9.3\"
+               ' MsgBox "Current dir is '" & WinShell.CurrentDirectory & "'"
+               ' MsgBox RunLine
+               Call RenameListFile(ListFile)
+               Call WinShell.Run(RunLine, SHOWMINIMIZED, True)
+               ' MsgBox("sas return code: " &  WinShell.Run(RunLine, SHOWMINIMIZED, True))
+
+               If CheckLog(LogFile) Then
+                  MsgBox FSO.GetFileName(SASProg) & " ran with errors--check your log file!", vbOKOnly + vbCritical, "Uh-oh!"
+               Else
+                  MsgBox FSO.GetFileName(SASProg) & " ran successfully!", vbOkOnly + vbInformation, "Yay!"
+               End If
+
+               If FSO.FileExists(ListFile) Then
+                  WinShell.Run(DQ & ListFile & DQ)
+               End If
+               WinShell.Run(DQ & LogFile & DQ)
+            End If
+         End Sub
+         ' ================================================
+         Public Function RenameListFile(ListFile)
+            Dim last_file
+            last_file = ListFile & ".last.run"
+            If FSO.FileExists(last_file) Then
+               Call FSO.DeleteFile(last_file)
+            End If
+            If FSO.FileExists(ListFile) Then
+               Call FSO.MoveFile(ListFile, last_file)
+            End If
+         End Function
+         ' ================================================
+         Public Function CheckLog(LogFilePath)
+         Dim booReturn
+         Dim LogFile
+         Dim Contents
+         Dim Rgx
+         Dim MatchResult
+         Const FORREADING = 1
+            booReturn = True
+            Set LogFile = FSO.OpenTextFile(LogFilePath, FORREADING)
+            Contents = LogFile.ReadAll
+            Set Rgx = New RegExp
+            With Rgx
+               ' For now we are ignoring warnings (since the expiration warnings are coming up)
+               ' .Pattern = "error"
+               ' .Pattern = "(error:|warning:|uninitialized)"
+               ' Testing a new regex to selectively ignore just the expiration warning.
+               ' .Pattern = "(error:|warning:|uninitialized)(?! your system is scheduled to expire on)"
+               ' .Pattern = "(error:|warning:|uninitialized)(?! (the .{4,15} product with which|your system is scheduled))"
+               ' .Pattern = "(\n(error:|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled))"
+               .Pattern = "(\n(error:|warning:)|uninitialized|[^l]remerge|Invalid data for)(?! (the .{4,15} product with which|your system is scheduled|will be expiring soon, and|this upcoming expiration.|information on your warning period.))"
+               .Global = False
+               .IgnoreCase = True
+               ' booReturn = .Test(Contents)
+               Set MatchResult = .Execute(Contents)
+               If MatchResult.Count > 0 Then
+                ' MsgBox(MatchResult.Item(0).Value)
+                booReturn = True
+               Else
+                  booReturn = False
+               End If
+            End With
+             CheckLog = booReturn
+         End Function
+         ' ================================================
+         ' WScript.Echo "Finished running " & WScript.ScriptName
+      </script>
+   </job>
+</package>

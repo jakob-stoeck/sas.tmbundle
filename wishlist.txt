@@ -1,0 +1,8 @@
+sas prettify
+  2-space indent:
+    contents of macros
+    between data and run or proc
+    do-end blocks
+    select case (datastep)
+  make room around operators.
+  space before trailing semicolon

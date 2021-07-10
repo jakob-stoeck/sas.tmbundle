@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+proc transpose data = ${1:gnu} out = ${2:s.tposed} (drop = _:) ${3:prefix = num_} ;
+	var ${4:these values go in the new vars} ;
+	id ${5:these values name the new vars} ;
+	${6:by provider ;}
+run ;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tp</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>TRANSPOSE procedure</description>
+</snippet>

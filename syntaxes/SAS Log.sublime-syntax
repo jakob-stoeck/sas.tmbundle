@@ -1,0 +1,35 @@
+%YAML 1.2
+---
+name: SAS Log File
+file_extensions: [log]
+first_line_match: '(NOTE: Log file opened|The SAS System)'
+scope: source.saslog
+version: 1
+
+variables:
+  context_switch: (?=^(ERROR|WARNING|NOTE|INFO|MLOGIC|MPRINT|SYMBOLGEN|\d|\f))
+
+contexts:
+  main:
+    - match: (^(ERROR|WARNING)|Uninitialized| remerg|invalid).*
+      push: problem
+    - match: ^(INFO|FYI|DIGIT)\b.*
+      push: info
+    - match: ^NOTE\b.*
+      push: note
+
+  problem:
+    - meta_scope: invalid.source.saslog
+    - match: '{{context_switch}}'
+      pop: true
+
+  note:
+    - meta_scope: keyword.source.saslog
+    - match: '{{context_switch}}'
+      pop: true
+
+  info:
+    - meta_scope: string.source.saslog
+    - match: '{{context_switch}}'
+      pop: true
+
