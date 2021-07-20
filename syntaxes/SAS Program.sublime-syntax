@@ -22,15 +22,15 @@ contexts:
     - match: '(?i)\b(libname|filename|ods)\b'
       scope: keyword.import.sas
     - include: dstep
-    - include: macro
     - include: procstep
+    - include: macro
 
   auto_vars:
     - match: '\b_\w+?_\b'
       scope: variable.language.sas
 
   dstep:
-    - match: '(?i)\bdata\b(?!\s*=)'
+    - match: '(?i)\bdata\b(?!(\s*=|\\))'
       scope: keyword.dstep.source.sas
       push: dset_spec
     - include: funcs
@@ -42,7 +42,7 @@ contexts:
       scope: keyword.datastep.sas
       push: varlist
     - match: '(?i)\b(run|quit|proc)\b'
-      scope: keyword.other.sas
+      meta_scope: support.module.sas
       pop: true
 
   varlist:
@@ -104,6 +104,7 @@ contexts:
         - match: '--.+'
           scope: invalid.illegal.sas
         - match: '(?i)\b(run|quit)\b\s*;'
+          scope: support.function.sas
           pop: true
 
 
@@ -201,7 +202,7 @@ contexts:
 
   comments:
     # - match: '(^|;)\s*\*'
-    - match: '(^\s*\*|;\s*\*;|^\s*%\*|;\s*%\*)'
+    - match: '(^\s*\*|;\s*\*|^\s*%\*|;\s*%\*)'
       scope: punctuation.definition.comment.sas
       push:
         - meta_scope: comment.block.sas
@@ -215,7 +216,7 @@ contexts:
           pop: true
 
   sas_opts:
-    - match: '(?i)\b(alignsasiofiles|altlog|append\s*=|autocorrect|autoexec|bufno\s*=|bufsize\s*=|byerr|byline|bysorted|caps|cardimage|catcache\s*=|cbufno\s*=|center|cgoptimize\s*=|charcode|chkptclean|compress\s*=|config|cpucount\s*=|cpuid|datapagesize\s*=|datastmtchk\s*=|date|datestyle\s*=|decimalconv\s*=|details|dkricond\s*=|dkrocond\s*=|dlcreatedir|dldmgaction\s*=|dsaccel\s*=|dsnferr|dtreset|echo|echoauto|errorabend|errorbyabend|errorcheck\s*=|errors\s*=|filelocks|filelockwait\s*=|filelockwaitmax\s*=|filesync\s*=|firstobs\s*=|fmterr|fmtsearch\s*=|formchar\s*=|fullstimer|hostinfolong|ibufno\s*=|ibufsize\s*=|initstmt\s*=|insert\s*=|intervalds\s*=|invaliddata\s*=|jreoptions|label|labelchkpt|labelchkptlib\s*=|labelrestart|_last_\s*=|linesize\s*=|lockdown|log|logparm\s*=|lrecl\s*=|lptype|maxmemquery|memsize|mergenoby|metaconnect\s*=|metaencryptalg|metaencryptlevel|metapass\s*=|metaport\s*=|metaprofile|metaprotocol\s*=|metarepository\s*=|metaserver\s*=|metaspn\s*=|metauser\s*=|missing\s*=|msgcase|msglevel\s*=|msg|msymtabmax|mvarsize|news\s*=|notes|number|objectserver|obs\s*=|oplist|ovp|pageno\s*=|pagesize\s*=|parm\s*=|parmcards\s*=|print|printcmd|printmsglist|quotelenmax|realmemsize|replace|reuse\s*=|rsasuser|rtrace|rtraceloc|s\s*=|s2\s*=|s2v\s*=|sashelp\s*=|sasautos|sasuser\s*=|seq\s*=|set|setinit|sortanom|sortcut|sortcutp|sortdev|sortdup\s*=|sortequals|sortname|sortparm|sortpgm|sortsize\s*=|sortvalidate|source|source2|spool|startlib|stdio|stepchkpt|stepchkptlib\s*=|steprestart|stimefmt|stimer|stripesize\s*=|syntaxcheck|sysin|terminal|termstmt\s*=|threads|timezone\s*=|ubufno\s*=|ubufsize\s*=|user\s*=|userconfig|utilloc\s*=|validfmtname\s*=|validmemname\s*=|validvarname\s*=|varinitchk\s*=|varlenchk\s*=|vbufsize\s*=|verbose|vnferr|work|workinit|workperms|workterm|xcmd|yearcutoff\s*=|dsoptions\s*=|nocenter|noovp|nosqlremerge)'
+    - match: '(?i)\b(alignsasiofiles|altlog|append\s*=|autocorrect|autoexec|bufno\s*=|bufsize\s*=|byerr|byline|bysorted|caps|cardimage|catcache\s*=|cbufno\s*=|center|cgoptimize\s*=|charcode|chkptclean|compress\s*=|config|cpucount\s*=|cpuid|datapagesize\s*=|datastmtchk\s*=|date|datestyle\s*=|decimalconv\s*=|details|dkricond\s*=|dkrocond\s*=|dlcreatedir|dldmgaction\s*=|dsaccel\s*=|dsnferr|dtreset|echo|echoauto|errorabend|errorbyabend|errorcheck\s*=|errors\s*=|extendobscounter|filelocks|filelockwait\s*=|filelockwaitmax\s*=|filesync\s*=|firstobs\s*=|fmterr|fmtsearch\s*=|formchar\s*=|fullstimer|hostinfolong|ibufno\s*=|ibufsize\s*=|initstmt\s*=|insert\s*=|intervalds\s*=|invaliddata\s*=|jreoptions|label|labelchkpt|labelchkptlib\s*=|labelrestart|_last_\s*=|linesize\s*=|lockdown|log|logparm\s*=|lrecl\s*=|lptype|maxmemquery|memsize|mergenoby|metaconnect\s*=|metaencryptalg|metaencryptlevel|metapass\s*=|metaport\s*=|metaprofile|metaprotocol\s*=|metarepository\s*=|metaserver\s*=|metaspn\s*=|metauser\s*=|missing\s*=|msgcase|msglevel\s*=|msg|msymtabmax|mvarsize|news\s*=|notes|number|objectserver|obs\s*=|oplist|ovp|pageno\s*=|pagesize\s*=|parm\s*=|parmcards\s*=|print|printcmd|printmsglist|quotelenmax|realmemsize|replace|reuse\s*=|rsasuser|rtrace|rtraceloc|s\s*=|s2\s*=|s2v\s*=|sashelp\s*=|sasautos|sasuser\s*=|seq\s*=|set|setinit|sortanom|sortcut|sortcutp|sortdev|sortdup\s*=|sortequals|sortname|sortparm|sortpgm|sortsize\s*=|sortvalidate|source|source2|spool|startlib|stdio|stepchkpt|stepchkptlib\s*=|steprestart|stimefmt|stimer|stripesize\s*=|syntaxcheck|sysin|terminal|termstmt\s*=|threads|timezone\s*=|ubufno\s*=|ubufsize\s*=|user\s*=|userconfig|utilloc\s*=|validfmtname\s*=|validmemname\s*=|validvarname\s*=|varinitchk\s*=|varlenchk\s*=|vbufsize\s*=|verbose|vnferr|work|workinit|workperms|workterm|xcmd|yearcutoff\s*=|dsoptions\s*=|nocenter|noovp|nosqlremerge|orientation|leftmargin|rightmargin|topmargin|bottommargin|nodate|papersize|mprint|symbolgen|mprintnest|merror|serror|noquotelenmax)'
       scope: support.function.sas
     - match: ';'
       pop: true

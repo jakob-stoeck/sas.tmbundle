@@ -12,6 +12,7 @@ ods html5 path = "&out_folder" (URL=NONE)
 				 style = magnify
 				 nogfootnote
 				 device = svg
+				 /* options(svg_mode = "embed") */
 					;
 
 * ods word file = "&out_folder.${TM_FILENAME/(.*)[.](.*)/$1/g}.docx" ;
