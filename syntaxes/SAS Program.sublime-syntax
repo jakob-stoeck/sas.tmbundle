@@ -202,8 +202,7 @@ contexts:
 
 
   comments:
-    # - match: '(^|;)\s*\*'
-    - match: '(^\s*\*|;\s*\*|^\s*%\*|;\s*%\*)'
+    - match: '[\s%]*\*'
       scope: punctuation.definition.comment.sas
       push:
         - meta_scope: comment.block.sas
