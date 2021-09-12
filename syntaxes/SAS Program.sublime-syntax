@@ -14,7 +14,7 @@ contexts:
     - include: numbers
 
   main:
-    - match: '(?i)\b(if|while|until|for|do|end|then|else|run|quit|cancel)\b'
+    - match: '(?i)\b(if|while|until|for|do|end|then|else|cancel)\b'
       scope: keyword.control.sas
     - match: '(?i)\boptions\b'
       scope: keyword.control.sas
@@ -31,7 +31,7 @@ contexts:
 
   dstep:
     - match: '(?i)\bdata\b(?!(\s*=|\\))'
-      scope: keyword.dstep.source.sas
+      scope: support.function.sas
       push: dset_spec
     - include: funcs
     - include: dset_incoming
@@ -42,7 +42,7 @@ contexts:
       scope: keyword.datastep.sas
       push: varlist
     - match: '(?i)\b(run|quit|proc)\b'
-      meta_scope: support.module.sas
+      meta_scope: support.function.sas
       pop: true
 
   varlist:
@@ -53,6 +53,10 @@ contexts:
       pop: true
 
   dset_spec:
+    - match: '(?i)\bas\b'
+      captures:
+        1: keyword.declaration.sas
+      pop: true
     - match: '(((\w+)\.)?(\w+))'
       captures:
         3: entity.name.libname.sas
@@ -60,7 +64,9 @@ contexts:
     - match: '\('
       scope: punctuation.sas
       push: dset_options
-    - match: ';'
+    - match: ;
+      captures:
+        1: punctuation.terminator.sas
       pop: true
 
   dset_options:
@@ -94,21 +100,12 @@ contexts:
       pop: true
 
   procstep:
-    - match: '(?i)\b(proc)\s+(sql)\b'
+    - match: '(?i)\b(proc)\s+(sql)\s*(.+)\s*;'
       captures:
         1: support.function.sas
-        2: support.module.sas
-      push: Packages/SQL/SQL.sublime-syntax
-      with_prototype:
-        - include: comments
-        # problem w/these is that dashes in dset labels mess things up.
-        # - match: '--.+'
-        #   scope: invalid.illegal.sas
-        - match: '(?i)\b(run|quit)\b\s*;'
-          scope: support.function.sas
-          pop: true
-
-
+        2: support.function.sas
+        3: keyword.declaration.trait.sas
+      push: sas_sql
     - match: '(?i)(proc) (\w+)'
       captures:
         1: support.function.sas
@@ -122,8 +119,28 @@ contexts:
     - match: '(?i)\b(nodupkey|noduprec|(no)?print|noautolegend|outobs|nowarn|force|library|cntlin|cntlout|maxdec|order|classdata|nway|label|print|log|inobs|outobs|(no)?warn|out|dupout)\b'
       scope: support.constant.sas
     - match: '(?i)\b(run|quit)\b\s*;'
-      scope: keyword.control.sas
+      scope: support.function.sas
       pop: true
+
+  sas_sql:
+    - match: '(?i)\bcreate\s+(view|table)\b'
+      scope: keyword.declaration.sas
+      push: dset_spec
+    - match: '(?i)\b(connection\s+to)\s+(\w+)'
+      captures:
+        1: keyword.import.from.sas
+        2: storage.sas
+      push: Packages/SQL/SQL.sublime-syntax
+      with_prototype:
+        - match: '\)\s*;'
+          scope: punctuation.terminator.sas
+          pop: true
+    - match: (?i:\b(select|insert|update|delete|truncate|from|set|where|group\s+by|with|case|when|then|else|end|union(\s+all)?|using|order\s+by|limit|(inner|cross)\s+join|join|straight_join|(left|right)(\s+outer)?\s+join|natural(\s+(left|right)(\s+outer)?)?\s+join)\b)
+      scope: keyword.other.DML.sas
+    - match: '(?i)\bquit\b'
+      scope: support.function.sas
+      pop: true
+
 
   funcs:
     - match: '(?i)\b(abs|addr|addrlong|airy|anyalnum|anyalpha|anycntrl|anydigit|anyfirst|anygraph|anylower|anyname|anyprint|anypunct|anyspace|anyupper|anyxdigit|arcos|arcosh|arsin|arsinh|artanh|atan|atan2|attrc|attrn|band|beta|betainv|blackclprc|blackptprc|blkshclprc|blkshptprc|blshift|bnot|bor|brshift|bxor|byte|(call\s+)?allcomb|(call\s+)?allcombi|(call\s+)?allperm|(call\s+)?cats|(call\s+)?catt|(call\s+)?catx|(call\s+)?compcost|(call\s+)?execute|(call\s+)?graycode|(call\s+)?is8601_convert|(call\s+)?label|(call\s+)?lexcomb|(call\s+)?lexcombi|(call\s+)?lexperk|(call\s+)?lexperm|(call\s+)?logistic|(call\s+)?missing|(call\s+)?module|(call\s+)?poke|(call\s+)?pokelong|(call\s+)?prxchange|(call\s+)?prxdebug|(call\s+)?prxfree|prxmatch|(call\s+)?prxnext|(call\s+)?prxposn|(call\s+)?prxsubstr|(call\s+)?ranbin|(call\s+)?rancau|(call\s+)?rancomb|(call\s+)?ranexp|(call\s+)?rangam|(call\s+)?rannor|(call\s+)?ranperk|(call\s+)?ranperm|(call\s+)?ranpoi|(call\s+)?rantbl|(call\s+)?rantri|(call\s+)?ranuni|(call\s+)?scan|(call\s+)?set|(call\s+)?sleep|(call\s+)?softmax|(call\s+)?sort|(call\s+)?sortc|(call\s+)?sortn|(call\s+)?stdize|(call\s+)?stream|(call\s+)?streaminit|(call\s+)?streamrewind|(call\s+)?symput|(call\s+)?symputx|(call\s+)?system|(call\s+)?tanh|(call\s+)?tso|(call\s+)?vname|(call\s+)?vnext|(call\s+)?wto|cat|catq|cdf|cdf|ceil|ceilz|cexist|char|choosec|choosen|cinv|close|cmiss|cnonct|coalesce|coalescec|collate|comb|compare|compbl|compfuzz|compged|complev|compound|compress|compsrv_oval|compsrv_unquote2|constant|convx|convxp|cos|cosh|cot|count|countc|countw|csc|css|cumipmt|cumprinc|curobs|cv|daccdb|daccdbsl|daccsl|daccsyd|dacctab|dairy|datdif|date|datejul|datepart|datetime|day|dclose|dcreate|depdb|depdbsl|depsl|depsyd|deptab|dequote|deviance|dhms|dif|digamma|dim|dinfo|divide|dlgcdir|dnum|dopen|doptname|doptnum|dosubl|dread|dropnote|dsname|dsncatlgd|dur|durp|effrate|envlen|erf|erfc|euclid|exist|exp|fact|fappend|fclose|fcol|fcopy|fdelete|fetch|fetchobs|fexist|fget|fileexist|filename|fileref|finance|find|findc|findw|finfo|finv|fipname|fipnamel|fipstate|first|floor|floorz|fmtinfo|fnonct|fnote|fopen|foptname|foptnum|fpoint|fpos|fput|fread|frewind|frlen|fsep|fuzz|fwrite|gaminv|gamma|garkhclprc|garkhptprc|gcd|geodist|geomean|geomeanz|getvarc|getvarn|git_branch_chkout|git_branch_delete|git_branch_merge|git_branch_new|git_clone|git_commit_free|git_commit|git_commit_get|git_commit_log|git_delete_repo|git_diff_file_idx|git_diff_free|git_diff|git_diff_get|git_diff_to_file|git_fetch|git_index_add|git_index_remove|git_init_repo|git_pull|git_push|git_rebase|git_rebase_op|git_reset_file|git_reset|git_set_url|git_stash_apply|git_stash_drop|git_stash|git_stash_pop|git_status_free|git_status|git_status_get|git_version|gitfn_clone|gitfn_co_branch|gitfn_commit_get|gitfn_commitfree|gitfn_commit_log|gitfn_commit|gitfn_del_branch|gitfn_del_repo|gitfn_diff_free|gitfn_diff_get|gitfn_diff_idx_f|gitfn_diff|gitfn_idx_add|gitfn_idx_remove|gitfn_mrg_branch|gitfn_new_branch|gitfn_pull|gitfn_push|gitfn_reset_file|gitfn_reset|gitfn_status|gitfn_status_get|gitfn_statusfree|gitfn_version|harmean|harmeanz|hashing|hashing_file|hashing_hmac|hashing_hmac_file|hashing_hmac_init|hashing_init|hashing_part|hashing_term|hbound|hms|holiday|holidayck|holidaycount|holidayname|holidaynx|holidayny|holidaytest|hour|htmldecode|htmlencode|ibessel|ifc|ifn|index|indexc|indexw|input|inputc|inputn|int|intcindex|intck|intcycle|intfit|intfmt|intget|intindex|intnx|intrr|intseas|intshift|inttest|intz|iorcmsg|ipmt|iqr|irr|jbessel|jsonpp|juldate|juldate7|kurtosis|lag|largest|lbound|lcm|lcomb|left|length|lengthc|lengthm|lengthn|lfact|lgamma|libname|libref|log|log10|log1px|log2|logbeta|logcdf|logpdf|logsdf|lowcase|lperm|lpnorm|mad|margrclprc|margrptprc|max|md5|mdy|mean|median|min|minute|mod|modexist|modulec|modulen|modz|month|mopen|mort|msplint|mvalid|n|netpv|nliteral|nmiss|nomrate|normal|notalnum|notalpha|notcntrl|notdigit|note|notfirst|notgraph|notlower|notname|notprint|notpunct|notspace|notupper|notxdigit|npv|nvalid|nwkdom|open|ordinal|pathname|pctl|pdf|peek|peekc|peekclong|peeklong|perm|pmt|point|poisson|ppmt|probbeta|probbnml|probbnrm|probchi|probf|probgam|probhypr|probit|probmc|probmed|probnegb|probnorm|probt|propcase|ptrlongadd|put|putc|putn|pvp|qtr|quantile|quote|rand|range|rank|rename|repeat|resolve|reverse|rewind|right|rms|round|rounde|roundz|saving|savings|sdf|sec|second|sha256|sha256hex|sha256hmachex|sign|sin|sinh|skewness|smallest|soapweb|soapwebmeta|soapwipservice|soapwipsrs|soapws|soapwsmeta|soundex|spedis|sqrt|squantile|std|stderr|stfips|stname|stnamel|strip|subpad|substr|substrn|sum|sumabs|symexist|symget|symglobl|symlocal|sysexist|sysget|sysmsg|sysparm|sysprocessid|sysprocessname|sysprod|sysrc|tan|time|timepart|timevalue|tinv|tnonct|today|translate|transtrn|tranwrd|trigamma|trim|trimn|trunc|typeof|tzoneid|tzonename|tzoneoff|tzones2u|tzoneu2s|uniform|upcase|urldecode|urlencode|uss|uuidgen|var|varfmt|varinfmt|varlabel|varlen|varname|varnum|varray|varrayx|vartype|verify|vformat|vformatd|vformatdx|vformatn|vformatnx|vformatw|vformatwx|vformatx|vinarray|vinarrayx|vinformat|vinformatd|vinformatdx|vinformatn|vinformatnx|vinformatw|vinformatwx|vinformatx|vlabel|vlabelx|vlength|vlengthx|vnamex|vtype|vtypex|vvalue|vvaluex|week|weekday|whichc|whichn|year|yieldp|yrdif|yyq|zipcity|zipcitydistance|zipfips|zipname|zipnamel|zipstate)(\()'
