@@ -12,7 +12,7 @@
  %* %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
 
 options
-  linesize  = 150
+  linesize  =
   msglevel  = i
   formchar  = '|-++++++++++=|-/|<>*'
   dsoptions = note2err
@@ -45,11 +45,26 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
   * yo mama ;
 %mend something ;
 
+proc sql outobs = 20 nowarn ;
+  create table zorp as
+  select bibbitty
+      , bobbity
+      , booo
+  from sashelp.class
+  ;
+
+  create table bibbity.x2 as
+  select bloort
+  from connection to oracle(
+
+    select * from dual
+    )  ;
+quit ;
 
 data b perm.ass dss dss2 ;
   x = 4 * y ;
 
-
+run ;
 
 %macro boobies(xarg1, xarg2) ;
   data something ;
@@ -70,6 +85,9 @@ data    bobbity ;
 data    boo ;
 ;
 
+
+%* macro comment ; %* and another macro comment ;
+* comment ; * and another comment ;
 
 data s.gnu ;
   set b.old
@@ -108,9 +126,11 @@ run ;
 ods _all_ close ;
 
 proc sql outobs = 20 nowarn ;
-  create table blah as
-  select *
-  from some.other_table
+  * this is a comment ;
+  create table perm.blah (keep = (bibbitty bobbity)) as
+  select study_id, t.index_date
+  from
+  connection to oracle (select * from dual)
   ;
 quit ;
 
