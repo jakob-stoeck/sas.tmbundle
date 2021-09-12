@@ -100,7 +100,7 @@ contexts:
       pop: true
 
   procstep:
-    - match: '(?i)\b(proc)\s+(sql)\s*(.+)\s*;'
+    - match: '(?i)\b(proc)\s+(sql)\s*(.+)?;'
       captures:
         1: support.function.sas
         2: support.function.sas
@@ -126,6 +126,11 @@ contexts:
     - match: '(?i)\bcreate\s+(view|table)\b'
       scope: keyword.declaration.sas
       push: dset_spec
+    - match: '(?i)\b(connect\s+to)\s+(\w+)\s+as\s+(\w+)'
+      captures:
+        1: keyword.import.from.sas
+        2: storage.type.impl.sas
+        3: storage.sas
     - match: '(?i)\b(connection\s+to)\s+(\w+)'
       captures:
         1: keyword.import.from.sas
