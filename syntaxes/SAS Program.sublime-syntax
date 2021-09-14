@@ -54,8 +54,7 @@ contexts:
 
   dset_spec:
     - match: '(?i)\bas\b'
-      captures:
-        1: keyword.declaration.sas
+      scope: keyword.operator.assignment.alias.sas
       pop: true
     - match: '(((\w+)\.)?(\w+))'
       captures:
@@ -140,8 +139,19 @@ contexts:
         - match: '\)\s*;'
           scope: punctuation.terminator.sas
           pop: true
-    - match: (?i:\b(select|insert|update|delete|truncate|from|set|where|group\s+by|with|case|when|then|else|end|union(\s+all)?|using|order\s+by|limit|(inner|cross)\s+join|join|straight_join|(left|right)(\s+outer)?\s+join|natural(\s+(left|right)(\s+outer)?)?\s+join)\b)
+    - match: '(?i:\b(from|join)\s+((\w+)\.)?(\w+))'
+      captures:
+        1: keyword.other.DML.sas
+        3: entity.name.libname.sas
+        4: entity.name.dataset.sas
+    - match: (?i:\b(select|insert|update|delete|truncate|set|where|group\s+by|with|case|when|then|else|end|union(\s+all)?|using|order\s+by|limit)\b)
       scope: keyword.other.DML.sas
+    - match: (?i:\b(alter|table|add|key|primary)\b)
+      scope: keyword.other.DDL.sas
+    - match: (?i)\bas\b
+      scope: keyword.operator.assignment.alias.sas
+    - match: (?i)\b(asc|desc)\b
+      scope: keyword.other.order.sas
     - match: '(?i)\bquit\b'
       scope: support.function.sas
       pop: true

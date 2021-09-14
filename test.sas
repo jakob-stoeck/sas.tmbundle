@@ -45,12 +45,17 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
   * yo mama ;
 %mend something ;
 
+data b perm.ass dss dss2 ;
+  x = 4 * y ;
+
+run ;
 proc sql outobs = 20 nowarn ;
   create table zorp as
   select bibbitty
       , bobbity
       , booo
-  from sashelp.class
+  from sashelp.class as x
+   left join x.cars as y on x.bling = y.blah
   ;
 
   create table bibbity.x2 as
@@ -59,12 +64,14 @@ proc sql outobs = 20 nowarn ;
 
     select * from dual
     )  ;
+  alter table bibbity.x2 add primary key (bloort) ;
 quit ;
 
 data b perm.ass dss dss2 ;
   x = 4 * y ;
-
+  z = round(8993, .91) ;
 run ;
+
 
 %macro boobies(xarg1, xarg2) ;
   data something ;
@@ -85,6 +92,9 @@ data    bobbity ;
 data    boo ;
 ;
 
+proc sort nodupkey data = gnu out = gnu ;
+  by mrn adate ;
+run ;
 
 %* macro comment ; %* and another macro comment ;
 * comment ; * and another comment ;
