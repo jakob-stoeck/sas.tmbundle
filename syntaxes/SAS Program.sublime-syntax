@@ -234,7 +234,7 @@ contexts:
 
 
   comments:
-    - match: '[\s%]*\*'
+    - match: '(?<!\()(\*|%\*)'
       scope: punctuation.definition.comment.sas
       push:
         - meta_scope: comment.block.sas
@@ -245,6 +245,7 @@ contexts:
       push:
         - meta_scope: comment.block.sas
         - match: '\*/'
+          scope: punctuation.definition.comment.end.sas
           pop: true
     - match: (?i)\bendsas\b\s*;
       scope: invalid.deprecated.sas
