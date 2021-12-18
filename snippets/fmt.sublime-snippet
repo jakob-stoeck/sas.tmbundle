@@ -1,11 +1,17 @@
 <snippet>
 	<content><![CDATA[
 proc format ;
+	* from https://communities.sas.com/t5/SAS-Programming/Million-Format/td-p/440121 ;
+	picture hicount (round)
+		1E03-<1000000='000K' (mult=.001  )
+		1E06-<1000000000='000.9M' (mult=.00001)
+		1E09-<1000000000000='000.9B' (mult=1E-08)
+		1E12-<1000000000000000='000.9T' (mult=1E-11)
+	;
 	value \$${1:txtfmt}
-		"${2:val}" = "${3:formatted val}"
+,		"${2:val}" = "${3:formatted val}"
 	;
 quit ;
-
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>fmt</tabTrigger>

@@ -12,7 +12,7 @@
  %* %include "\\home\pardre1\SAS\Scripts\remoteactivate.sas" ;
 
 options
-  linesize  = 150
+  linesize  =
   msglevel  = i
   formchar  = '|-++++++++++=|-/|<>*'
   dsoptions = note2err
@@ -45,10 +45,32 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
   * yo mama ;
 %mend something ;
 
-
 data b perm.ass dss dss2 ;
   x = 4 * y ;
 
+run ;
+proc sql outobs = 20 nowarn ;
+  create table zorp as
+  select bibbitty
+      , bobbity
+      , booo
+  from sashelp.class as x
+   left join x.cars as y on x.bling = y.blah
+  ;
+
+  create table bibbity.x2 as
+  select bloort
+  from connection to oracle(
+
+    select * from dual
+    )  ;
+  alter table bibbity.x2 add primary key (bloort) ;
+quit ;
+
+data b perm.ass dss dss2 ;
+  x = 4 * y ;
+  z = round(8993, .91) ;
+run ;
 
 
 %macro boobies(xarg1, xarg2) ;
@@ -70,6 +92,12 @@ data    bobbity ;
 data    boo ;
 ;
 
+proc sort nodupkey data = gnu out = gnu ;
+  by mrn adate ;
+run ;
+
+%* macro comment ; %* and another macro comment ;
+* comment ; * and another comment ;
 
 data s.gnu ;
   set b.old
@@ -105,13 +133,14 @@ ods html path = "&out_folder" (URL=NONE)
 
 run ;
 
-** this is also a comment ;
-ods _all_ close ; * trailing comment ;
+ods _all_ close ;
+
 proc sql outobs = 20 nowarn ;
   * this is a comment ;
-  create table blah as
-  select *
-  from some.other_table
+  create table perm.blah (keep = (bibbitty bobbity)) as
+  select study_id, t.index_date
+  from
+  connection to oracle (select * from dual)
   ;
 quit ;
 
