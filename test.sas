@@ -105,9 +105,10 @@ ods html path = "&out_folder" (URL=NONE)
 
 run ;
 
-ods _all_ close ;
-
+** this is also a comment ;
+ods _all_ close ; * trailing comment ;
 proc sql outobs = 20 nowarn ;
+  * this is a comment ;
   create table blah as
   select *
   from some.other_table

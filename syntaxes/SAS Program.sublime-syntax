@@ -36,7 +36,7 @@ contexts:
     - include: funcs
     - include: dset_incoming
     - include: auto_vars
-    - match: '(?i)\b(put|drop)\b'
+    - match: '(?i)\b(put|drop|keep)\b'
       scope: support.function.sas
     - match: '(?i)\b(by|label|format|length)\b'
       scope: keyword.datastep.sas
@@ -107,8 +107,6 @@ contexts:
         - match: '(?i)\b(run|quit)\b\s*;'
           scope: support.function.sas
           pop: true
-
-
     - match: '(?i)(proc) (\w+)'
       captures:
         1: support.function.sas
@@ -138,7 +136,6 @@ contexts:
       scope: constant.character.escape.sas
     - match: '%\w+'
       scope: entity.name.function.sas
-
 
   macro_funcs:
     - match: '(?i)(%(trim|bquote|eval|index|length|nrbquote|nrquote|nrstr|qscan|qsubstr|qsysfunc|quote|nrquotes|qupcase|scan|qscans|str|nrstrs|substr|qsubstrs|superq|symexist|symglobl|symlocal|sysevalf|sysfunc|qsysfuncs|sysget|sysmacexec|sysmacexist|sysmexecdepth|sysmexecname|sysprod|unquote|upcase|qupcase))'
@@ -202,7 +199,7 @@ contexts:
 
 
   comments:
-    - match: '[\s%]*\*'
+    - match: '(?<!select)[ %]*\*'
       scope: punctuation.definition.comment.sas
       push:
         - meta_scope: comment.block.sas
