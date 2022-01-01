@@ -43,8 +43,12 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
 
 %macro something(arg12, arge9) ;
   * yo mama ;
-%mend something ;
 
+%mend something ;
+  proc freq data = gnu order = freq ;
+    tables &arg12 * v2 / missing format = comma9.0 ;
+    format v2 year4. ;
+  run ;
 data b perm.ass dss dss2 ;
   x = 4 * y ;
 
@@ -95,6 +99,11 @@ data    boo ;
 proc sort nodupkey data = gnu out = gnu ;
   by mrn adate ;
 run ;
+
+proc sort nodupkey data = some_data out = blah ;
+  by meep moop glorp somel aaaaaaa bbb ;
+run ;
+
 
 %* macro comment ; %* and another macro comment ;
 * comment ; * and another comment ;
