@@ -225,7 +225,7 @@ contexts:
   operators:
     - match: ([\+\-\^\/])
       scope: keyword.operator.arithmetic.sas
-    - match: '[a-zA-Z0-9.]+\s*(\*{1,2})[^\*]'
+    - match: '&?[a-zA-Z0-9.]+\s*(\*{1,2})[^\*]'
       captures:
         1: keyword.operator.arithmetic.sas
     - match: '(?i)\b(eq|ne|gt|lt|ge|le|in|min|max)\b'
