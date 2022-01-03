@@ -1,7 +1,8 @@
 <snippet>
 	<content><![CDATA[
 %let xls_file = ${1://server/share/file.xls} ;
-libname xl ODBC required = "Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};dbq=&xls_file" preserve_tab_names = yes ;
+/* libname xl ODBC required = "Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};dbq=&xls_file" preserve_tab_names = yes ; */
+libname xl excel "&xls_file" ;
 
 ${2:proc datasets library = xl ;
 run ;

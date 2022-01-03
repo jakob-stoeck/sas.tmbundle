@@ -9,7 +9,7 @@ proc format ;
 		1E12-<1000000000000000='000.9T' (mult=1E-11)
 	;
 	value \$${1:txtfmt}
-,		"${2:val}" = "${3:formatted val}"
+		"${2:val}" = "${3:formatted val}"
 	;
 quit ;
 ]]></content>
