@@ -1,8 +1,6 @@
 <snippet>
 	<content><![CDATA[
-%let td_goo = user              = "&nuid@LDAP"
-							password          = "&cspassword"
-							server            = "&td_prod"
+%let td_goo = server            = "&td_prod"
 							schema            = "${1:&nuid}"
 							connection        = global
 							mode              = teradata

@@ -133,15 +133,6 @@ contexts:
         1: keyword.import.from.sas
         2: storage.type.impl.sas
         3: storage.sas
-    - match: '(?i)\b((from\s+)?connection\s+to)\s+(\w+)'
-      captures:
-        1: keyword.import.from.sas
-        3: storage.sas
-      push: Packages/SQL/SQL.sublime-syntax
-      with_prototype:
-        - match: '\)\s*;'
-          scope: punctuation.terminator.sas
-          pop: true
     - match: '(?i:\b(from|join)\s+((\w+)\.)?(\w+))'
       captures:
         1: keyword.other.DML.sas
