@@ -13,7 +13,7 @@ contexts:
   main:
     - match: (^(ERROR|WARNING)|Uninitialized| remerg|invalid).*
       push: problem
-    - match: ^(INFO|FYI|DIGIT)\b.*
+    - match: ^(INFO|FYI|DIGIT|DIG IT)\b.*
       push: info
     - match: ^NOTE\b.*
       push: note

@@ -49,9 +49,10 @@ contexts:
       pop: true
 
   varlist:
-    - match: (\w+)+
+    - match: (descending )?(\w+)+
       captures:
-        1: variable.sas
+        1: support.function.sas
+        2: variable.sas
     - match: ';'
       pop: true
 
@@ -117,7 +118,6 @@ contexts:
       captures:
         4: entity.name.libname.sas
         5: entity.name.dataset.sas
-
     - match: '(?i)\b(nodupkey|noduprec|(no)?print|noautolegend|outobs|nowarn|force|library|cntlin|cntlout|maxdec|order|classdata|nway|label|print|log|inobs|outobs|(no)?warn|out|dupout)\b'
       scope: support.constant.sas
     - match: '(?i)\b(run|quit)\b\s*;'

@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+* proc sql;
+*   connect to odbc as caboodle (&caboodle_odbc) ;
+*   disconnect from caboodle ;
+* quit ;
+libname caboodle ODBC required = &caboodle_odbc ;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cab</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>Connect to CABOODLE @ KPWA</description>
+</snippet>
