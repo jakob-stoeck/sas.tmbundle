@@ -43,6 +43,11 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
 
 %macro something(arg12, arge9) ;
   * yo mama ;
+%mend something ;
+
+data bubba ;
+  var = lag1(var2) * var3;
+run ;
 
 %mend something ;
   proc freq data = gnu order = freq ;
@@ -50,8 +55,9 @@ libname blah teradata &td_goo multi_datasrc_opt = in_clause ;
     format v2 year4. ;
   run ;
 data b perm.ass dss dss2 ;
+  * this is a comment ;
   x = 4 * y ;
-
+  sin_x = sin(x) * var1 + round(x, 389);   * comment again. ;
 run ;
 proc sql outobs = 20 nowarn ;
   create table zorp as
@@ -73,7 +79,7 @@ quit ;
 
 data b perm.ass dss dss2 ;
   x = 4 * y ;
-  z = round(8993, .91) ;
+  z = round(8993, .91, 979) * (sldkj + x) ; * comment ;
 run ;
 
 
