@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+proc means data = ${1:gnu} maxdec = 2  nmiss min p10 p25 p50 p75 p90 max mean std ;
+	${2:class v1 ;}
+	var ${3} ;
+run ;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mns</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>proc means</description>
+</snippet>
