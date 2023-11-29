@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+(extract(year from date '${1:2023-08-01}') - extract(year from BIRTH_DATE) (named YEARS)) + case when date '${1:2023-08-01}' - (YEARS (interval year)) < BIRTH_DATE then -1 else 0 end as age_${2:aug_2023}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>tda</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sas</scope>
+	<description>Calculate age in Teradata SQL</description>
+</snippet>
