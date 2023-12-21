@@ -1,15 +1,17 @@
 <snippet>
 	<content><![CDATA[
 %let td_goo = server            = "&td_prod"
-							schema            = "${1:&nuid}"
+							${1:user              = "&nuid@LDAP"
+							password          = "&cspassword"}
+							schema            = "${2:&nuid}"
 							connection        = global
 							mode              = teradata
-${2:              fastload          = yes}
+${3:              fastload          = yes}
 ;
 
-libname ${3:td} teradata &td_goo ${4:access = readonly};
+libname ${4:td} teradata &td_goo ${5:access = readonly};
 
-${5:proc sql ;
+${6:proc sql ;
 	connect to teradata as td (&td_goo) ;
 	create table gnu as
 	select *
